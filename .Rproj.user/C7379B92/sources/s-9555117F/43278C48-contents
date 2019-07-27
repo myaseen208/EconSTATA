@@ -1,0 +1,50 @@
+--- 
+title: "Structural Equation Modeling with Latent Variables using R"
+author: "Muhammad Yaseen"
+date: ""
+output:
+  bookdown::pdf_book:
+    template: tex/template_thesis_classic2.tex
+    keep_tex: yes
+    citation_package: natbib
+#    latex_engine: xelatex
+    toc_depth: 3
+    toc_unnumbered: no
+    toc_appendix: yes
+    pandoc_args: --top-level-division=chapter
+    quote_footer: ["\\begin{flushright}", "\\end{flushright}"]
+bibliography: [bib/SEM.bib]
+biblio-style: apalike
+link-citations: yes
+colorlinks: no  
+# toc: no
+lot: no
+lof: no
+site: bookdown::bookdown_site
+---
+
+
+```{r label = setup, include=FALSE, cache=FALSE}
+knitr::opts_chunk$set(
+                 fig.align  = 'center'
+               , out.width  = '80%'
+               , fig.asp    = 0.75
+               , fig.pos    = 'H'
+               , echo       = TRUE
+               , results    = 'markup'
+               , warning    = FALSE
+               , message    = FALSE
+               , comment    = NA
+               )
+options(replace.assign = TRUE, width = 65)
+par(mar = c(4, 4, .1, .1))
+```
+
+
+```{r label = RCode, echo = FALSE}
+knitr::read_chunk("02-LMRCode.R")
+knitr::read_chunk("03-MLMRCode.R")
+knitr::read_chunk("04-SEMObservedVariablesRCode.R")
+knitr::read_chunk("05-FactorAnalysisRCode.R")
+knitr::read_chunk("06-SEMRCode.R")
+```

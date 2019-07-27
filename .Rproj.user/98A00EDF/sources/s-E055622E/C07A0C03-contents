@@ -1,0 +1,107 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
+
+# Specifying the Functional Form
+## Introduction
+## Specification Error
+### Omitting relevant Variables from the Model
+### Graphically Analyzing Regression data
+
+
+```{r}
+use hprice2a.dta
+graph matrix lprice lnox ldist rooms stratio, ms(Oh) msize(tiny)
+```
+
+
+![graph matrix of regression variables](E:/MYaseen208/EconSTATA/images/Plot-5-1.png){width=10px,height=10px}
+
+
+### Added-Variable Plots
+
+
+```{r}
+use hprice2a.dta
+generate rooms2 = rooms^2
+regress lprice lnox ldist rooms rooms2 stratio lproptax
+avplots, ms(Oh) msize(small) col(2)
+```
+
+
+![Added-variable plots](E:/MYaseen208/EconSTATA/images/Plot-5-2.png){width=10px,height=10px}
+
+
+### Including Irrelevant Variables in the Model
+### The Asymmetry of Specification Error
+### Misspecification of the Functional Form
+### Ramsey’s RESET
+
+
+```{r}
+use hprice2a.dta
+quietly regress lprice lnox ldist rooms stratio
+estat ovtest
+estat ovtest, rhs
+```
+
+```{r}
+use hprice2a.dta
+generate rooms2 = rooms^2
+regress lprice lnox ldist rooms rooms2 stratio lproptax
+estat ovtest
+```
+
+
+### Specification Plots
+
+
+```{r}
+use hprice2a.dta
+generate rooms2 = rooms^2
+quietly regress lprice lnox ldist rooms rooms2 stratio lproptax
+rvpplot ldist, ms(Oh) yline(0)
+```
+
+![Residual-versus-predictor plot](E:/MYaseen208/EconSTATA/images/Plot-5-3.png){width=10px,height=10px}
+
+
+### Specification & Interaction Terms
+
+```{r}
+use hprice2a.dta
+generate taxschl = lproptax * stratio
+regress lprice lnox ldist lproptax stratio taxschl
+```
+
+### Outlier Statistics & Measures of Leverage
+
+
+```{r}
+use hprice2a.dta
+generate rooms2 = rooms^2
+quietly regress lprice lnox ldist rooms rooms2 stratio lproptax
+generate town = _n
+predict double lev if e(sample), leverage
+predict double eps if e(sample), res
+generate eps2 = eps^2
+summarize price lprice
+gsort -lev
+list town price lprice lev eps2 in 1/5
+gsort -eps2 
+list town price lprice lev eps2 in 1/5
+predict double dfits if e(sample), dfits
+gsort -dfits
+quietly generate cutoff = abs(dfits) > 2 * sqrt((e(df_m) +1 )/e(N)) & e(sample)
+list town price lprice dfits if cutoff
+
+dfbeta lnox 
+quietly generate dfcut = abs(_dfbeta_1) > 2 * sqrt(e(N)) & e(sample)
+sort _dfbeta_1
+summarize lnox 
+list town price lprice lnox _dfbeta_1
+```
+
+## Endogeneity & Measurement Error

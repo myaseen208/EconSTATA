@@ -1,0 +1,273 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
+
+
+# Linear Regression
+
+## Linear Regression
+
+
+```{r}
+use hprice2a.dta
+summarize price lprice lnox ldist rooms stratio, sep(0)
+```
+
+
+
+```{r}
+use hprice2a.dta
+regress lprice lnox ldist rooms stratio
+```
+
+## Information Criteria
+
+```{r}
+use hprice2a.dta
+quietly regress lprice lnox ldist rooms stratio
+estat ic
+```
+
+
+## The Coefficient Estimates & Beta Coefficients
+
+```{r}
+use hprice2a.dta
+quietly regress lprice lnox ldist rooms stratio
+regress, beta
+```
+
+
+## Recovering Estimation Results
+
+```{r}
+use hprice2a.dta
+quietly regress lprice lnox ldist rooms stratio
+ereturn list
+```
+
+
+
+```{r}
+use hprice2a.dta
+quietly regress lprice lnox ldist rooms stratio
+matrix list e(b)
+```
+
+
+
+```{r}
+use hprice2a.dta
+quietly regress lprice lnox ldist rooms stratio
+estat vce
+```
+
+## Detecting Collinearlity in Regression
+
+```{r}
+use hprice2a.dta
+quietly regress lprice lnox ldist rooms stratio
+estat vif
+```
+
+
+## Presenting Regression Estimates
+
+```{r}
+use hprice2a.dta
+generate rooms2 = rooms^2
+
+quietly regress lprice rooms
+estimates store model1
+
+quietly regress lprice rooms rooms2 ldist
+estimates store model2
+
+quietly regress lprice ldist stratio lnox
+estimates store model3
+
+quietly regress lprice lnox ldist rooms stratio
+estimates store model4
+
+estimates table model1 model2 model3 model4, stat(r2_a, rmse) b(%7.3g) se(%6.3g) p(%4.3f)
+```
+
+
+```{r}
+use hprice2a.dta
+generate rooms2 = rooms^2
+
+quietly regress lprice rooms
+estimates store model1
+
+quietly regress lprice rooms rooms2 ldist
+estimates store model2
+
+quietly regress lprice ldist stratio lnox
+estimates store model3
+
+quietly regress lprice lnox ldist rooms stratio
+estimates store model4
+
+estimates table model1 model2 model3 model4, stat(r2_a rmse ll) b(%7.3g) star title("Models of Median Housing Price")
+```
+
+
+## Hypothesis Tests, Linear Restrictions, & Constrained Least Squares
+### Wald Tests with Test
+
+```{r}
+use hprice2a.dta
+regress lprice lnox ldist rooms stratio
+test rooms
+```
+
+
+```{r}
+use hprice2a.dta
+quietly regress lprice lnox ldist rooms stratio
+test rooms = 0.33
+```
+
+### Wald Tests involving Linear Combinations of Parameters
+
+```{r}
+use hprice2a.dta
+quietly regress lprice lnox ldist rooms stratio
+lincom rooms + ldist + stratio
+test ldist = stratio
+test lnox = 10*stratio
+```
+
+
+```{r}
+use hprice2a.dta
+constraint def 1 rooms + ldist + stratio = 0
+cnsreg lprice lnox ldist rooms stratio, constraint(1)
+```
+
+### Joint Hypothesis Tests
+
+```{r}
+use hprice2a.dta
+quietly regress lprice lnox ldist rooms stratio
+test lnox ldist
+```
+
+
+```{r}
+use hprice2a.dta
+quietly regress lprice lnox ldist rooms stratio
+test (lnox = 10*stratio) (ldist = stratio)
+```
+
+### Testing Nonlinear Restrictions & Forming Nonlinear Combinations
+
+
+```{r}
+use hprice2a.dta
+quietly regress lprice lnox ldist rooms stratio
+testnl _b[lnox] * _b[stratio] = 0.06
+```
+
+
+
+```{r}
+use hprice2a.dta
+quietly regress lprice lnox ldist rooms stratio
+testnl (_b[lnox] * _b[stratio] = 0.06) (_b[rooms] * _b[ldist] = 3 * _b[lnox]) 
+```
+
+### Testing Competing (Non-Nested) Models
+
+```{r}
+use hprice2a.dta
+nnest lprice lnox ldist rooms stratio (crime proptax ldist rooms stratio)
+```
+
+## Computing Residuals & Predicted Values
+
+
+```{r}
+use hprice2a.dta
+quietly regress lprice lnox ldist rooms stratio
+predict double lpricehat, xb
+label var lpricehat "Predicted log price"
+twoway (scatter lpricehat lprice, msize(small) mcolor(black) msize(tiny)) || (line lprice lprice if lprice <., clwidth(thin)), ytitle("Predicted log median housing price") xtitle("Actual log median housing price") aspectratio(1) legend(off)
+```
+
+![Actual versus predicted values from regression model](E:/MYaseen208/EconSTATA/images/Plot-4-1.png){width=50px,height=50px}
+
+
+### Computing Interval Predictions
+
+```{r}
+use hprice2a.dta
+quietly regress lprice lnox if _n <= 100
+predict double xb if e(sample)
+predict double stdpred if e(sample), stdp
+scalar tval = invttail(e(df_r), 0.975)
+generate double uplim = xb + tval * stdpred
+generate double lowlim = xb - tval * stdpred
+
+summarize lnox if e(sample), meanonly
+generate lnoxbar = r(mean)
+
+label var xb "Pred"
+label var uplim "95% prediction interval"
+label var lowlim "95% prediction interval"
+
+twoway (scatter lprice lnox if e(sample), sort ms(Oh) xline(`lnoxbar')) (connected xb lnox if e(sample), sort msize(small)) (rline uplim lowlim lnox if e(sample), sort), ytitle(Actual and predicted log price) legend(cols(3))
+
+```
+
+![Point and interval predictions from bivariate regression](E:/MYaseen208/EconSTATA/images/Plot-4-2.png){width=10px,height=10px}
+
+
+
+## Computing Marginal Effects
+
+```{r}
+use hprice2a.dta
+regress price nox dist rooms stratio proptax
+mfx, eyex
+```
+
+
+```{r, echo=FALSE, eval=FALSE}
+use hprice2a.dta
+regress price nox dist rooms stratio proptax
+mfx, eyex
+
+quietly regress price nox dist rooms stratio
+scalar tmfx = invttail(e(df_r), 0.975)
+generate y_val = .
+generate x_val = .
+generate eyex_val = .
+generate seyex_val = .
+generate seyex2_val = .
+quietly summarize stratio if e(sample), detail
+local pct 1 10 25 50 75 90 99
+local i = 0
+foreach p of local pct {
+  local pc`p' = r(p`p')
+  local ++i
+  quietly replace x_val = `pc`p'' in `i'
+}
+
+local i = 0
+foreach p of local pct {
+  quietly mfx compute, eyex at(mean stratio = `pc`p'')
+   local ++i
+  quietly replace y_val = e(Xmfx_y) in `i'
+  matrix Meyex = e(Xmfx_eyex)
+    matrix eta = Meyex[1, "stratio"]
+    quietly replace eyex_val = eta[1,1] in `i'
+  matrix Seyex = e(Xmfx_se_eyex)
+    matrix se = Seyex[1, "stratio"]
+  quietly replace seyex1_val = eyex_val + tmfx * se[1,1] in `i'
+    quietly replace seyex2_val = eyex_val - tmfx * se[1,1] in `i'
+}
+```

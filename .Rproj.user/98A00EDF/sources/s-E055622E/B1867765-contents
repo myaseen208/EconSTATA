@@ -1,0 +1,195 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
+
+# Regression with Indicator Variables
+
+
+## Testing for Significance of a Qualitative Factor
+### Regression with One Qualitative Measure
+
+```{r}
+use NEdata.dta
+describe
+summarize
+mean dpipc, over(state)
+tabulate state, generate(NE)
+regress dpipc NE2-NE6
+```
+
+
+```{r}
+use NEdata.dta
+tabulate state, generate(NE)
+forvalues i = 1/5 {
+  generate NE_`i' = NE`i' - NE6
+  }
+regress dpipc NE_*
+
+lincom -(NE_1 + NE_2 + NE_3 + NE_4 + NE_5)
+```
+
+
+### Regression with Two Qualitative Measures
+
+
+```{r}
+use nlsw88.dta
+describe
+summarize
+keep if !missing(wage + race + union)
+generate lwage = log(wage)
+tabulate race, generate(R)
+regress lwage R1 R2 union
+test R1 R2
+```
+
+#### Interaction Effects
+
+
+```{r}
+use nlsw88.dta
+keep if !missing(wage + race + union)
+generate lwage = log(wage)
+tabulate race, generate(R)
+generate R1u = R1 * union
+generate R2u = R2 * union
+regress lwage R1 R2 union R1u R2u
+test R1u R2u
+```
+
+
+## Regression with Qualitative & Quantitative Factors
+
+
+```{r}
+use nlsw88.dta
+keep if !missing(wage + race + union)
+generate lwage = log(wage)
+tabulate race, generate(R)
+regress lwage R1 R2 union tenure
+test R1 R2
+```
+
+
+### Testing for Slope Differences
+
+
+```{r}
+use nlsw88.dta
+keep if !missing(wage + race + union)
+generate lwage = log(wage)
+tabulate race, generate(R)
+generate uTen = union * tenure
+regress lwage R1 R2 union tenure uTen
+
+generate R1ten = R1 * tenure
+generate R2ten = R2 * tenure
+regress lwage R1 R2 union tenure R1ten R2ten
+test R1ten R2ten
+
+regress lwage R1 R2 union tenure uTen R1ten R2ten
+test uTen R1ten R2ten
+
+regress lwage union tenure uTen
+
+regress lwage tenure if !union 
+predict double unw if e(sample), res 
+
+regress lwage tenure if union 
+predict double nunw if e(sample), res 
+
+generate double allres = nunw
+replace allres = unw if unw <.
+sdtest allres, by(union)
+
+regress lwage union tenure uTen, robust
+```
+
+
+## Seasonal Adjustment with Indicator Variables
+
+```{r}
+use turksales.dta
+describe
+summarize
+summarize sales, meanonly
+generate mu = r(mean)
+forvalues i=1/3 {
+    generate qseas`i'= (quarter(dofq(t)) == `i')
+}
+regress sales qseas*
+predict double salesSA, residual
+replace salesSA = salesSA + mu
+summarize sales salesSA
+
+label var salesSA "sales, seasonally adjusted"
+tsline sales salesSA, lpattern(solid dash)
+
+regress sales qseas* t
+test qseas1 qseas2 qseas3
+predict double salesSADT, residual
+replace salesSADT = salesSADT + mu
+
+label var salesSADT "sales, detrende and SA"
+tsline sales salesSADT, lpattern(solid dash) yline(`mu')
+```
+
+
+![Seasonal adjustment of time series](E:/MYaseen208/EconSTATA/images/Plot-7-1.png){width=10px,height=10px}
+
+
+
+![Seasonal adjustment and deterending of time series](E:/MYaseen208/EconSTATA/images/Plot-7-2.png){width=10px,height=10px}
+
+
+## Testing for Structural Stability & Structural Change
+### Constraints of Continuity & Differentiability
+
+```{r}
+use nlsw88.dta
+describe
+summarize
+generate lwage = log(wage)
+generate Ten2 = tenure <= 2
+generate Ten7 = !Ten2 & tenure <= 7
+generate Ten12 = !Ten2 & !Ten7 & tenure <= 12
+generate Ten25 = !Ten2 & !Ten7 & !Ten12 & tenure < .
+
+generate tTen2 = tenure * Ten2
+generate tTen7 = tenure * Ten7
+generate tTen12 = tenure * Ten12
+generate tTen25 = tenure * Ten25
+
+regress lwage Ten* tTen*, nocons hascons
+predict double lwagehat
+
+label var lwagehat "Predicted log(wage)"
+sort tenure
+
+twoway (line lwagehat tenure if tenure <= 2) (line lwagehat tenure if tenure > 2  & tenure <= 7) (line lwagehat tenure if tenure > 7  & tenure <= 12) (line lwagehat tenure if tenure > 12  & tenure < .), legend(off)
+
+mkspline sTen2 2 sTen7 7 sTen12 12 sTen25 = tenure
+regress lwage sTen*
+
+predict double lwageSpline
+
+label var lwageSpline "Predicted log(wage), splined"
+twoway line lwageSpline tenure
+    
+```
+
+
+
+
+![Piecewise wage-tenure profile](E:/MYaseen208/EconSTATA/images/Plot-7-3.png){width=10px,height=10px}
+
+
+![Piecewise linear wage-tenure profile](E:/MYaseen208/EconSTATA/images/Plot-7-4.png){width=10px,height=10px}
+
+
+### Structural Change in a Time Series Model
+
+

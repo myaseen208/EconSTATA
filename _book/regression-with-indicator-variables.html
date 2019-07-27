@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>7 Regression with Indicator Variables | Econometrics using STATA</title>
+  <meta name="description" content="7 Regression with Indicator Variables | Econometrics using STATA" />
+  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="7 Regression with Indicator Variables | Econometrics using STATA" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="7 Regression with Indicator Variables | Econometrics using STATA" />
+  
+  
+  
+
+<meta name="author" content="Muhammad Yaseen" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="regression-with-non-iid-errors.html">
+<link rel="next" href="instrumental-variables-estimators.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style\gitbook.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#an-overview-of-statas-distictive-features"><i class="fa fa-check"></i><b>1.1</b> An Overview of STATA’s Distictive Features</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="working-with-economic-and-financial-data-in-stata.html"><a href="working-with-economic-and-financial-data-in-stata.html"><i class="fa fa-check"></i><b>2</b> Working with Economic and Financial Data in STATA</a><ul>
+<li class="chapter" data-level="2.1" data-path="working-with-economic-and-financial-data-in-stata.html"><a href="working-with-economic-and-financial-data-in-stata.html#the-basics"><i class="fa fa-check"></i><b>2.1</b> The Basics</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="working-with-economic-and-financial-data-in-stata.html"><a href="working-with-economic-and-financial-data-in-stata.html#the-use-command"><i class="fa fa-check"></i><b>2.1.1</b> The use Command</a></li>
+<li class="chapter" data-level="2.1.2" data-path="working-with-economic-and-financial-data-in-stata.html"><a href="working-with-economic-and-financial-data-in-stata.html#variable-types"><i class="fa fa-check"></i><b>2.1.2</b> Variable Types</a></li>
+<li class="chapter" data-level="2.1.3" data-path="working-with-economic-and-financial-data-in-stata.html"><a href="working-with-economic-and-financial-data-in-stata.html#generate-replace"><i class="fa fa-check"></i><b>2.1.3</b> Generate &amp; Replace</a></li>
+<li class="chapter" data-level="2.1.4" data-path="working-with-economic-and-financial-data-in-stata.html"><a href="working-with-economic-and-financial-data-in-stata.html#sort-gsort"><i class="fa fa-check"></i><b>2.1.4</b> sort &amp; gsort</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html"><i class="fa fa-check"></i><b>3</b> Organizing &amp; Handling Economic Data</a><ul>
+<li class="chapter" data-level="3.1" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#cross-sectional-data-identifier-variables"><i class="fa fa-check"></i><b>3.1</b> Cross-Sectional Data &amp; Identifier Variables</a></li>
+<li class="chapter" data-level="3.2" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#time-series-data"><i class="fa fa-check"></i><b>3.2</b> Time Series Data</a></li>
+<li class="chapter" data-level="3.3" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#pooled-cross-sectional-time-series-data"><i class="fa fa-check"></i><b>3.3</b> Pooled Cross-Sectional Time Series Data</a></li>
+<li class="chapter" data-level="3.4" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#panel-data"><i class="fa fa-check"></i><b>3.4</b> Panel Data</a></li>
+<li class="chapter" data-level="3.5" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#tools-for-manipulating-panel-data"><i class="fa fa-check"></i><b>3.5</b> Tools for Manipulating Panel Data</a></li>
+<li class="chapter" data-level="3.6" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#combining-cross-sectional-time-series-datasets"><i class="fa fa-check"></i><b>3.6</b> Combining Cross-Sectional &amp; Time Series Datasets</a></li>
+<li class="chapter" data-level="3.7" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#creating-long-format-datasets-with-append"><i class="fa fa-check"></i><b>3.7</b> Creating Long-Format Datasets with Append</a></li>
+<li class="chapter" data-level="3.8" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#the-reshape-command"><i class="fa fa-check"></i><b>3.8</b> The reshape Command</a></li>
+<li class="chapter" data-level="3.9" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#using-stata-for-reproducible-research"><i class="fa fa-check"></i><b>3.9</b> Using STATA for Reproducible Research</a><ul>
+<li class="chapter" data-level="3.9.1" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#using-do-files"><i class="fa fa-check"></i><b>3.9.1</b> Using do-files</a></li>
+<li class="chapter" data-level="3.9.2" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#data-validation-assert-duplicates"><i class="fa fa-check"></i><b>3.9.2</b> Data Validation: Assert &amp; Duplicates</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>4</b> Linear Regression</a><ul>
+<li class="chapter" data-level="4.1" data-path="linear-regression.html"><a href="linear-regression.html#linear-regression-1"><i class="fa fa-check"></i><b>4.1</b> Linear Regression</a></li>
+<li class="chapter" data-level="4.2" data-path="linear-regression.html"><a href="linear-regression.html#information-criteria"><i class="fa fa-check"></i><b>4.2</b> Information Criteria</a></li>
+<li class="chapter" data-level="4.3" data-path="linear-regression.html"><a href="linear-regression.html#the-coefficient-estimates-beta-coefficients"><i class="fa fa-check"></i><b>4.3</b> The Coefficient Estimates &amp; Beta Coefficients</a></li>
+<li class="chapter" data-level="4.4" data-path="linear-regression.html"><a href="linear-regression.html#recovering-estimation-results"><i class="fa fa-check"></i><b>4.4</b> Recovering Estimation Results</a></li>
+<li class="chapter" data-level="4.5" data-path="linear-regression.html"><a href="linear-regression.html#detecting-collinearlity-in-regression"><i class="fa fa-check"></i><b>4.5</b> Detecting Collinearlity in Regression</a></li>
+<li class="chapter" data-level="4.6" data-path="linear-regression.html"><a href="linear-regression.html#presenting-regression-estimates"><i class="fa fa-check"></i><b>4.6</b> Presenting Regression Estimates</a></li>
+<li class="chapter" data-level="4.7" data-path="linear-regression.html"><a href="linear-regression.html#hypothesis-tests-linear-restrictions-constrained-least-squares"><i class="fa fa-check"></i><b>4.7</b> Hypothesis Tests, Linear Restrictions, &amp; Constrained Least Squares</a><ul>
+<li class="chapter" data-level="4.7.1" data-path="linear-regression.html"><a href="linear-regression.html#wald-tests-with-test"><i class="fa fa-check"></i><b>4.7.1</b> Wald Tests with Test</a></li>
+<li class="chapter" data-level="4.7.2" data-path="linear-regression.html"><a href="linear-regression.html#wald-tests-involving-linear-combinations-of-parameters"><i class="fa fa-check"></i><b>4.7.2</b> Wald Tests involving Linear Combinations of Parameters</a></li>
+<li class="chapter" data-level="4.7.3" data-path="linear-regression.html"><a href="linear-regression.html#joint-hypothesis-tests"><i class="fa fa-check"></i><b>4.7.3</b> Joint Hypothesis Tests</a></li>
+<li class="chapter" data-level="4.7.4" data-path="linear-regression.html"><a href="linear-regression.html#testing-nonlinear-restrictions-forming-nonlinear-combinations"><i class="fa fa-check"></i><b>4.7.4</b> Testing Nonlinear Restrictions &amp; Forming Nonlinear Combinations</a></li>
+<li class="chapter" data-level="4.7.5" data-path="linear-regression.html"><a href="linear-regression.html#testing-competing-non-nested-models"><i class="fa fa-check"></i><b>4.7.5</b> Testing Competing (Non-Nested) Models</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="linear-regression.html"><a href="linear-regression.html#computing-residuals-predicted-values"><i class="fa fa-check"></i><b>4.8</b> Computing Residuals &amp; Predicted Values</a><ul>
+<li class="chapter" data-level="4.8.1" data-path="linear-regression.html"><a href="linear-regression.html#computing-interval-predictions"><i class="fa fa-check"></i><b>4.8.1</b> Computing Interval Predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="linear-regression.html"><a href="linear-regression.html#computing-marginal-effects"><i class="fa fa-check"></i><b>4.9</b> Computing Marginal Effects</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html"><i class="fa fa-check"></i><b>5</b> Specifying the Functional Form</a><ul>
+<li class="chapter" data-level="5.1" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#introduction-1"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#specification-error"><i class="fa fa-check"></i><b>5.2</b> Specification Error</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#omitting-relevant-variables-from-the-model"><i class="fa fa-check"></i><b>5.2.1</b> Omitting relevant Variables from the Model</a></li>
+<li class="chapter" data-level="5.2.2" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#graphically-analyzing-regression-data"><i class="fa fa-check"></i><b>5.2.2</b> Graphically Analyzing Regression data</a></li>
+<li class="chapter" data-level="5.2.3" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#added-variable-plots"><i class="fa fa-check"></i><b>5.2.3</b> Added-Variable Plots</a></li>
+<li class="chapter" data-level="5.2.4" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#including-irrelevant-variables-in-the-model"><i class="fa fa-check"></i><b>5.2.4</b> Including Irrelevant Variables in the Model</a></li>
+<li class="chapter" data-level="5.2.5" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#the-asymmetry-of-specification-error"><i class="fa fa-check"></i><b>5.2.5</b> The Asymmetry of Specification Error</a></li>
+<li class="chapter" data-level="5.2.6" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#misspecification-of-the-functional-form"><i class="fa fa-check"></i><b>5.2.6</b> Misspecification of the Functional Form</a></li>
+<li class="chapter" data-level="5.2.7" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#ramseys-reset"><i class="fa fa-check"></i><b>5.2.7</b> Ramsey’s RESET</a></li>
+<li class="chapter" data-level="5.2.8" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#specification-plots"><i class="fa fa-check"></i><b>5.2.8</b> Specification Plots</a></li>
+<li class="chapter" data-level="5.2.9" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#specification-interaction-terms"><i class="fa fa-check"></i><b>5.2.9</b> Specification &amp; Interaction Terms</a></li>
+<li class="chapter" data-level="5.2.10" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#outlier-statistics-measures-of-leverage"><i class="fa fa-check"></i><b>5.2.10</b> Outlier Statistics &amp; Measures of Leverage</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#endogeneity-measurement-error"><i class="fa fa-check"></i><b>5.3</b> Endogeneity &amp; Measurement Error</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html"><i class="fa fa-check"></i><b>6</b> Regression with non-iid Errors</a><ul>
+<li class="chapter" data-level="6.1" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#the-generalized-linear-regression-model"><i class="fa fa-check"></i><b>6.1</b> The Generalized Linear Regression Model</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#types-of-deviations-from-i.i.d.-errors"><i class="fa fa-check"></i><b>6.1.1</b> Types of Deviations from i.i.d. Errors</a></li>
+<li class="chapter" data-level="6.1.2" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#the-robust-estimator-of-vce"><i class="fa fa-check"></i><b>6.1.2</b> The Robust Estimator of VCE</a></li>
+<li class="chapter" data-level="6.1.3" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#the-cluster-estimator-of-vce"><i class="fa fa-check"></i><b>6.1.3</b> The Cluster Estimator of VCE</a></li>
+<li class="chapter" data-level="6.1.4" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#the-neweywest-estimator-of-vce"><i class="fa fa-check"></i><b>6.1.4</b> The Newey–West Estimator of VCE</a></li>
+<li class="chapter" data-level="6.1.5" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#the-generalized-least-squares-estimator"><i class="fa fa-check"></i><b>6.1.5</b> The Generalized Least Squares Estimator</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#heteroskedasticity-in-the-error-distribution"><i class="fa fa-check"></i><b>6.2</b> Heteroskedasticity in the Error Distribution</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#heteroskedasticity-related-to-scale"><i class="fa fa-check"></i><b>6.2.1</b> Heteroskedasticity Related to Scale</a></li>
+<li class="chapter" data-level="6.2.2" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#heteroskedasticity-between-groups-of-observations"><i class="fa fa-check"></i><b>6.2.2</b> Heteroskedasticity Between Groups of Observations</a></li>
+<li class="chapter" data-level="6.2.3" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#heteroskedasticity-in-grouped-data"><i class="fa fa-check"></i><b>6.2.3</b> Heteroskedasticity in Grouped Data</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#serial-correlation-in-the-error-distribution"><i class="fa fa-check"></i><b>6.3</b> Serial Correlation in the Error Distribution</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#testing-for-serial-correlation"><i class="fa fa-check"></i><b>6.3.1</b> Testing for Serial Correlation</a></li>
+<li class="chapter" data-level="6.3.2" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#fgls-estimation-with-serial-correlation"><i class="fa fa-check"></i><b>6.3.2</b> FGLS Estimation with Serial Correlation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html"><i class="fa fa-check"></i><b>7</b> Regression with Indicator Variables</a><ul>
+<li class="chapter" data-level="7.1" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#testing-for-significance-of-a-qualitative-factor"><i class="fa fa-check"></i><b>7.1</b> Testing for Significance of a Qualitative Factor</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#regression-with-one-qualitative-measure"><i class="fa fa-check"></i><b>7.1.1</b> Regression with One Qualitative Measure</a></li>
+<li class="chapter" data-level="7.1.2" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#regression-with-two-qualitative-measures"><i class="fa fa-check"></i><b>7.1.2</b> Regression with Two Qualitative Measures</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#regression-with-qualitative-quantitative-factors"><i class="fa fa-check"></i><b>7.2</b> Regression with Qualitative &amp; Quantitative Factors</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#testing-for-slope-differences"><i class="fa fa-check"></i><b>7.2.1</b> Testing for Slope Differences</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#seasonal-adjustment-with-indicator-variables"><i class="fa fa-check"></i><b>7.3</b> Seasonal Adjustment with Indicator Variables</a></li>
+<li class="chapter" data-level="7.4" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#testing-for-structural-stability-structural-change"><i class="fa fa-check"></i><b>7.4</b> Testing for Structural Stability &amp; Structural Change</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#constraints-of-continuity-differentiability"><i class="fa fa-check"></i><b>7.4.1</b> Constraints of Continuity &amp; Differentiability</a></li>
+<li class="chapter" data-level="7.4.2" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#structural-change-in-a-time-series-model"><i class="fa fa-check"></i><b>7.4.2</b> Structural Change in a Time Series Model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html"><i class="fa fa-check"></i><b>8</b> Instrumental Variables Estimators</a><ul>
+<li class="chapter" data-level="8.1" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#introduction-2"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.2" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#endogeneity-in-economic-relationships"><i class="fa fa-check"></i><b>8.2</b> Endogeneity in Economic Relationships</a></li>
+<li class="chapter" data-level="8.3" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#sls"><i class="fa fa-check"></i><b>8.3</b> 2SLS</a></li>
+<li class="chapter" data-level="8.4" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#the-ivreg-command"><i class="fa fa-check"></i><b>8.4</b> The ivreg Command</a></li>
+<li class="chapter" data-level="8.5" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#identification-tests-of-overidentifying-restrictions"><i class="fa fa-check"></i><b>8.5</b> Identification &amp; Tests of Overidentifying Restrictions</a></li>
+<li class="chapter" data-level="8.6" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#computing-iv-estimates"><i class="fa fa-check"></i><b>8.6</b> Computing IV Estimates</a></li>
+<li class="chapter" data-level="8.7" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#ivreg2-gmm-estimation"><i class="fa fa-check"></i><b>8.7</b> ivreg2 &amp; GMM Estimation</a><ul>
+<li class="chapter" data-level="8.7.1" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#the-gmm-estimator"><i class="fa fa-check"></i><b>8.7.1</b> The GMM Estimator</a></li>
+<li class="chapter" data-level="8.7.2" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#gmm-in-a-homoskedastic-context"><i class="fa fa-check"></i><b>8.7.2</b> GMM in a Homoskedastic Context</a></li>
+<li class="chapter" data-level="8.7.3" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#gmm-heteroskedasticity-consistent-standard-errors"><i class="fa fa-check"></i><b>8.7.3</b> GMM &amp; Heteroskedasticity-Consistent Standard Errors</a></li>
+<li class="chapter" data-level="8.7.4" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#gmm-clustering"><i class="fa fa-check"></i><b>8.7.4</b> GMM &amp; Clustering</a></li>
+<li class="chapter" data-level="8.7.5" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#gmm-hac-standard-errors"><i class="fa fa-check"></i><b>8.7.5</b> GMM &amp; HAC Standard Errors</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#testing-overidentifying-restrictions-in-gmm"><i class="fa fa-check"></i><b>8.8</b> Testing &amp; Overidentifying Restrictions in GMM</a><ul>
+<li class="chapter" data-level="8.8.1" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#testing-a-subset-of-the-overidentifying-restrictions-in-gmm"><i class="fa fa-check"></i><b>8.8.1</b> Testing a subset of the Overidentifying Restrictions in GMM</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#testing-for-heteroskedasticity-in-the-iv-context"><i class="fa fa-check"></i><b>8.9</b> Testing for Heteroskedasticity in the IV context</a></li>
+<li class="chapter" data-level="8.10" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#testing-the-relevance-of-instruments"><i class="fa fa-check"></i><b>8.10</b> Testing the Relevance of Instruments</a></li>
+<li class="chapter" data-level="8.11" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#durbinwuhausman-tests-for-endogeneity-in-iv-estimation"><i class="fa fa-check"></i><b>8.11</b> Durbin–Wu–Hausman Tests for Endogeneity in IV Estimation</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="panel-data-models.html"><a href="panel-data-models.html"><i class="fa fa-check"></i><b>9</b> Panel Data Models</a><ul>
+<li class="chapter" data-level="9.1" data-path="panel-data-models.html"><a href="panel-data-models.html#fixed-effects-random-effects-models"><i class="fa fa-check"></i><b>9.1</b> Fixed Effects &amp; Random Effects Models</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="panel-data-models.html"><a href="panel-data-models.html#one-way-fixed-effects-models"><i class="fa fa-check"></i><b>9.1.1</b> One-Way Fixed Effects Models</a></li>
+<li class="chapter" data-level="9.1.2" data-path="panel-data-models.html"><a href="panel-data-models.html#time-effects-two-way-fixed-effects-models"><i class="fa fa-check"></i><b>9.1.2</b> Time Effects &amp; Two-Way Fixed Effects Models</a></li>
+<li class="chapter" data-level="9.1.3" data-path="panel-data-models.html"><a href="panel-data-models.html#the-between-estimator"><i class="fa fa-check"></i><b>9.1.3</b> The Between Estimator</a></li>
+<li class="chapter" data-level="9.1.4" data-path="panel-data-models.html"><a href="panel-data-models.html#one-way-random-effects-models"><i class="fa fa-check"></i><b>9.1.4</b> One-Way Random Effects Models</a></li>
+<li class="chapter" data-level="9.1.5" data-path="panel-data-models.html"><a href="panel-data-models.html#testing-the-appropriateness-of-random-effects-model"><i class="fa fa-check"></i><b>9.1.5</b> Testing the appropriateness of Random Effects Model</a></li>
+<li class="chapter" data-level="9.1.6" data-path="panel-data-models.html"><a href="panel-data-models.html#prediction-from-one-way-fixed-effects-model-random-effects-model"><i class="fa fa-check"></i><b>9.1.6</b> Prediction from One-Way Fixed Effects Model &amp; Random Effects Model</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="panel-data-models.html"><a href="panel-data-models.html#iv-models-for-panel-data"><i class="fa fa-check"></i><b>9.2</b> IV Models for Panel Data</a></li>
+<li class="chapter" data-level="9.3" data-path="panel-data-models.html"><a href="panel-data-models.html#dynamic-panel-data-models"><i class="fa fa-check"></i><b>9.3</b> Dynamic Panel Data Models</a></li>
+<li class="chapter" data-level="9.4" data-path="panel-data-models.html"><a href="panel-data-models.html#seemingly-unrelated-regression-models"><i class="fa fa-check"></i><b>9.4</b> Seemingly Unrelated Regression Models</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="panel-data-models.html"><a href="panel-data-models.html#sur-with-identical-regressors"><i class="fa fa-check"></i><b>9.4.1</b> SUR with Identical Regressors</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="panel-data-models.html"><a href="panel-data-models.html#moving-window-regression-estimates"><i class="fa fa-check"></i><b>9.5</b> Moving-Window Regression Estimates</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html"><i class="fa fa-check"></i><b>10</b> Models of Discrete &amp; Limited Dependent Variables</a><ul>
+<li class="chapter" data-level="10.1" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#binomial-logit-probit-models"><i class="fa fa-check"></i><b>10.1</b> Binomial Logit &amp; Probit Models</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#the-latent-variable-approach"><i class="fa fa-check"></i><b>10.1.1</b> The Latent Variable Approach</a></li>
+<li class="chapter" data-level="10.1.2" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#marginal-effects-predictions"><i class="fa fa-check"></i><b>10.1.2</b> Marginal Effects &amp; Predictions</a></li>
+<li class="chapter" data-level="10.1.3" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#evaluating-specification-goodness-of-fit"><i class="fa fa-check"></i><b>10.1.3</b> Evaluating Specification &amp; Goodness of Fit</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#ordered-logit-probit-models"><i class="fa fa-check"></i><b>10.2</b> Ordered Logit &amp; Probit Models</a></li>
+<li class="chapter" data-level="10.3" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#truncated-regression-tobit-models"><i class="fa fa-check"></i><b>10.3</b> Truncated Regression &amp; Tobit Models</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#truncation"><i class="fa fa-check"></i><b>10.3.1</b> Truncation</a></li>
+<li class="chapter" data-level="10.3.2" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#censoring"><i class="fa fa-check"></i><b>10.3.2</b> Censoring</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#incidental-truncation-sample-selection-models"><i class="fa fa-check"></i><b>10.4</b> Incidental Truncation &amp; Sample Selection Models</a></li>
+<li class="chapter" data-level="10.5" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#bivariate-probit-probit-with-selection"><i class="fa fa-check"></i><b>10.5</b> Bivariate Probit &amp; Probit with Selection</a><ul>
+<li class="chapter" data-level="10.5.1" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#binomial-probit-with-selection"><i class="fa fa-check"></i><b>10.5.1</b> Binomial Probit with Selection</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org/baydap/bookdownplus/" target="blank">Supported by bookdownplus</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Econometrics using STATA</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="regression-with-indicator-variables" class="section level1">
+<h1><span class="header-section-number">7</span> Regression with Indicator Variables</h1>
+<div id="testing-for-significance-of-a-qualitative-factor" class="section level2">
+<h2><span class="header-section-number">7.1</span> Testing for Significance of a Qualitative Factor</h2>
+<div id="regression-with-one-qualitative-measure" class="section level3">
+<h3><span class="header-section-number">7.1.1</span> Regression with One Qualitative Measure</h3>
+
+<pre><code>
+
+. use NEdata.. describe
+
+Contains data from NEdata.dta
+  obs:           120                          
+ vars:             6                          24 Oct 2004 13:28
+ size:         2,640                          
+-------------------------------------------------------------------------------
+              storage   display    value
+variable name   type    format     label      variable label
+-------------------------------------------------------------------------------
+state           long    %8.0g      state      
+year            int     %8.0g                 
+pop             float   %9.0g                 
+dpi             float   %9.0g                 
+dpipc           float   %9.0g                 
+ldpipc          float   %9.0g                 
+-------------------------------------------------------------------------------
+Sorted by: 
+
+. summarize
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+       state |        120         3.5    1.714986          1          6
+        year |        120      1990.5    5.790459       1981       2000
+         pop |        120     2196276     1931629     515594    6362076
+         dpi |        120    4.33e+07    4.46e+07    4385134   1.93e+08
+       dpipc |        120    18.15802    5.662848   8.153382   33.38758
+-------------+---------------------------------------------------------
+      ldpipc |        120    2.848302    .3265395   2.098433   3.508184
+
+. mean dpipc, over(state)
+
+Mean estimation                   Number of obs   =        120
+
+           CT: state = CT
+           MA: state = MA
+           ME: state = ME
+           NH: state = NH
+           RI: state = RI
+           VT: state = VT
+
+--------------------------------------------------------------
+        Over |       Mean   Std. Err.     [95% Conf. Interval]
+-------------+------------------------------------------------
+dpipc        |
+          CT |   22.32587   1.413766      19.52647    25.12527
+          MA |   19.77681   1.298507      17.20564    22.34798
+          ME |   15.17391   .9571251      13.27871    17.06911
+          NH |   18.66835   1.193137      16.30582    21.03088
+          RI |   17.26529   1.045117      15.19586    19.33473
+          VT |   15.73786   1.020159      13.71784    17.75788
+--------------------------------------------------------------
+
+. tabulate state, generate(NE)
+
+      state |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         CT |         20       16.67       16.67
+         MA |         20       16.67       33.33
+         ME |         20       16.67       50.00
+         NH |         20       16.67       66.67
+         RI |         20       16.67       83.33
+         VT |         20       16.67      100.00
+------------+-----------------------------------
+      Total |        120      100.00
+
+. regress dpipc NE2-NE6
+
+      Source |       SS           df       MS      Number of obs   =       120
+-------------+----------------------------------   F(5, 114)       =      5.27
+       Model |  716.218512         5  143.243702   Prob &gt; F        =    0.0002
+    Residual |  3099.85511       114  27.1917115   R-squared       =    0.1877
+-------------+----------------------------------   Adj R-squared   =    0.1521
+       Total |  3816.07362       119  32.0678456   Root MSE        =    5.2146
+
+------------------------------------------------------------------------------
+       dpipc |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+         NE2 |  -2.549057   1.648991    -1.55   0.125    -5.815695    .7175814
+         NE3 |  -7.151959   1.648991    -4.34   0.000     -10.4186    -3.88532
+         NE4 |   -3.65752   1.648991    -2.22   0.029    -6.924158   -.3908815
+         NE5 |  -5.060575   1.648991    -3.07   0.003    -8.327214   -1.793937
+         NE6 |  -6.588007   1.648991    -4.00   0.000    -9.854646   -3.321369
+       _cons |   22.32587   1.166013    19.15   0.000     20.01601    24.63573
+------------------------------------------------------------------------------</code></pre>
+<p></p>
+
+<pre><code>
+
+. use NEdata.. tabulate state, generate(NE)
+
+      state |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         CT |         20       16.67       16.67
+         MA |         20       16.67       33.33
+         ME |         20       16.67       50.00
+         NH |         20       16.67       66.67
+         RI |         20       16.67       83.33
+         VT |         20       16.67      100.00
+------------+-----------------------------------
+      Total |        120      100.00
+
+. forvalues i = 1/5 {
+  2.   generate NE_`i&#39; = NE`i&#39; - NE6
+  3.   }
+
+. regress dpipc NE_*
+
+      Source |       SS           df       MS      Number of obs   =       120
+-------------+----------------------------------   F(5, 114)       =      5.27
+       Model |  716.218512         5  143.243702   Prob &gt; F        =    0.0002
+    Residual |  3099.85511       114  27.1917115   R-squared       =    0.1877
+-------------+----------------------------------   Adj R-squared   =    0.1521
+       Total |  3816.07362       119  32.0678456   Root MSE        =    5.2146
+
+------------------------------------------------------------------------------
+       dpipc |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        NE_1 |   4.167853   1.064419     3.92   0.000     2.059247    6.276459
+        NE_2 |   1.618796   1.064419     1.52   0.131      -.48981    3.727402
+        NE_3 |  -2.984106   1.064419    -2.80   0.006    -5.092712   -.8754996
+        NE_4 |   .5103331   1.064419     0.48   0.633    -1.598273    2.618939
+        NE_5 |  -.8927223   1.064419    -0.84   0.403    -3.001328    1.215884
+       _cons |   18.15802   .4760227    38.15   0.000     17.21502    19.10101
+------------------------------------------------------------------------------
+
+. 
+. lincom -(NE_1 + NE_2 + NE_3 + NE_4 + NE_5)
+
+ ( 1)  - NE_1 - NE_2 - NE_3 - NE_4 - NE_5 = 0
+
+------------------------------------------------------------------------------
+       dpipc |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+         (1) |  -2.420154   1.064419    -2.27   0.025     -4.52876   -.3115483
+------------------------------------------------------------------------------</code></pre>
+<p></p>
+</div>
+<div id="regression-with-two-qualitative-measures" class="section level3">
+<h3><span class="header-section-number">7.1.2</span> Regression with Two Qualitative Measures</h3>
+
+<pre><code>
+
+. use nlsw88.(NLSW, 1988 extract)
+
+. describe
+
+Contains data from nlsw88.dta
+  obs:         2,246                          NLSW, 1988 extract
+ vars:            17                          21 Jun 2006 11:33
+ size:        60,642                          (_dta has notes)
+-------------------------------------------------------------------------------
+              storage   display    value
+variable name   type    format     label      variable label
+-------------------------------------------------------------------------------
+idcode          int     %8.0g                 NLS id
+age             byte    %8.0g                 age in current year
+race            byte    %8.0g      racelbl    race
+married         byte    %8.0g      marlbl     married
+never_married   byte    %8.0g                 never married
+grade           byte    %8.0g                 current grade completed
+collgrad        byte    %16.0g     gradlbl    college graduate
+south           byte    %8.0g                 lives in south
+smsa            byte    %9.0g      smsalbl    lives in SMSA
+c_city          byte    %8.0g                 lives in central city
+industry        byte    %23.0g     indlbl     industry
+occupation      byte    %22.0g     occlbl     occupation
+union           byte    %8.0g      unionlbl   union worker
+wage            float   %9.0g                 hourly wage
+hours           byte    %8.0g                 usual hours worked
+ttl_exp         float   %9.0g                 total work experience
+tenure          float   %9.0g                 job tenure (years)
+-------------------------------------------------------------------------------
+Sorted by: idcode
+
+. summarize
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+      idcode |      2,246    2612.654    1480.864          1       5159
+         age |      2,246    39.15316    3.060002         34         46
+        race |      2,246    1.282725    .4754413          1          3
+     married |      2,246    .6420303    .4795099          0          1
+never_marr~d |      2,246    .1041852    .3055687          0          1
+-------------+---------------------------------------------------------
+       grade |      2,244    13.09893    2.521246          0         18
+    collgrad |      2,246    .2368655    .4252538          0          1
+       south |      2,246    .4194123    .4935728          0          1
+        smsa |      2,246    .7039181    .4566292          0          1
+      c_city |      2,246    .2916296    .4546139          0          1
+-------------+---------------------------------------------------------
+    industry |      2,232    8.189516    3.010875          1         12
+  occupation |      2,237    4.642825    3.408897          1         13
+       union |      1,878    .2454739    .4304825          0          1
+        wage |      2,246    7.766949    5.755523   1.004952   40.74659
+       hours |      2,242    37.21811    10.50914          1         80
+-------------+---------------------------------------------------------
+     ttl_exp |      2,246    12.53498    4.610208   .1153846   28.88461
+      tenure |      2,231     5.97785    5.510331          0   25.91667
+
+. keep if !missing(wage + race + union)
+(368 observations deleted)
+
+. generate lwage = log(wage)
+
+. tabulate race, generate(R)
+
+       race |      Freq.     Percent        Cum.
+------------+-----------------------------------
+      white |      1,353       72.04       72.04
+      black |        501       26.68       98.72
+      other |         24        1.28      100.00
+------------+-----------------------------------
+      Total |      1,878      100.00
+
+. regress lwage R1 R2 union
+
+      Source |       SS           df       MS      Number of obs   =     1,878
+-------------+----------------------------------   F(3, 1874)      =     38.73
+       Model |  29.3349228         3  9.77830761   Prob &gt; F        =    0.0000
+    Residual |  473.119209     1,874  .252464893   R-squared       =    0.0584
+-------------+----------------------------------   Adj R-squared   =    0.0569
+       Total |  502.454132     1,877  .267690001   Root MSE        =    .50246
+
+------------------------------------------------------------------------------
+       lwage |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+          R1 |  -.0349326   .1035125    -0.34   0.736    -.2379444    .1680793
+          R2 |  -.2133924   .1049954    -2.03   0.042    -.4193126   -.0074721
+       union |    .239083   .0270353     8.84   0.000     .1860606    .2921054
+       _cons |   1.913178   .1029591    18.58   0.000     1.711252    2.115105
+------------------------------------------------------------------------------
+
+. test R1 R2
+
+ ( 1)  R1 = 0
+ ( 2)  R2 = 0
+
+       F(  2,  1874) =   23.25
+            Prob &gt; F =    0.0000</code></pre>
+<p></p>
+<div id="interaction-effects" class="section level4">
+<h4><span class="header-section-number">7.1.2.1</span> Interaction Effects</h4>
+
+<pre><code>
+
+. use nlsw88.(NLSW, 1988 extract)
+
+. keep if !missing(wage + race + union)
+(368 observations deleted)
+
+. generate lwage = log(wage)
+
+. tabulate race, generate(R)
+
+       race |      Freq.     Percent        Cum.
+------------+-----------------------------------
+      white |      1,353       72.04       72.04
+      black |        501       26.68       98.72
+      other |         24        1.28      100.00
+------------+-----------------------------------
+      Total |      1,878      100.00
+
+. generate R1u = R1 * union
+
+. generate R2u = R2 * union
+
+. regress lwage R1 R2 union R1u R2u
+
+      Source |       SS           df       MS      Number of obs   =     1,878
+-------------+----------------------------------   F(5, 1872)      =     26.63
+       Model |  33.3636017         5  6.67272035   Prob &gt; F        =    0.0000
+    Residual |   469.09053     1,872  .250582548   R-squared       =    0.0664
+-------------+----------------------------------   Adj R-squared   =    0.0639
+       Total |  502.454132     1,877  .267690001   Root MSE        =    .50058
+
+------------------------------------------------------------------------------
+       lwage |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+          R1 |  -.1818955   .1260945    -1.44   0.149    -.4291962    .0654051
+          R2 |  -.4152863   .1279741    -3.25   0.001    -.6662731   -.1642995
+       union |  -.2375316   .2167585    -1.10   0.273    -.6626452     .187582
+         R1u |   .4232627   .2192086     1.93   0.054    -.0066561    .8531816
+         R2u |   .6193578   .2221704     2.79   0.005     .1836302    1.055085
+       _cons |    2.07205   .1251456    16.56   0.000      1.82661    2.317489
+------------------------------------------------------------------------------
+
+. test R1u R2u
+
+ ( 1)  R1u = 0
+ ( 2)  R2u = 0
+
+       F(  2,  1872) =    8.04
+            Prob &gt; F =    0.0003</code></pre>
+<p></p>
+</div>
+</div>
+</div>
+<div id="regression-with-qualitative-quantitative-factors" class="section level2">
+<h2><span class="header-section-number">7.2</span> Regression with Qualitative &amp; Quantitative Factors</h2>
+
+<pre><code>
+
+. use nlsw88.(NLSW, 1988 extract)
+
+. keep if !missing(wage + race + union)
+(368 observations deleted)
+
+. generate lwage = log(wage)
+
+. tabulate race, generate(R)
+
+       race |      Freq.     Percent        Cum.
+------------+-----------------------------------
+      white |      1,353       72.04       72.04
+      black |        501       26.68       98.72
+      other |         24        1.28      100.00
+------------+-----------------------------------
+      Total |      1,878      100.00
+
+. regress lwage R1 R2 union tenure
+
+      Source |       SS           df       MS      Number of obs   =     1,868
+-------------+----------------------------------   F(4, 1863)      =     85.88
+       Model |  77.1526731         4  19.2881683   Prob &gt; F        =    0.0000
+    Residual |  418.434693     1,863  .224602626   R-squared       =    0.1557
+-------------+----------------------------------   Adj R-squared   =    0.1539
+       Total |  495.587366     1,867  .265445831   Root MSE        =    .47392
+
+------------------------------------------------------------------------------
+       lwage |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+          R1 |   -.070349   .0976711    -0.72   0.471    -.2619053    .1212073
+          R2 |  -.2612185   .0991154    -2.64   0.008    -.4556074   -.0668297
+       union |   .1871116   .0257654     7.26   0.000     .1365794    .2376438
+      tenure |   .0289352   .0019646    14.73   0.000     .0250823    .0327882
+       _cons |   1.777386   .0975549    18.22   0.000     1.586058    1.968715
+------------------------------------------------------------------------------
+
+. test R1 R2
+
+ ( 1)  R1 = 0
+ ( 2)  R2 = 0
+
+       F(  2,  1863) =   29.98
+            Prob &gt; F =    0.0000</code></pre>
+<p></p>
+<div id="testing-for-slope-differences" class="section level3">
+<h3><span class="header-section-number">7.2.1</span> Testing for Slope Differences</h3>
+
+<pre><code>
+
+. use nlsw88.(NLSW, 1988 extract)
+
+. keep if !missing(wage + race + union)
+(368 observations deleted)
+
+. generate lwage = log(wage)
+
+. tabulate race, generate(R)
+
+       race |      Freq.     Percent        Cum.
+------------+-----------------------------------
+      white |      1,353       72.04       72.04
+      black |        501       26.68       98.72
+      other |         24        1.28      100.00
+------------+-----------------------------------
+      Total |      1,878      100.00
+
+. generate uTen = union * tenure
+(10 missing values generated)
+
+. regress lwage R1 R2 union tenure uTen
+
+      Source |       SS           df       MS      Number of obs   =     1,868
+-------------+----------------------------------   F(5, 1862)      =     69.27
+       Model |   77.726069         5  15.5452138   Prob &gt; F        =    0.0000
+    Residual |  417.861297     1,862  .224415304   R-squared       =    0.1568
+-------------+----------------------------------   Adj R-squared   =    0.1546
+       Total |  495.587366     1,867  .265445831   Root MSE        =    .47372
+
+------------------------------------------------------------------------------
+       lwage |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+          R1 |  -.0715443   .0976332    -0.73   0.464    -.2630264    .1199377
+          R2 |  -.2638742   .0990879    -2.66   0.008    -.4582093   -.0695391
+       union |   .2380442   .0409706     5.81   0.000      .157691    .3183975
+      tenure |   .0309616   .0023374    13.25   0.000     .0263774    .0355458
+        uTen |  -.0068913   .0043112    -1.60   0.110    -.0153467     .001564
+       _cons |   1.766484   .0977525    18.07   0.000     1.574768      1.9582
+------------------------------------------------------------------------------
+
+. 
+. generate R1ten = R1 * tenure
+(10 missing values generated)
+
+. generate R2ten = R2 * tenure
+(10 missing values generated)
+
+. regress lwage R1 R2 union tenure R1ten R2ten
+
+      Source |       SS           df       MS      Number of obs   =     1,868
+-------------+----------------------------------   F(6, 1861)      =     57.26
+       Model |  77.2369283         6  12.8728214   Prob &gt; F        =    0.0000
+    Residual |  418.350438     1,861  .224798731   R-squared       =    0.1558
+-------------+----------------------------------   Adj R-squared   =    0.1531
+       Total |  495.587366     1,867  .265445831   Root MSE        =    .47413
+
+------------------------------------------------------------------------------
+       lwage |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+          R1 |   -.082753      .1395    -0.59   0.553    -.3563459    .1908398
+          R2 |   -.291495   .1422361    -2.05   0.041     -.570454    -.012536
+       union |   .1876079   .0257915     7.27   0.000     .1370246    .2381912
+      tenure |   .0257611   .0186309     1.38   0.167    -.0107785    .0623007
+       R1ten |   .0024973   .0187646     0.13   0.894    -.0343045    .0392991
+       R2ten |   .0050825    .018999     0.27   0.789     -.032179    .0423441
+       _cons |   1.794018   .1382089    12.98   0.000     1.522957    2.065078
+------------------------------------------------------------------------------
+
+. test R1ten R2ten
+
+ ( 1)  R1ten = 0
+ ( 2)  R2ten = 0
+
+       F(  2,  1861) =    0.19
+            Prob &gt; F =    0.8291
+
+. 
+. regress lwage R1 R2 union tenure uTen R1ten R2ten
+
+      Source |       SS           df       MS      Number of obs   =     1,868
+-------------+----------------------------------   F(7, 1860)      =     49.48
+       Model |  77.8008722         7  11.1144103   Prob &gt; F        =    0.0000
+    Residual |  417.786494     1,860  .224616394   R-squared       =    0.1570
+-------------+----------------------------------   Adj R-squared   =    0.1538
+       Total |  495.587366     1,867  .265445831   Root MSE        =    .47394
+
+------------------------------------------------------------------------------
+       lwage |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+          R1 |  -.0697096   .1396861    -0.50   0.618    -.3436676    .2042485
+          R2 |  -.2795277   .1423788    -1.96   0.050    -.5587668   -.0002886
+       union |    .238244   .0410597     5.80   0.000     .1577161    .3187718
+      tenure |   .0304528   .0188572     1.61   0.106    -.0065308    .0674364
+        uTen |  -.0068628   .0043311    -1.58   0.113    -.0153572    .0016316
+       R1ten |  -.0001912   .0188335    -0.01   0.992    -.0371283    .0367459
+       R2ten |   .0023429   .0190698     0.12   0.902    -.0350576    .0397433
+       _cons |    1.76904   .1390492    12.72   0.000     1.496331    2.041749
+------------------------------------------------------------------------------
+
+. test uTen R1ten R2ten
+
+ ( 1)  uTen = 0
+ ( 2)  R1ten = 0
+ ( 3)  R2ten = 0
+
+       F(  3,  1860) =    0.96
+            Prob &gt; F =    0.4098
+
+. 
+. regress lwage union tenure uTen
+
+      Source |       SS           df       MS      Number of obs   =     1,868
+-------------+----------------------------------   F(3, 1864)      =     92.25
+       Model |  64.0664855         3  21.3554952   Prob &gt; F        =    0.0000
+    Residual |   431.52088     1,864  .231502618   R-squared       =    0.1293
+-------------+----------------------------------   Adj R-squared   =    0.1279
+       Total |  495.587366     1,867  .265445831   Root MSE        =    .48115
+
+------------------------------------------------------------------------------
+       lwage |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+       union |   .2144586   .0414898     5.17   0.000     .1330872      .29583
+      tenure |   .0298926   .0023694    12.62   0.000     .0252456    .0345395
+        uTen |  -.0056219   .0043756    -1.28   0.199    -.0142035    .0029597
+       _cons |   1.655054   .0193938    85.34   0.000     1.617018     1.69309
+------------------------------------------------------------------------------
+
+. 
+. regress lwage tenure if !union 
+
+      Source |       SS           df       MS      Number of obs   =     1,408
+-------------+----------------------------------   F(1, 1406)      =    148.43
+       Model |  36.8472972         1  36.8472972   Prob &gt; F        =    0.0000
+    Residual |  349.032053     1,406  .248244703   R-squared       =    0.0955
+-------------+----------------------------------   Adj R-squared   =    0.0948
+       Total |   385.87935     1,407  .274256823   Root MSE        =    .49824
+
+------------------------------------------------------------------------------
+       lwage |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+      tenure |   .0298926   .0024536    12.18   0.000     .0250795    .0347056
+       _cons |   1.655054   .0200828    82.41   0.000     1.615659     1.69445
+------------------------------------------------------------------------------
+
+. predict double unw if e(sample), res 
+(470 missing values generated)
+
+. 
+. regress lwage tenure if union 
+
+      Source |       SS           df       MS      Number of obs   =       460
+-------------+----------------------------------   F(1, 458)       =     55.95
+       Model |  10.0775663         1  10.0775663   Prob &gt; F        =    0.0000
+    Residual |  82.4888278       458  .180106611   R-squared       =    0.1089
+-------------+----------------------------------   Adj R-squared   =    0.1069
+       Total |  92.5663941       459  .201669704   Root MSE        =    .42439
+
+------------------------------------------------------------------------------
+       lwage |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+      tenure |   .0242707   .0032447     7.48   0.000     .0178944    .0306469
+       _cons |   1.869513   .0323515    57.79   0.000     1.805937    1.933088
+------------------------------------------------------------------------------
+
+. predict double nunw if e(sample), res 
+(1,418 missing values generated)
+
+. 
+. generate double allres = nunw
+(1,418 missing values generated)
+
+. replace allres = unw if unw &lt;.
+(1,408 real changes made)
+
+. sdtest allres, by(union)
+
+Variance ratio test
+------------------------------------------------------------------------------
+   Group |     Obs        Mean    Std. Err.   Std. Dev.   [95% Conf. Interval]
+---------+--------------------------------------------------------------------
+nonunion |   1,408    7.51e-17    .0132735    .4980645   -.0260379    .0260379
+   union |     460    3.33e-17    .0197657    .4239271   -.0388425    .0388425
+---------+--------------------------------------------------------------------
+combined |   1,868    6.48e-17    .0111235    .4807605   -.0218157    .0218157
+------------------------------------------------------------------------------
+    ratio = sd(nonunion) / sd(union)                              f =   1.3803
+Ho: ratio = 1                                   degrees of freedom = 1407, 459
+
+    Ha: ratio &lt; 1               Ha: ratio != 1                 Ha: ratio &gt; 1
+  Pr(F &lt; f) = 1.0000         2*Pr(F &gt; f) = 0.0000           Pr(F &gt; f) = 0.0000
+
+. 
+. regress lwage union tenure uTen, robust
+
+Linear regression                               Number of obs     =      1,868
+                                                F(3, 1864)        =     109.84
+                                                Prob &gt; F          =     0.0000
+                                                R-squared         =     0.1293
+                                                Root MSE          =     .48115
+
+------------------------------------------------------------------------------
+             |               Robust
+       lwage |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+       union |   .2144586   .0407254     5.27   0.000     .1345864    .2943308
+      tenure |   .0298926   .0023964    12.47   0.000     .0251928    .0345924
+        uTen |  -.0056219   .0038631    -1.46   0.146    -.0131984    .0019546
+       _cons |   1.655054   .0210893    78.48   0.000     1.613693    1.696415
+------------------------------------------------------------------------------</code></pre>
+<p></p>
+</div>
+</div>
+<div id="seasonal-adjustment-with-indicator-variables" class="section level2">
+<h2><span class="header-section-number">7.3</span> Seasonal Adjustment with Indicator Variables</h2>
+
+<pre><code>
+
+. use turksales.. describe
+
+Contains data from turksales.dta
+  obs:            40                          
+ vars:             2                          21 Jun 2006 11:33
+ size:           320                          (_dta has notes)
+-------------------------------------------------------------------------------
+              storage   display    value
+variable name   type    format     label      variable label
+-------------------------------------------------------------------------------
+t               float   %tq                   
+sales           float   %9.0g                 
+-------------------------------------------------------------------------------
+Sorted by: t
+
+. summarize
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+           t |         40       139.5    11.69045        120        159
+       sales |         40    105.6178    4.056961   97.84603   112.9617
+
+. summarize sales, meanonly
+
+. generate mu = r(mean)
+
+. forvalues i=1/3 {
+  2.     generate qseas`i&#39;= (quarter(dofq(t)) == `i&#39;)
+  3. }
+
+. regress sales qseas*
+
+      Source |       SS           df       MS      Number of obs   =        40
+-------------+----------------------------------   F(3, 36)        =      4.03
+       Model |  161.370376         3  53.7901254   Prob &gt; F        =    0.0143
+    Residual |   480.52796        36  13.3479989   R-squared       =    0.2514
+-------------+----------------------------------   Adj R-squared   =    0.1890
+       Total |  641.898336        39  16.4589317   Root MSE        =    3.6535
+
+------------------------------------------------------------------------------
+       sales |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+      qseas1 |  -5.232047   1.633891    -3.20   0.003    -8.545731   -1.918362
+      qseas2 |  -2.842753   1.633891    -1.74   0.090    -6.156437    .4709317
+      qseas3 |  -.8969368   1.633891    -0.55   0.586    -4.210621    2.416748
+       _cons |   107.8608   1.155335    93.36   0.000     105.5177    110.2039
+------------------------------------------------------------------------------
+
+. predict double salesSA, residual
+
+. replace salesSA = salesSA + mu
+(40 real changes made)
+
+. summarize sales salesSA
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+       sales |         40    105.6178    4.056961   97.84603   112.9617
+     salesSA |         40    105.6178    3.510161   97.49429   111.9563
+
+. 
+. label var salesSA &quot;sales, seasonally adjusted&quot;
+
+. tsline sales salesSA, lpattern(solid dash)
+
+. 
+. regress sales qseas* t
+
+      Source |       SS           df       MS      Number of obs   =        40
+-------------+----------------------------------   F(4, 35)        =     54.23
+       Model |  552.710487         4  138.177622   Prob &gt; F        =    0.0000
+    Residual |  89.1878487        35  2.54822425   R-squared       =    0.8611
+-------------+----------------------------------   Adj R-squared   =    0.8452
+       Total |  641.898336        39  16.4589317   Root MSE        =    1.5963
+
+------------------------------------------------------------------------------
+       sales |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+      qseas1 |  -4.415311   .7169299    -6.16   0.000    -5.870756   -2.959866
+      qseas2 |  -2.298262   .7152449    -3.21   0.003    -3.750287    -.846238
+      qseas3 |  -.6246916   .7142321    -0.87   0.388     -2.07466    .8252766
+           t |   .2722452   .0219686    12.39   0.000     .2276466    .3168438
+       _cons |   69.47421   3.138432    22.14   0.000     63.10285    75.84556
+------------------------------------------------------------------------------
+
+. test qseas1 qseas2 qseas3
+
+ ( 1)  qseas1 = 0
+ ( 2)  qseas2 = 0
+ ( 3)  qseas3 = 0
+
+       F(  3,    35) =   15.17
+            Prob &gt; F =    0.0000
+
+. predict double salesSADT, residual
+
+. replace salesSADT = salesSADT + mu
+(40 real changes made)
+
+. 
+. label var salesSADT &quot;sales, detrende and SA&quot;
+
+. tsline sales salesSADT, lpattern(solid dash) yline(`mu&#39;)</code></pre>
+<p></p>
+<div class="figure">
+<img src="images/Plot-7-1.png" alt="Seasonal adjustment of time series" />
+<p class="caption">Seasonal adjustment of time series</p>
+</div>
+<div class="figure">
+<img src="images/Plot-7-2.png" alt="Seasonal adjustment and deterending of time series" />
+<p class="caption">Seasonal adjustment and deterending of time series</p>
+</div>
+</div>
+<div id="testing-for-structural-stability-structural-change" class="section level2">
+<h2><span class="header-section-number">7.4</span> Testing for Structural Stability &amp; Structural Change</h2>
+<div id="constraints-of-continuity-differentiability" class="section level3">
+<h3><span class="header-section-number">7.4.1</span> Constraints of Continuity &amp; Differentiability</h3>
+
+<pre><code>
+
+. use nlsw88.(NLSW, 1988 extract)
+
+. describe
+
+Contains data from nlsw88.dta
+  obs:         2,246                          NLSW, 1988 extract
+ vars:            17                          21 Jun 2006 11:33
+ size:        60,642                          (_dta has notes)
+-------------------------------------------------------------------------------
+              storage   display    value
+variable name   type    format     label      variable label
+-------------------------------------------------------------------------------
+idcode          int     %8.0g                 NLS id
+age             byte    %8.0g                 age in current year
+race            byte    %8.0g      racelbl    race
+married         byte    %8.0g      marlbl     married
+never_married   byte    %8.0g                 never married
+grade           byte    %8.0g                 current grade completed
+collgrad        byte    %16.0g     gradlbl    college graduate
+south           byte    %8.0g                 lives in south
+smsa            byte    %9.0g      smsalbl    lives in SMSA
+c_city          byte    %8.0g                 lives in central city
+industry        byte    %23.0g     indlbl     industry
+occupation      byte    %22.0g     occlbl     occupation
+union           byte    %8.0g      unionlbl   union worker
+wage            float   %9.0g                 hourly wage
+hours           byte    %8.0g                 usual hours worked
+ttl_exp         float   %9.0g                 total work experience
+tenure          float   %9.0g                 job tenure (years)
+-------------------------------------------------------------------------------
+Sorted by: idcode
+
+. summarize
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+      idcode |      2,246    2612.654    1480.864          1       5159
+         age |      2,246    39.15316    3.060002         34         46
+        race |      2,246    1.282725    .4754413          1          3
+     married |      2,246    .6420303    .4795099          0          1
+never_marr~d |      2,246    .1041852    .3055687          0          1
+-------------+---------------------------------------------------------
+       grade |      2,244    13.09893    2.521246          0         18
+    collgrad |      2,246    .2368655    .4252538          0          1
+       south |      2,246    .4194123    .4935728          0          1
+        smsa |      2,246    .7039181    .4566292          0          1
+      c_city |      2,246    .2916296    .4546139          0          1
+-------------+---------------------------------------------------------
+    industry |      2,232    8.189516    3.010875          1         12
+  occupation |      2,237    4.642825    3.408897          1         13
+       union |      1,878    .2454739    .4304825          0          1
+        wage |      2,246    7.766949    5.755523   1.004952   40.74659
+       hours |      2,242    37.21811    10.50914          1         80
+-------------+---------------------------------------------------------
+     ttl_exp |      2,246    12.53498    4.610208   .1153846   28.88461
+      tenure |      2,231     5.97785    5.510331          0   25.91667
+
+. generate lwage = log(wage)
+
+. generate Ten2 = tenure &lt;= 2
+
+. generate Ten7 = !Ten2 &amp; tenure &lt;= 7
+
+. generate Ten12 = !Ten2 &amp; !Ten7 &amp; tenure &lt;= 12
+
+. generate Ten25 = !Ten2 &amp; !Ten7 &amp; !Ten12 &amp; tenure &lt; .
+
+. 
+. generate tTen2 = tenure * Ten2
+(15 missing values generated)
+
+. generate tTen7 = tenure * Ten7
+(15 missing values generated)
+
+. generate tTen12 = tenure * Ten12
+(15 missing values generated)
+
+. generate tTen25 = tenure * Ten25
+(15 missing values generated)
+
+. 
+. regress lwage Ten* tTen*, nocons hascons
+
+      Source |       SS           df       MS      Number of obs   =     2,231
+-------------+----------------------------------   F(7, 2223)      =     37.12
+       Model |  76.6387069         7  10.9483867   Prob &gt; F        =    0.0000
+    Residual |  655.578361     2,223  .294907045   R-squared       =    0.1047
+-------------+----------------------------------   Adj R-squared   =    0.1018
+       Total |  732.217068     2,230  .328348461   Root MSE        =    .54305
+
+------------------------------------------------------------------------------
+       lwage |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        Ten2 |    1.55662   .0383259    40.62   0.000     1.481462    1.631778
+        Ten7 |   1.708728    .060084    28.44   0.000     1.590901    1.826554
+       Ten12 |   1.870808   .1877798     9.96   0.000     1.502566     2.23905
+       Ten25 |   1.751961   .1691799    10.36   0.000     1.420194    2.083728
+       tTen2 |   .0897426   .0331563     2.71   0.007     .0247221    .1547631
+       tTen7 |   .0434089   .0140739     3.08   0.002     .0158095    .0710083
+      tTen12 |   .0154208    .019786     0.78   0.436    -.0233801    .0542218
+      tTen25 |   .0238014   .0102917     2.31   0.021     .0036191    .0439837
+------------------------------------------------------------------------------
+
+. predict double lwagehat
+(option xb assumed; fitted values)
+(15 missing values generated)
+
+. 
+. label var lwagehat &quot;Predicted log(wage)&quot;
+
+. sort tenure
+
+. 
+. twoway (line lwagehat tenure if tenure &lt;= 2) (line lwagehat tenure if tenure 
+&gt; &gt; 2  &amp; tenure &lt;= 7) (line lwagehat tenure if tenure &gt; 7  &amp; tenure &lt;= 12) (lin
+&gt; e lwagehat tenure if tenure &gt; 12  &amp; tenure &lt; .), legend(off)
+
+. 
+. mkspline sTen2 2 sTen7 7 sTen12 12 sTen25 = tenure
+
+. regress lwage sTen*
+
+      Source |       SS           df       MS      Number of obs   =     2,231
+-------------+----------------------------------   F(4, 2226)      =     64.55
+       Model |  76.1035947         4  19.0258987   Prob &gt; F        =    0.0000
+    Residual |  656.113473     2,226  .294749988   R-squared       =    0.1039
+-------------+----------------------------------   Adj R-squared   =    0.1023
+       Total |  732.217068     2,230  .328348461   Root MSE        =    .54291
+
+------------------------------------------------------------------------------
+       lwage |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+       sTen2 |   .1173168   .0248619     4.72   0.000     .0685619    .1660716
+       sTen7 |   .0471177    .009448     4.99   0.000       .02859    .0656455
+      sTen12 |   .0055041   .0111226     0.49   0.621    -.0163076    .0273158
+      sTen25 |   .0237767   .0083618     2.84   0.005      .007379    .0401744
+       _cons |   1.539985   .0359605    42.82   0.000     1.469465    1.610505
+------------------------------------------------------------------------------
+
+. 
+. predict double lwageSpline
+(option xb assumed; fitted values)
+(15 missing values generated)
+
+. 
+. label var lwageSpline &quot;Predicted log(wage), splined&quot;
+
+. twoway line lwageSpline tenure
+
+.     </code></pre>
+<p></p>
+<div class="figure">
+<img src="images/Plot-7-3.png" alt="Piecewise wage-tenure profile" />
+<p class="caption">Piecewise wage-tenure profile</p>
+</div>
+<div class="figure">
+<img src="images/Plot-7-4.png" alt="Piecewise linear wage-tenure profile" />
+<p class="caption">Piecewise linear wage-tenure profile</p>
+</div>
+</div>
+<div id="structural-change-in-a-time-series-model" class="section level3">
+<h3><span class="header-section-number">7.4.2</span> Structural Change in a Time Series Model</h3>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="regression-with-non-iid-errors.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="instrumental-variables-estimators.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["EconoSTATA.pdf", "EconoSTATA.epub"],
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

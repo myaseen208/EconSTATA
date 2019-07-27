@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Econometrics using STATA</title>
+  <meta name="description" content="Econometrics using STATA" />
+  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Econometrics using STATA" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Econometrics using STATA" />
+  
+  
+  
+
+<meta name="author" content="Muhammad Yaseen" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="working-with-economic-and-financial-data-in-stata.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style\gitbook.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#an-overview-of-statas-distictive-features"><i class="fa fa-check"></i><b>1.1</b> An Overview of STATA’s Distictive Features</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="working-with-economic-and-financial-data-in-stata.html"><a href="working-with-economic-and-financial-data-in-stata.html"><i class="fa fa-check"></i><b>2</b> Working with Economic and Financial Data in STATA</a><ul>
+<li class="chapter" data-level="2.1" data-path="working-with-economic-and-financial-data-in-stata.html"><a href="working-with-economic-and-financial-data-in-stata.html#the-basics"><i class="fa fa-check"></i><b>2.1</b> The Basics</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="working-with-economic-and-financial-data-in-stata.html"><a href="working-with-economic-and-financial-data-in-stata.html#the-use-command"><i class="fa fa-check"></i><b>2.1.1</b> The use Command</a></li>
+<li class="chapter" data-level="2.1.2" data-path="working-with-economic-and-financial-data-in-stata.html"><a href="working-with-economic-and-financial-data-in-stata.html#variable-types"><i class="fa fa-check"></i><b>2.1.2</b> Variable Types</a></li>
+<li class="chapter" data-level="2.1.3" data-path="working-with-economic-and-financial-data-in-stata.html"><a href="working-with-economic-and-financial-data-in-stata.html#generate-replace"><i class="fa fa-check"></i><b>2.1.3</b> Generate &amp; Replace</a></li>
+<li class="chapter" data-level="2.1.4" data-path="working-with-economic-and-financial-data-in-stata.html"><a href="working-with-economic-and-financial-data-in-stata.html#sort-gsort"><i class="fa fa-check"></i><b>2.1.4</b> sort &amp; gsort</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html"><i class="fa fa-check"></i><b>3</b> Organizing &amp; Handling Economic Data</a><ul>
+<li class="chapter" data-level="3.1" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#cross-sectional-data-identifier-variables"><i class="fa fa-check"></i><b>3.1</b> Cross-Sectional Data &amp; Identifier Variables</a></li>
+<li class="chapter" data-level="3.2" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#time-series-data"><i class="fa fa-check"></i><b>3.2</b> Time Series Data</a></li>
+<li class="chapter" data-level="3.3" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#pooled-cross-sectional-time-series-data"><i class="fa fa-check"></i><b>3.3</b> Pooled Cross-Sectional Time Series Data</a></li>
+<li class="chapter" data-level="3.4" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#panel-data"><i class="fa fa-check"></i><b>3.4</b> Panel Data</a></li>
+<li class="chapter" data-level="3.5" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#tools-for-manipulating-panel-data"><i class="fa fa-check"></i><b>3.5</b> Tools for Manipulating Panel Data</a></li>
+<li class="chapter" data-level="3.6" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#combining-cross-sectional-time-series-datasets"><i class="fa fa-check"></i><b>3.6</b> Combining Cross-Sectional &amp; Time Series Datasets</a></li>
+<li class="chapter" data-level="3.7" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#creating-long-format-datasets-with-append"><i class="fa fa-check"></i><b>3.7</b> Creating Long-Format Datasets with Append</a></li>
+<li class="chapter" data-level="3.8" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#the-reshape-command"><i class="fa fa-check"></i><b>3.8</b> The reshape Command</a></li>
+<li class="chapter" data-level="3.9" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#using-stata-for-reproducible-research"><i class="fa fa-check"></i><b>3.9</b> Using STATA for Reproducible Research</a><ul>
+<li class="chapter" data-level="3.9.1" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#using-do-files"><i class="fa fa-check"></i><b>3.9.1</b> Using do-files</a></li>
+<li class="chapter" data-level="3.9.2" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#data-validation-assert-duplicates"><i class="fa fa-check"></i><b>3.9.2</b> Data Validation: Assert &amp; Duplicates</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>4</b> Linear Regression</a><ul>
+<li class="chapter" data-level="4.1" data-path="linear-regression.html"><a href="linear-regression.html#linear-regression-1"><i class="fa fa-check"></i><b>4.1</b> Linear Regression</a></li>
+<li class="chapter" data-level="4.2" data-path="linear-regression.html"><a href="linear-regression.html#information-criteria"><i class="fa fa-check"></i><b>4.2</b> Information Criteria</a></li>
+<li class="chapter" data-level="4.3" data-path="linear-regression.html"><a href="linear-regression.html#the-coefficient-estimates-beta-coefficients"><i class="fa fa-check"></i><b>4.3</b> The Coefficient Estimates &amp; Beta Coefficients</a></li>
+<li class="chapter" data-level="4.4" data-path="linear-regression.html"><a href="linear-regression.html#recovering-estimation-results"><i class="fa fa-check"></i><b>4.4</b> Recovering Estimation Results</a></li>
+<li class="chapter" data-level="4.5" data-path="linear-regression.html"><a href="linear-regression.html#detecting-collinearlity-in-regression"><i class="fa fa-check"></i><b>4.5</b> Detecting Collinearlity in Regression</a></li>
+<li class="chapter" data-level="4.6" data-path="linear-regression.html"><a href="linear-regression.html#presenting-regression-estimates"><i class="fa fa-check"></i><b>4.6</b> Presenting Regression Estimates</a></li>
+<li class="chapter" data-level="4.7" data-path="linear-regression.html"><a href="linear-regression.html#hypothesis-tests-linear-restrictions-constrained-least-squares"><i class="fa fa-check"></i><b>4.7</b> Hypothesis Tests, Linear Restrictions, &amp; Constrained Least Squares</a><ul>
+<li class="chapter" data-level="4.7.1" data-path="linear-regression.html"><a href="linear-regression.html#wald-tests-with-test"><i class="fa fa-check"></i><b>4.7.1</b> Wald Tests with Test</a></li>
+<li class="chapter" data-level="4.7.2" data-path="linear-regression.html"><a href="linear-regression.html#wald-tests-involving-linear-combinations-of-parameters"><i class="fa fa-check"></i><b>4.7.2</b> Wald Tests involving Linear Combinations of Parameters</a></li>
+<li class="chapter" data-level="4.7.3" data-path="linear-regression.html"><a href="linear-regression.html#joint-hypothesis-tests"><i class="fa fa-check"></i><b>4.7.3</b> Joint Hypothesis Tests</a></li>
+<li class="chapter" data-level="4.7.4" data-path="linear-regression.html"><a href="linear-regression.html#testing-nonlinear-restrictions-forming-nonlinear-combinations"><i class="fa fa-check"></i><b>4.7.4</b> Testing Nonlinear Restrictions &amp; Forming Nonlinear Combinations</a></li>
+<li class="chapter" data-level="4.7.5" data-path="linear-regression.html"><a href="linear-regression.html#testing-competing-non-nested-models"><i class="fa fa-check"></i><b>4.7.5</b> Testing Competing (Non-Nested) Models</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="linear-regression.html"><a href="linear-regression.html#computing-residuals-predicted-values"><i class="fa fa-check"></i><b>4.8</b> Computing Residuals &amp; Predicted Values</a><ul>
+<li class="chapter" data-level="4.8.1" data-path="linear-regression.html"><a href="linear-regression.html#computing-interval-predictions"><i class="fa fa-check"></i><b>4.8.1</b> Computing Interval Predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="linear-regression.html"><a href="linear-regression.html#computing-marginal-effects"><i class="fa fa-check"></i><b>4.9</b> Computing Marginal Effects</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html"><i class="fa fa-check"></i><b>5</b> Specifying the Functional Form</a><ul>
+<li class="chapter" data-level="5.1" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#introduction-1"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#specification-error"><i class="fa fa-check"></i><b>5.2</b> Specification Error</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#omitting-relevant-variables-from-the-model"><i class="fa fa-check"></i><b>5.2.1</b> Omitting relevant Variables from the Model</a></li>
+<li class="chapter" data-level="5.2.2" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#graphically-analyzing-regression-data"><i class="fa fa-check"></i><b>5.2.2</b> Graphically Analyzing Regression data</a></li>
+<li class="chapter" data-level="5.2.3" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#added-variable-plots"><i class="fa fa-check"></i><b>5.2.3</b> Added-Variable Plots</a></li>
+<li class="chapter" data-level="5.2.4" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#including-irrelevant-variables-in-the-model"><i class="fa fa-check"></i><b>5.2.4</b> Including Irrelevant Variables in the Model</a></li>
+<li class="chapter" data-level="5.2.5" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#the-asymmetry-of-specification-error"><i class="fa fa-check"></i><b>5.2.5</b> The Asymmetry of Specification Error</a></li>
+<li class="chapter" data-level="5.2.6" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#misspecification-of-the-functional-form"><i class="fa fa-check"></i><b>5.2.6</b> Misspecification of the Functional Form</a></li>
+<li class="chapter" data-level="5.2.7" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#ramseys-reset"><i class="fa fa-check"></i><b>5.2.7</b> Ramsey’s RESET</a></li>
+<li class="chapter" data-level="5.2.8" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#specification-plots"><i class="fa fa-check"></i><b>5.2.8</b> Specification Plots</a></li>
+<li class="chapter" data-level="5.2.9" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#specification-interaction-terms"><i class="fa fa-check"></i><b>5.2.9</b> Specification &amp; Interaction Terms</a></li>
+<li class="chapter" data-level="5.2.10" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#outlier-statistics-measures-of-leverage"><i class="fa fa-check"></i><b>5.2.10</b> Outlier Statistics &amp; Measures of Leverage</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#endogeneity-measurement-error"><i class="fa fa-check"></i><b>5.3</b> Endogeneity &amp; Measurement Error</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html"><i class="fa fa-check"></i><b>6</b> Regression with non-iid Errors</a><ul>
+<li class="chapter" data-level="6.1" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#the-generalized-linear-regression-model"><i class="fa fa-check"></i><b>6.1</b> The Generalized Linear Regression Model</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#types-of-deviations-from-i.i.d.-errors"><i class="fa fa-check"></i><b>6.1.1</b> Types of Deviations from i.i.d. Errors</a></li>
+<li class="chapter" data-level="6.1.2" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#the-robust-estimator-of-vce"><i class="fa fa-check"></i><b>6.1.2</b> The Robust Estimator of VCE</a></li>
+<li class="chapter" data-level="6.1.3" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#the-cluster-estimator-of-vce"><i class="fa fa-check"></i><b>6.1.3</b> The Cluster Estimator of VCE</a></li>
+<li class="chapter" data-level="6.1.4" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#the-neweywest-estimator-of-vce"><i class="fa fa-check"></i><b>6.1.4</b> The Newey–West Estimator of VCE</a></li>
+<li class="chapter" data-level="6.1.5" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#the-generalized-least-squares-estimator"><i class="fa fa-check"></i><b>6.1.5</b> The Generalized Least Squares Estimator</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#heteroskedasticity-in-the-error-distribution"><i class="fa fa-check"></i><b>6.2</b> Heteroskedasticity in the Error Distribution</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#heteroskedasticity-related-to-scale"><i class="fa fa-check"></i><b>6.2.1</b> Heteroskedasticity Related to Scale</a></li>
+<li class="chapter" data-level="6.2.2" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#heteroskedasticity-between-groups-of-observations"><i class="fa fa-check"></i><b>6.2.2</b> Heteroskedasticity Between Groups of Observations</a></li>
+<li class="chapter" data-level="6.2.3" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#heteroskedasticity-in-grouped-data"><i class="fa fa-check"></i><b>6.2.3</b> Heteroskedasticity in Grouped Data</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#serial-correlation-in-the-error-distribution"><i class="fa fa-check"></i><b>6.3</b> Serial Correlation in the Error Distribution</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#testing-for-serial-correlation"><i class="fa fa-check"></i><b>6.3.1</b> Testing for Serial Correlation</a></li>
+<li class="chapter" data-level="6.3.2" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#fgls-estimation-with-serial-correlation"><i class="fa fa-check"></i><b>6.3.2</b> FGLS Estimation with Serial Correlation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html"><i class="fa fa-check"></i><b>7</b> Regression with Indicator Variables</a><ul>
+<li class="chapter" data-level="7.1" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#testing-for-significance-of-a-qualitative-factor"><i class="fa fa-check"></i><b>7.1</b> Testing for Significance of a Qualitative Factor</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#regression-with-one-qualitative-measure"><i class="fa fa-check"></i><b>7.1.1</b> Regression with One Qualitative Measure</a></li>
+<li class="chapter" data-level="7.1.2" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#regression-with-two-qualitative-measures"><i class="fa fa-check"></i><b>7.1.2</b> Regression with Two Qualitative Measures</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#regression-with-qualitative-quantitative-factors"><i class="fa fa-check"></i><b>7.2</b> Regression with Qualitative &amp; Quantitative Factors</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#testing-for-slope-differences"><i class="fa fa-check"></i><b>7.2.1</b> Testing for Slope Differences</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#seasonal-adjustment-with-indicator-variables"><i class="fa fa-check"></i><b>7.3</b> Seasonal Adjustment with Indicator Variables</a></li>
+<li class="chapter" data-level="7.4" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#testing-for-structural-stability-structural-change"><i class="fa fa-check"></i><b>7.4</b> Testing for Structural Stability &amp; Structural Change</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#constraints-of-continuity-differentiability"><i class="fa fa-check"></i><b>7.4.1</b> Constraints of Continuity &amp; Differentiability</a></li>
+<li class="chapter" data-level="7.4.2" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#structural-change-in-a-time-series-model"><i class="fa fa-check"></i><b>7.4.2</b> Structural Change in a Time Series Model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html"><i class="fa fa-check"></i><b>8</b> Instrumental Variables Estimators</a><ul>
+<li class="chapter" data-level="8.1" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#introduction-2"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.2" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#endogeneity-in-economic-relationships"><i class="fa fa-check"></i><b>8.2</b> Endogeneity in Economic Relationships</a></li>
+<li class="chapter" data-level="8.3" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#sls"><i class="fa fa-check"></i><b>8.3</b> 2SLS</a></li>
+<li class="chapter" data-level="8.4" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#the-ivreg-command"><i class="fa fa-check"></i><b>8.4</b> The ivreg Command</a></li>
+<li class="chapter" data-level="8.5" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#identification-tests-of-overidentifying-restrictions"><i class="fa fa-check"></i><b>8.5</b> Identification &amp; Tests of Overidentifying Restrictions</a></li>
+<li class="chapter" data-level="8.6" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#computing-iv-estimates"><i class="fa fa-check"></i><b>8.6</b> Computing IV Estimates</a></li>
+<li class="chapter" data-level="8.7" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#ivreg2-gmm-estimation"><i class="fa fa-check"></i><b>8.7</b> ivreg2 &amp; GMM Estimation</a><ul>
+<li class="chapter" data-level="8.7.1" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#the-gmm-estimator"><i class="fa fa-check"></i><b>8.7.1</b> The GMM Estimator</a></li>
+<li class="chapter" data-level="8.7.2" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#gmm-in-a-homoskedastic-context"><i class="fa fa-check"></i><b>8.7.2</b> GMM in a Homoskedastic Context</a></li>
+<li class="chapter" data-level="8.7.3" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#gmm-heteroskedasticity-consistent-standard-errors"><i class="fa fa-check"></i><b>8.7.3</b> GMM &amp; Heteroskedasticity-Consistent Standard Errors</a></li>
+<li class="chapter" data-level="8.7.4" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#gmm-clustering"><i class="fa fa-check"></i><b>8.7.4</b> GMM &amp; Clustering</a></li>
+<li class="chapter" data-level="8.7.5" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#gmm-hac-standard-errors"><i class="fa fa-check"></i><b>8.7.5</b> GMM &amp; HAC Standard Errors</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#testing-overidentifying-restrictions-in-gmm"><i class="fa fa-check"></i><b>8.8</b> Testing &amp; Overidentifying Restrictions in GMM</a><ul>
+<li class="chapter" data-level="8.8.1" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#testing-a-subset-of-the-overidentifying-restrictions-in-gmm"><i class="fa fa-check"></i><b>8.8.1</b> Testing a subset of the Overidentifying Restrictions in GMM</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#testing-for-heteroskedasticity-in-the-iv-context"><i class="fa fa-check"></i><b>8.9</b> Testing for Heteroskedasticity in the IV context</a></li>
+<li class="chapter" data-level="8.10" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#testing-the-relevance-of-instruments"><i class="fa fa-check"></i><b>8.10</b> Testing the Relevance of Instruments</a></li>
+<li class="chapter" data-level="8.11" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#durbinwuhausman-tests-for-endogeneity-in-iv-estimation"><i class="fa fa-check"></i><b>8.11</b> Durbin–Wu–Hausman Tests for Endogeneity in IV Estimation</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="panel-data-models.html"><a href="panel-data-models.html"><i class="fa fa-check"></i><b>9</b> Panel Data Models</a><ul>
+<li class="chapter" data-level="9.1" data-path="panel-data-models.html"><a href="panel-data-models.html#fixed-effects-random-effects-models"><i class="fa fa-check"></i><b>9.1</b> Fixed Effects &amp; Random Effects Models</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="panel-data-models.html"><a href="panel-data-models.html#one-way-fixed-effects-models"><i class="fa fa-check"></i><b>9.1.1</b> One-Way Fixed Effects Models</a></li>
+<li class="chapter" data-level="9.1.2" data-path="panel-data-models.html"><a href="panel-data-models.html#time-effects-two-way-fixed-effects-models"><i class="fa fa-check"></i><b>9.1.2</b> Time Effects &amp; Two-Way Fixed Effects Models</a></li>
+<li class="chapter" data-level="9.1.3" data-path="panel-data-models.html"><a href="panel-data-models.html#the-between-estimator"><i class="fa fa-check"></i><b>9.1.3</b> The Between Estimator</a></li>
+<li class="chapter" data-level="9.1.4" data-path="panel-data-models.html"><a href="panel-data-models.html#one-way-random-effects-models"><i class="fa fa-check"></i><b>9.1.4</b> One-Way Random Effects Models</a></li>
+<li class="chapter" data-level="9.1.5" data-path="panel-data-models.html"><a href="panel-data-models.html#testing-the-appropriateness-of-random-effects-model"><i class="fa fa-check"></i><b>9.1.5</b> Testing the appropriateness of Random Effects Model</a></li>
+<li class="chapter" data-level="9.1.6" data-path="panel-data-models.html"><a href="panel-data-models.html#prediction-from-one-way-fixed-effects-model-random-effects-model"><i class="fa fa-check"></i><b>9.1.6</b> Prediction from One-Way Fixed Effects Model &amp; Random Effects Model</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="panel-data-models.html"><a href="panel-data-models.html#iv-models-for-panel-data"><i class="fa fa-check"></i><b>9.2</b> IV Models for Panel Data</a></li>
+<li class="chapter" data-level="9.3" data-path="panel-data-models.html"><a href="panel-data-models.html#dynamic-panel-data-models"><i class="fa fa-check"></i><b>9.3</b> Dynamic Panel Data Models</a></li>
+<li class="chapter" data-level="9.4" data-path="panel-data-models.html"><a href="panel-data-models.html#seemingly-unrelated-regression-models"><i class="fa fa-check"></i><b>9.4</b> Seemingly Unrelated Regression Models</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="panel-data-models.html"><a href="panel-data-models.html#sur-with-identical-regressors"><i class="fa fa-check"></i><b>9.4.1</b> SUR with Identical Regressors</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="panel-data-models.html"><a href="panel-data-models.html#moving-window-regression-estimates"><i class="fa fa-check"></i><b>9.5</b> Moving-Window Regression Estimates</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html"><i class="fa fa-check"></i><b>10</b> Models of Discrete &amp; Limited Dependent Variables</a><ul>
+<li class="chapter" data-level="10.1" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#binomial-logit-probit-models"><i class="fa fa-check"></i><b>10.1</b> Binomial Logit &amp; Probit Models</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#the-latent-variable-approach"><i class="fa fa-check"></i><b>10.1.1</b> The Latent Variable Approach</a></li>
+<li class="chapter" data-level="10.1.2" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#marginal-effects-predictions"><i class="fa fa-check"></i><b>10.1.2</b> Marginal Effects &amp; Predictions</a></li>
+<li class="chapter" data-level="10.1.3" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#evaluating-specification-goodness-of-fit"><i class="fa fa-check"></i><b>10.1.3</b> Evaluating Specification &amp; Goodness of Fit</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#ordered-logit-probit-models"><i class="fa fa-check"></i><b>10.2</b> Ordered Logit &amp; Probit Models</a></li>
+<li class="chapter" data-level="10.3" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#truncated-regression-tobit-models"><i class="fa fa-check"></i><b>10.3</b> Truncated Regression &amp; Tobit Models</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#truncation"><i class="fa fa-check"></i><b>10.3.1</b> Truncation</a></li>
+<li class="chapter" data-level="10.3.2" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#censoring"><i class="fa fa-check"></i><b>10.3.2</b> Censoring</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#incidental-truncation-sample-selection-models"><i class="fa fa-check"></i><b>10.4</b> Incidental Truncation &amp; Sample Selection Models</a></li>
+<li class="chapter" data-level="10.5" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#bivariate-probit-probit-with-selection"><i class="fa fa-check"></i><b>10.5</b> Bivariate Probit &amp; Probit with Selection</a><ul>
+<li class="chapter" data-level="10.5.1" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#binomial-probit-with-selection"><i class="fa fa-check"></i><b>10.5.1</b> Binomial Probit with Selection</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org/baydap/bookdownplus/" target="blank">Supported by bookdownplus</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Econometrics using STATA</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Econometrics using STATA</h1>
+<p class="author"><em>Muhammad Yaseen</em></p>
+</div>
+<div id="introduction" class="section level1">
+<h1><span class="header-section-number">1</span> Introduction</h1>
+<div id="an-overview-of-statas-distictive-features" class="section level2">
+<h2><span class="header-section-number">1.1</span> An Overview of STATA’s Distictive Features</h2>
+<ul>
+<li><p>You can easily learn STATA commands, even if you do not know the syntex</p></li>
+<li><p>You can use STATA’s do-file Editor to save time developing you analysis</p></li>
+<li><p>A simple command performs all computations for all the desired obervations</p></li>
+<li><p>Looping over variables saves time &amp; effort</p></li>
+<li><p>STATA’s by-groups reduce the need for programming</p></li>
+<li><p>STATA has many statistical features that make it uniquely powerful</p></li>
+<li><p>You can avoid problems by keeping STATA up to date</p></li>
+<li><p>STATA is infinitely extensible</p></li>
+<li><p>STATA’s user community provides a wealth of useful additions to STATA</p></li>
+<li><p>STATA is cross-platform compatible</p></li>
+<li><p>STATA can be fun</p></li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="working-with-economic-and-financial-data-in-stata.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["EconoSTATA.pdf", "EconoSTATA.epub"],
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

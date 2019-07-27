@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Linear Regression | Econometrics using STATA</title>
+  <meta name="description" content="4 Linear Regression | Econometrics using STATA" />
+  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 Linear Regression | Econometrics using STATA" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Linear Regression | Econometrics using STATA" />
+  
+  
+  
+
+<meta name="author" content="Muhammad Yaseen" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="organizing-handling-economic-data.html">
+<link rel="next" href="specifying-the-functional-form.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style\gitbook.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#an-overview-of-statas-distictive-features"><i class="fa fa-check"></i><b>1.1</b> An Overview of STATA’s Distictive Features</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="working-with-economic-and-financial-data-in-stata.html"><a href="working-with-economic-and-financial-data-in-stata.html"><i class="fa fa-check"></i><b>2</b> Working with Economic and Financial Data in STATA</a><ul>
+<li class="chapter" data-level="2.1" data-path="working-with-economic-and-financial-data-in-stata.html"><a href="working-with-economic-and-financial-data-in-stata.html#the-basics"><i class="fa fa-check"></i><b>2.1</b> The Basics</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="working-with-economic-and-financial-data-in-stata.html"><a href="working-with-economic-and-financial-data-in-stata.html#the-use-command"><i class="fa fa-check"></i><b>2.1.1</b> The use Command</a></li>
+<li class="chapter" data-level="2.1.2" data-path="working-with-economic-and-financial-data-in-stata.html"><a href="working-with-economic-and-financial-data-in-stata.html#variable-types"><i class="fa fa-check"></i><b>2.1.2</b> Variable Types</a></li>
+<li class="chapter" data-level="2.1.3" data-path="working-with-economic-and-financial-data-in-stata.html"><a href="working-with-economic-and-financial-data-in-stata.html#generate-replace"><i class="fa fa-check"></i><b>2.1.3</b> Generate &amp; Replace</a></li>
+<li class="chapter" data-level="2.1.4" data-path="working-with-economic-and-financial-data-in-stata.html"><a href="working-with-economic-and-financial-data-in-stata.html#sort-gsort"><i class="fa fa-check"></i><b>2.1.4</b> sort &amp; gsort</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html"><i class="fa fa-check"></i><b>3</b> Organizing &amp; Handling Economic Data</a><ul>
+<li class="chapter" data-level="3.1" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#cross-sectional-data-identifier-variables"><i class="fa fa-check"></i><b>3.1</b> Cross-Sectional Data &amp; Identifier Variables</a></li>
+<li class="chapter" data-level="3.2" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#time-series-data"><i class="fa fa-check"></i><b>3.2</b> Time Series Data</a></li>
+<li class="chapter" data-level="3.3" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#pooled-cross-sectional-time-series-data"><i class="fa fa-check"></i><b>3.3</b> Pooled Cross-Sectional Time Series Data</a></li>
+<li class="chapter" data-level="3.4" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#panel-data"><i class="fa fa-check"></i><b>3.4</b> Panel Data</a></li>
+<li class="chapter" data-level="3.5" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#tools-for-manipulating-panel-data"><i class="fa fa-check"></i><b>3.5</b> Tools for Manipulating Panel Data</a></li>
+<li class="chapter" data-level="3.6" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#combining-cross-sectional-time-series-datasets"><i class="fa fa-check"></i><b>3.6</b> Combining Cross-Sectional &amp; Time Series Datasets</a></li>
+<li class="chapter" data-level="3.7" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#creating-long-format-datasets-with-append"><i class="fa fa-check"></i><b>3.7</b> Creating Long-Format Datasets with Append</a></li>
+<li class="chapter" data-level="3.8" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#the-reshape-command"><i class="fa fa-check"></i><b>3.8</b> The reshape Command</a></li>
+<li class="chapter" data-level="3.9" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#using-stata-for-reproducible-research"><i class="fa fa-check"></i><b>3.9</b> Using STATA for Reproducible Research</a><ul>
+<li class="chapter" data-level="3.9.1" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#using-do-files"><i class="fa fa-check"></i><b>3.9.1</b> Using do-files</a></li>
+<li class="chapter" data-level="3.9.2" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#data-validation-assert-duplicates"><i class="fa fa-check"></i><b>3.9.2</b> Data Validation: Assert &amp; Duplicates</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>4</b> Linear Regression</a><ul>
+<li class="chapter" data-level="4.1" data-path="linear-regression.html"><a href="linear-regression.html#linear-regression-1"><i class="fa fa-check"></i><b>4.1</b> Linear Regression</a></li>
+<li class="chapter" data-level="4.2" data-path="linear-regression.html"><a href="linear-regression.html#information-criteria"><i class="fa fa-check"></i><b>4.2</b> Information Criteria</a></li>
+<li class="chapter" data-level="4.3" data-path="linear-regression.html"><a href="linear-regression.html#the-coefficient-estimates-beta-coefficients"><i class="fa fa-check"></i><b>4.3</b> The Coefficient Estimates &amp; Beta Coefficients</a></li>
+<li class="chapter" data-level="4.4" data-path="linear-regression.html"><a href="linear-regression.html#recovering-estimation-results"><i class="fa fa-check"></i><b>4.4</b> Recovering Estimation Results</a></li>
+<li class="chapter" data-level="4.5" data-path="linear-regression.html"><a href="linear-regression.html#detecting-collinearlity-in-regression"><i class="fa fa-check"></i><b>4.5</b> Detecting Collinearlity in Regression</a></li>
+<li class="chapter" data-level="4.6" data-path="linear-regression.html"><a href="linear-regression.html#presenting-regression-estimates"><i class="fa fa-check"></i><b>4.6</b> Presenting Regression Estimates</a></li>
+<li class="chapter" data-level="4.7" data-path="linear-regression.html"><a href="linear-regression.html#hypothesis-tests-linear-restrictions-constrained-least-squares"><i class="fa fa-check"></i><b>4.7</b> Hypothesis Tests, Linear Restrictions, &amp; Constrained Least Squares</a><ul>
+<li class="chapter" data-level="4.7.1" data-path="linear-regression.html"><a href="linear-regression.html#wald-tests-with-test"><i class="fa fa-check"></i><b>4.7.1</b> Wald Tests with Test</a></li>
+<li class="chapter" data-level="4.7.2" data-path="linear-regression.html"><a href="linear-regression.html#wald-tests-involving-linear-combinations-of-parameters"><i class="fa fa-check"></i><b>4.7.2</b> Wald Tests involving Linear Combinations of Parameters</a></li>
+<li class="chapter" data-level="4.7.3" data-path="linear-regression.html"><a href="linear-regression.html#joint-hypothesis-tests"><i class="fa fa-check"></i><b>4.7.3</b> Joint Hypothesis Tests</a></li>
+<li class="chapter" data-level="4.7.4" data-path="linear-regression.html"><a href="linear-regression.html#testing-nonlinear-restrictions-forming-nonlinear-combinations"><i class="fa fa-check"></i><b>4.7.4</b> Testing Nonlinear Restrictions &amp; Forming Nonlinear Combinations</a></li>
+<li class="chapter" data-level="4.7.5" data-path="linear-regression.html"><a href="linear-regression.html#testing-competing-non-nested-models"><i class="fa fa-check"></i><b>4.7.5</b> Testing Competing (Non-Nested) Models</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="linear-regression.html"><a href="linear-regression.html#computing-residuals-predicted-values"><i class="fa fa-check"></i><b>4.8</b> Computing Residuals &amp; Predicted Values</a><ul>
+<li class="chapter" data-level="4.8.1" data-path="linear-regression.html"><a href="linear-regression.html#computing-interval-predictions"><i class="fa fa-check"></i><b>4.8.1</b> Computing Interval Predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="linear-regression.html"><a href="linear-regression.html#computing-marginal-effects"><i class="fa fa-check"></i><b>4.9</b> Computing Marginal Effects</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html"><i class="fa fa-check"></i><b>5</b> Specifying the Functional Form</a><ul>
+<li class="chapter" data-level="5.1" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#introduction-1"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#specification-error"><i class="fa fa-check"></i><b>5.2</b> Specification Error</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#omitting-relevant-variables-from-the-model"><i class="fa fa-check"></i><b>5.2.1</b> Omitting relevant Variables from the Model</a></li>
+<li class="chapter" data-level="5.2.2" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#graphically-analyzing-regression-data"><i class="fa fa-check"></i><b>5.2.2</b> Graphically Analyzing Regression data</a></li>
+<li class="chapter" data-level="5.2.3" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#added-variable-plots"><i class="fa fa-check"></i><b>5.2.3</b> Added-Variable Plots</a></li>
+<li class="chapter" data-level="5.2.4" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#including-irrelevant-variables-in-the-model"><i class="fa fa-check"></i><b>5.2.4</b> Including Irrelevant Variables in the Model</a></li>
+<li class="chapter" data-level="5.2.5" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#the-asymmetry-of-specification-error"><i class="fa fa-check"></i><b>5.2.5</b> The Asymmetry of Specification Error</a></li>
+<li class="chapter" data-level="5.2.6" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#misspecification-of-the-functional-form"><i class="fa fa-check"></i><b>5.2.6</b> Misspecification of the Functional Form</a></li>
+<li class="chapter" data-level="5.2.7" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#ramseys-reset"><i class="fa fa-check"></i><b>5.2.7</b> Ramsey’s RESET</a></li>
+<li class="chapter" data-level="5.2.8" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#specification-plots"><i class="fa fa-check"></i><b>5.2.8</b> Specification Plots</a></li>
+<li class="chapter" data-level="5.2.9" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#specification-interaction-terms"><i class="fa fa-check"></i><b>5.2.9</b> Specification &amp; Interaction Terms</a></li>
+<li class="chapter" data-level="5.2.10" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#outlier-statistics-measures-of-leverage"><i class="fa fa-check"></i><b>5.2.10</b> Outlier Statistics &amp; Measures of Leverage</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#endogeneity-measurement-error"><i class="fa fa-check"></i><b>5.3</b> Endogeneity &amp; Measurement Error</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html"><i class="fa fa-check"></i><b>6</b> Regression with non-iid Errors</a><ul>
+<li class="chapter" data-level="6.1" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#the-generalized-linear-regression-model"><i class="fa fa-check"></i><b>6.1</b> The Generalized Linear Regression Model</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#types-of-deviations-from-i.i.d.-errors"><i class="fa fa-check"></i><b>6.1.1</b> Types of Deviations from i.i.d. Errors</a></li>
+<li class="chapter" data-level="6.1.2" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#the-robust-estimator-of-vce"><i class="fa fa-check"></i><b>6.1.2</b> The Robust Estimator of VCE</a></li>
+<li class="chapter" data-level="6.1.3" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#the-cluster-estimator-of-vce"><i class="fa fa-check"></i><b>6.1.3</b> The Cluster Estimator of VCE</a></li>
+<li class="chapter" data-level="6.1.4" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#the-neweywest-estimator-of-vce"><i class="fa fa-check"></i><b>6.1.4</b> The Newey–West Estimator of VCE</a></li>
+<li class="chapter" data-level="6.1.5" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#the-generalized-least-squares-estimator"><i class="fa fa-check"></i><b>6.1.5</b> The Generalized Least Squares Estimator</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#heteroskedasticity-in-the-error-distribution"><i class="fa fa-check"></i><b>6.2</b> Heteroskedasticity in the Error Distribution</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#heteroskedasticity-related-to-scale"><i class="fa fa-check"></i><b>6.2.1</b> Heteroskedasticity Related to Scale</a></li>
+<li class="chapter" data-level="6.2.2" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#heteroskedasticity-between-groups-of-observations"><i class="fa fa-check"></i><b>6.2.2</b> Heteroskedasticity Between Groups of Observations</a></li>
+<li class="chapter" data-level="6.2.3" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#heteroskedasticity-in-grouped-data"><i class="fa fa-check"></i><b>6.2.3</b> Heteroskedasticity in Grouped Data</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#serial-correlation-in-the-error-distribution"><i class="fa fa-check"></i><b>6.3</b> Serial Correlation in the Error Distribution</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#testing-for-serial-correlation"><i class="fa fa-check"></i><b>6.3.1</b> Testing for Serial Correlation</a></li>
+<li class="chapter" data-level="6.3.2" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#fgls-estimation-with-serial-correlation"><i class="fa fa-check"></i><b>6.3.2</b> FGLS Estimation with Serial Correlation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html"><i class="fa fa-check"></i><b>7</b> Regression with Indicator Variables</a><ul>
+<li class="chapter" data-level="7.1" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#testing-for-significance-of-a-qualitative-factor"><i class="fa fa-check"></i><b>7.1</b> Testing for Significance of a Qualitative Factor</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#regression-with-one-qualitative-measure"><i class="fa fa-check"></i><b>7.1.1</b> Regression with One Qualitative Measure</a></li>
+<li class="chapter" data-level="7.1.2" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#regression-with-two-qualitative-measures"><i class="fa fa-check"></i><b>7.1.2</b> Regression with Two Qualitative Measures</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#regression-with-qualitative-quantitative-factors"><i class="fa fa-check"></i><b>7.2</b> Regression with Qualitative &amp; Quantitative Factors</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#testing-for-slope-differences"><i class="fa fa-check"></i><b>7.2.1</b> Testing for Slope Differences</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#seasonal-adjustment-with-indicator-variables"><i class="fa fa-check"></i><b>7.3</b> Seasonal Adjustment with Indicator Variables</a></li>
+<li class="chapter" data-level="7.4" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#testing-for-structural-stability-structural-change"><i class="fa fa-check"></i><b>7.4</b> Testing for Structural Stability &amp; Structural Change</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#constraints-of-continuity-differentiability"><i class="fa fa-check"></i><b>7.4.1</b> Constraints of Continuity &amp; Differentiability</a></li>
+<li class="chapter" data-level="7.4.2" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#structural-change-in-a-time-series-model"><i class="fa fa-check"></i><b>7.4.2</b> Structural Change in a Time Series Model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html"><i class="fa fa-check"></i><b>8</b> Instrumental Variables Estimators</a><ul>
+<li class="chapter" data-level="8.1" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#introduction-2"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.2" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#endogeneity-in-economic-relationships"><i class="fa fa-check"></i><b>8.2</b> Endogeneity in Economic Relationships</a></li>
+<li class="chapter" data-level="8.3" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#sls"><i class="fa fa-check"></i><b>8.3</b> 2SLS</a></li>
+<li class="chapter" data-level="8.4" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#the-ivreg-command"><i class="fa fa-check"></i><b>8.4</b> The ivreg Command</a></li>
+<li class="chapter" data-level="8.5" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#identification-tests-of-overidentifying-restrictions"><i class="fa fa-check"></i><b>8.5</b> Identification &amp; Tests of Overidentifying Restrictions</a></li>
+<li class="chapter" data-level="8.6" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#computing-iv-estimates"><i class="fa fa-check"></i><b>8.6</b> Computing IV Estimates</a></li>
+<li class="chapter" data-level="8.7" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#ivreg2-gmm-estimation"><i class="fa fa-check"></i><b>8.7</b> ivreg2 &amp; GMM Estimation</a><ul>
+<li class="chapter" data-level="8.7.1" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#the-gmm-estimator"><i class="fa fa-check"></i><b>8.7.1</b> The GMM Estimator</a></li>
+<li class="chapter" data-level="8.7.2" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#gmm-in-a-homoskedastic-context"><i class="fa fa-check"></i><b>8.7.2</b> GMM in a Homoskedastic Context</a></li>
+<li class="chapter" data-level="8.7.3" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#gmm-heteroskedasticity-consistent-standard-errors"><i class="fa fa-check"></i><b>8.7.3</b> GMM &amp; Heteroskedasticity-Consistent Standard Errors</a></li>
+<li class="chapter" data-level="8.7.4" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#gmm-clustering"><i class="fa fa-check"></i><b>8.7.4</b> GMM &amp; Clustering</a></li>
+<li class="chapter" data-level="8.7.5" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#gmm-hac-standard-errors"><i class="fa fa-check"></i><b>8.7.5</b> GMM &amp; HAC Standard Errors</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#testing-overidentifying-restrictions-in-gmm"><i class="fa fa-check"></i><b>8.8</b> Testing &amp; Overidentifying Restrictions in GMM</a><ul>
+<li class="chapter" data-level="8.8.1" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#testing-a-subset-of-the-overidentifying-restrictions-in-gmm"><i class="fa fa-check"></i><b>8.8.1</b> Testing a subset of the Overidentifying Restrictions in GMM</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#testing-for-heteroskedasticity-in-the-iv-context"><i class="fa fa-check"></i><b>8.9</b> Testing for Heteroskedasticity in the IV context</a></li>
+<li class="chapter" data-level="8.10" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#testing-the-relevance-of-instruments"><i class="fa fa-check"></i><b>8.10</b> Testing the Relevance of Instruments</a></li>
+<li class="chapter" data-level="8.11" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#durbinwuhausman-tests-for-endogeneity-in-iv-estimation"><i class="fa fa-check"></i><b>8.11</b> Durbin–Wu–Hausman Tests for Endogeneity in IV Estimation</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="panel-data-models.html"><a href="panel-data-models.html"><i class="fa fa-check"></i><b>9</b> Panel Data Models</a><ul>
+<li class="chapter" data-level="9.1" data-path="panel-data-models.html"><a href="panel-data-models.html#fixed-effects-random-effects-models"><i class="fa fa-check"></i><b>9.1</b> Fixed Effects &amp; Random Effects Models</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="panel-data-models.html"><a href="panel-data-models.html#one-way-fixed-effects-models"><i class="fa fa-check"></i><b>9.1.1</b> One-Way Fixed Effects Models</a></li>
+<li class="chapter" data-level="9.1.2" data-path="panel-data-models.html"><a href="panel-data-models.html#time-effects-two-way-fixed-effects-models"><i class="fa fa-check"></i><b>9.1.2</b> Time Effects &amp; Two-Way Fixed Effects Models</a></li>
+<li class="chapter" data-level="9.1.3" data-path="panel-data-models.html"><a href="panel-data-models.html#the-between-estimator"><i class="fa fa-check"></i><b>9.1.3</b> The Between Estimator</a></li>
+<li class="chapter" data-level="9.1.4" data-path="panel-data-models.html"><a href="panel-data-models.html#one-way-random-effects-models"><i class="fa fa-check"></i><b>9.1.4</b> One-Way Random Effects Models</a></li>
+<li class="chapter" data-level="9.1.5" data-path="panel-data-models.html"><a href="panel-data-models.html#testing-the-appropriateness-of-random-effects-model"><i class="fa fa-check"></i><b>9.1.5</b> Testing the appropriateness of Random Effects Model</a></li>
+<li class="chapter" data-level="9.1.6" data-path="panel-data-models.html"><a href="panel-data-models.html#prediction-from-one-way-fixed-effects-model-random-effects-model"><i class="fa fa-check"></i><b>9.1.6</b> Prediction from One-Way Fixed Effects Model &amp; Random Effects Model</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="panel-data-models.html"><a href="panel-data-models.html#iv-models-for-panel-data"><i class="fa fa-check"></i><b>9.2</b> IV Models for Panel Data</a></li>
+<li class="chapter" data-level="9.3" data-path="panel-data-models.html"><a href="panel-data-models.html#dynamic-panel-data-models"><i class="fa fa-check"></i><b>9.3</b> Dynamic Panel Data Models</a></li>
+<li class="chapter" data-level="9.4" data-path="panel-data-models.html"><a href="panel-data-models.html#seemingly-unrelated-regression-models"><i class="fa fa-check"></i><b>9.4</b> Seemingly Unrelated Regression Models</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="panel-data-models.html"><a href="panel-data-models.html#sur-with-identical-regressors"><i class="fa fa-check"></i><b>9.4.1</b> SUR with Identical Regressors</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="panel-data-models.html"><a href="panel-data-models.html#moving-window-regression-estimates"><i class="fa fa-check"></i><b>9.5</b> Moving-Window Regression Estimates</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html"><i class="fa fa-check"></i><b>10</b> Models of Discrete &amp; Limited Dependent Variables</a><ul>
+<li class="chapter" data-level="10.1" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#binomial-logit-probit-models"><i class="fa fa-check"></i><b>10.1</b> Binomial Logit &amp; Probit Models</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#the-latent-variable-approach"><i class="fa fa-check"></i><b>10.1.1</b> The Latent Variable Approach</a></li>
+<li class="chapter" data-level="10.1.2" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#marginal-effects-predictions"><i class="fa fa-check"></i><b>10.1.2</b> Marginal Effects &amp; Predictions</a></li>
+<li class="chapter" data-level="10.1.3" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#evaluating-specification-goodness-of-fit"><i class="fa fa-check"></i><b>10.1.3</b> Evaluating Specification &amp; Goodness of Fit</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#ordered-logit-probit-models"><i class="fa fa-check"></i><b>10.2</b> Ordered Logit &amp; Probit Models</a></li>
+<li class="chapter" data-level="10.3" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#truncated-regression-tobit-models"><i class="fa fa-check"></i><b>10.3</b> Truncated Regression &amp; Tobit Models</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#truncation"><i class="fa fa-check"></i><b>10.3.1</b> Truncation</a></li>
+<li class="chapter" data-level="10.3.2" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#censoring"><i class="fa fa-check"></i><b>10.3.2</b> Censoring</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#incidental-truncation-sample-selection-models"><i class="fa fa-check"></i><b>10.4</b> Incidental Truncation &amp; Sample Selection Models</a></li>
+<li class="chapter" data-level="10.5" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#bivariate-probit-probit-with-selection"><i class="fa fa-check"></i><b>10.5</b> Bivariate Probit &amp; Probit with Selection</a><ul>
+<li class="chapter" data-level="10.5.1" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#binomial-probit-with-selection"><i class="fa fa-check"></i><b>10.5.1</b> Binomial Probit with Selection</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org/baydap/bookdownplus/" target="blank">Supported by bookdownplus</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Econometrics using STATA</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="linear-regression" class="section level1">
+<h1><span class="header-section-number">4</span> Linear Regression</h1>
+<div id="linear-regression-1" class="section level2">
+<h2><span class="header-section-number">4.1</span> Linear Regression</h2>
+
+<pre><code>
+
+. use hprice2a.(Housing price data for Boston-area communities)
+
+. summarize price lprice lnox ldist rooms stratio, sep(0)
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+       price |        506    22511.51    9208.856       5000      50001
+      lprice |        506    9.941057     .409255   8.517193    10.8198
+        lnox |        506    1.693091    .2014102   1.348073   2.164472
+       ldist |        506    1.188233     .539501   .1222176   2.495682
+       rooms |        506    6.284051    .7025938       3.56       8.78
+     stratio |        506    18.45929     2.16582       12.6         22</code></pre>
+<p></p>
+
+<pre><code>
+
+. use hprice2a.(Housing price data for Boston-area communities)
+
+. regress lprice lnox ldist rooms stratio
+
+      Source |       SS           df       MS      Number of obs   =       506
+-------------+----------------------------------   F(4, 501)       =    175.86
+       Model |  49.3987735         4  12.3496934   Prob &gt; F        =    0.0000
+    Residual |  35.1834974       501  .070226542   R-squared       =    0.5840
+-------------+----------------------------------   Adj R-squared   =    0.5807
+       Total |  84.5822709       505  .167489645   Root MSE        =      .265
+
+------------------------------------------------------------------------------
+      lprice |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        lnox |    -.95354   .1167418    -8.17   0.000    -1.182904   -.7241762
+       ldist |  -.1343401   .0431032    -3.12   0.002    -.2190255   -.0496548
+       rooms |   .2545271   .0185303    13.74   0.000     .2181203    .2909338
+     stratio |  -.0524512   .0058971    -8.89   0.000    -.0640373   -.0408651
+       _cons |   11.08387   .3181115    34.84   0.000     10.45887    11.70886
+------------------------------------------------------------------------------</code></pre>
+<p></p>
+</div>
+<div id="information-criteria" class="section level2">
+<h2><span class="header-section-number">4.2</span> Information Criteria</h2>
+
+<pre><code>
+
+. use hprice2a.(Housing price data for Boston-area communities)
+
+. quietly regress lprice lnox ldist rooms stratio
+
+. estat ic
+
+Akaike&#39;s information criterion and Bayesian information criterion
+
+-----------------------------------------------------------------------------
+       Model |        Obs  ll(null)  ll(model)      df         AIC        BIC
+-------------+---------------------------------------------------------------
+           . |        506 -265.4135  -43.49514       5    96.99028    118.123
+-----------------------------------------------------------------------------
+               Note: N=Obs used in calculating BIC; see [R] BIC note.</code></pre>
+<p></p>
+</div>
+<div id="the-coefficient-estimates-beta-coefficients" class="section level2">
+<h2><span class="header-section-number">4.3</span> The Coefficient Estimates &amp; Beta Coefficients</h2>
+
+<pre><code>
+
+. use hprice2a.(Housing price data for Boston-area communities)
+
+. quietly regress lprice lnox ldist rooms stratio
+
+. regress, beta
+
+      Source |       SS           df       MS      Number of obs   =       506
+-------------+----------------------------------   F(4, 501)       =    175.86
+       Model |  49.3987735         4  12.3496934   Prob &gt; F        =    0.0000
+    Residual |  35.1834974       501  .070226542   R-squared       =    0.5840
+-------------+----------------------------------   Adj R-squared   =    0.5807
+       Total |  84.5822709       505  .167489645   Root MSE        =      .265
+
+------------------------------------------------------------------------------
+      lprice |      Coef.   Std. Err.      t    P&gt;|t|                     Beta
+-------------+----------------------------------------------------------------
+        lnox |    -.95354   .1167418    -8.17   0.000                -.4692738
+       ldist |  -.1343401   .0431032    -3.12   0.002                -.1770941
+       rooms |   .2545271   .0185303    13.74   0.000                 .4369626
+     stratio |  -.0524512   .0058971    -8.89   0.000                -.2775771
+       _cons |   11.08387   .3181115    34.84   0.000                        .
+------------------------------------------------------------------------------</code></pre>
+<p></p>
+</div>
+<div id="recovering-estimation-results" class="section level2">
+<h2><span class="header-section-number">4.4</span> Recovering Estimation Results</h2>
+
+<pre><code>
+
+. use hprice2a.(Housing price data for Boston-area communities)
+
+. quietly regress lprice lnox ldist rooms stratio
+
+. ereturn list
+
+scalars:
+                  e(N) =  506
+               e(df_m) =  4
+               e(df_r) =  501
+                  e(F) =  175.8550695227946
+                 e(r2) =  .5840322442976398
+               e(rmse) =  .2650029089298266
+                e(mss) =  49.39877352102587
+                e(rss) =  35.18349741237627
+               e(r2_a) =  .5807111444517128
+                 e(ll) =  -43.4951392092929
+               e(ll_0) =  -265.4134648194153
+               e(rank) =  5
+
+macros:
+            e(cmdline) : &quot;regress lprice lnox ldist rooms stratio&quot;
+              e(title) : &quot;Linear regression&quot;
+          e(marginsok) : &quot;XB default&quot;
+                e(vce) : &quot;ols&quot;
+             e(depvar) : &quot;lprice&quot;
+                e(cmd) : &quot;regress&quot;
+         e(properties) : &quot;b V&quot;
+            e(predict) : &quot;regres_p&quot;
+              e(model) : &quot;ols&quot;
+          e(estat_cmd) : &quot;regress_estat&quot;
+
+matrices:
+                  e(b) :  1 x 5
+                  e(V) :  5 x 5
+
+functions:
+             e(sample)   </code></pre>
+<p></p>
+
+<pre><code>
+
+. use hprice2a.(Housing price data for Boston-area communities)
+
+. quietly regress lprice lnox ldist rooms stratio
+
+. matrix list e(b)
+
+e(b)[1,5]
+          lnox       ldist       rooms     stratio       _cons
+y1  -.95354002  -.13434015   .25452706  -.05245119   11.083865</code></pre>
+<p></p>
+
+<pre><code>
+
+. use hprice2a.(Housing price data for Boston-area communities)
+
+. quietly regress lprice lnox ldist rooms stratio
+
+. estat vce
+
+Covariance matrix of coefficients of regress model
+
+        e(V) |       lnox       ldist       rooms     stratio       _cons 
+-------------+------------------------------------------------------------
+        lnox |  .01362865                                                 
+       ldist |  .00426247   .00185789                                     
+       rooms |  .00035279   .00003043   .00034337                         
+     stratio |  9.740e-07   .00002182   .00003374   .00003478             
+       _cons | -.03037429  -.01001835  -.00341397  -.00088151   .10119496 </code></pre>
+<p></p>
+</div>
+<div id="detecting-collinearlity-in-regression" class="section level2">
+<h2><span class="header-section-number">4.5</span> Detecting Collinearlity in Regression</h2>
+
+<pre><code>
+
+. use hprice2a.(Housing price data for Boston-area communities)
+
+. quietly regress lprice lnox ldist rooms stratio
+
+. estat vif
+
+    Variable |       VIF       1/VIF  
+-------------+----------------------
+        lnox |      3.98    0.251533
+       ldist |      3.89    0.257162
+       rooms |      1.22    0.820417
+     stratio |      1.17    0.852488
+-------------+----------------------
+    Mean VIF |      2.56</code></pre>
+<p></p>
+</div>
+<div id="presenting-regression-estimates" class="section level2">
+<h2><span class="header-section-number">4.6</span> Presenting Regression Estimates</h2>
+
+<pre><code>
+
+. use hprice2a.(Housing price data for Boston-area communities)
+
+. generate rooms2 = rooms^2
+
+. 
+. quietly regress lprice rooms
+
+. estimates store model1
+
+. 
+. quietly regress lprice rooms rooms2 ldist
+
+. estimates store model2
+
+. 
+. quietly regress lprice ldist stratio lnox
+
+. estimates store model3
+
+. 
+. quietly regress lprice lnox ldist rooms stratio
+
+. estimates store model4
+
+. 
+. estimates table model1 model2 model3 model4, stat(r2_a, rmse) b(%7.3g) se(%6.
+&gt; 3g) p(%4.3f)
+
+------------------------------------------------------
+    Variable | model1    model2    model3    model4   
+-------------+----------------------------------------
+       rooms |    .369     -.821                .255  
+             |   .0201      .183               .0185  
+             |   0.000     0.000               0.000  
+      rooms2 |             .0889                      
+             |              .014                      
+             |             0.000                      
+       ldist |              .237     -.157     -.134  
+             |             .0255     .0505     .0431  
+             |             0.000     0.002     0.002  
+     stratio |                      -.0775    -.0525  
+             |                       .0066     .0059  
+             |                       0.000     0.000  
+        lnox |                       -1.22     -.954  
+             |                        .135      .117  
+             |                       0.000     0.000  
+       _cons |    7.62      11.3      13.6      11.1  
+             |    .127      .584      .304      .318  
+             |   0.000     0.000     0.000     0.000  
+-------------+----------------------------------------
+        r2_a |    .399        .5      .424      .581  
+        rmse |    .317      .289      .311      .265  
+------------------------------------------------------
+                                        legend: b/se/p</code></pre>
+<p></p>
+
+<pre><code>
+
+. use hprice2a.(Housing price data for Boston-area communities)
+
+. generate rooms2 = rooms^2
+
+. 
+. quietly regress lprice rooms
+
+. estimates store model1
+
+. 
+. quietly regress lprice rooms rooms2 ldist
+
+. estimates store model2
+
+. 
+. quietly regress lprice ldist stratio lnox
+
+. estimates store model3
+
+. 
+. quietly regress lprice lnox ldist rooms stratio
+
+. estimates store model4
+
+. 
+. estimates table model1 model2 model3 model4, stat(r2_a rmse ll) b(%7.3g) star
+&gt;  title(&quot;Models of Median Housing Price&quot;)
+
+Models of Median Housing Price
+
+------------------------------------------------------------------
+    Variable |   model1       model2       model3       model4    
+-------------+----------------------------------------------------
+       rooms |    .369***     -.821***                   .255***  
+      rooms2 |                .0889***                            
+       ldist |                 .237***     -.157**      -.134**   
+     stratio |                            -.0775***    -.0525***  
+        lnox |                             -1.22***     -.954***  
+       _cons |    7.62***      11.3***      13.6***      11.1***  
+-------------+----------------------------------------------------
+        r2_a |    .399           .5         .424         .581     
+        rmse |    .317         .289         .311         .265     
+          ll |    -136        -88.6         -124        -43.5     
+------------------------------------------------------------------
+                          legend: * p&lt;0.05; ** p&lt;0.01; *** p&lt;0.001</code></pre>
+<p></p>
+</div>
+<div id="hypothesis-tests-linear-restrictions-constrained-least-squares" class="section level2">
+<h2><span class="header-section-number">4.7</span> Hypothesis Tests, Linear Restrictions, &amp; Constrained Least Squares</h2>
+<div id="wald-tests-with-test" class="section level3">
+<h3><span class="header-section-number">4.7.1</span> Wald Tests with Test</h3>
+
+<pre><code>
+
+. use hprice2a.(Housing price data for Boston-area communities)
+
+. regress lprice lnox ldist rooms stratio
+
+      Source |       SS           df       MS      Number of obs   =       506
+-------------+----------------------------------   F(4, 501)       =    175.86
+       Model |  49.3987735         4  12.3496934   Prob &gt; F        =    0.0000
+    Residual |  35.1834974       501  .070226542   R-squared       =    0.5840
+-------------+----------------------------------   Adj R-squared   =    0.5807
+       Total |  84.5822709       505  .167489645   Root MSE        =      .265
+
+------------------------------------------------------------------------------
+      lprice |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        lnox |    -.95354   .1167418    -8.17   0.000    -1.182904   -.7241762
+       ldist |  -.1343401   .0431032    -3.12   0.002    -.2190255   -.0496548
+       rooms |   .2545271   .0185303    13.74   0.000     .2181203    .2909338
+     stratio |  -.0524512   .0058971    -8.89   0.000    -.0640373   -.0408651
+       _cons |   11.08387   .3181115    34.84   0.000     10.45887    11.70886
+------------------------------------------------------------------------------
+
+. test rooms
+
+ ( 1)  rooms = 0
+
+       F(  1,   501) =  188.67
+            Prob &gt; F =    0.0000</code></pre>
+<p></p>
+
+<pre><code>
+
+. use hprice2a.(Housing price data for Boston-area communities)
+
+. quietly regress lprice lnox ldist rooms stratio
+
+. test rooms = 0.33
+
+ ( 1)  rooms = .33
+
+       F(  1,   501) =   16.59
+            Prob &gt; F =    0.0001</code></pre>
+<p></p>
+</div>
+<div id="wald-tests-involving-linear-combinations-of-parameters" class="section level3">
+<h3><span class="header-section-number">4.7.2</span> Wald Tests involving Linear Combinations of Parameters</h3>
+
+<pre><code>
+
+. use hprice2a.(Housing price data for Boston-area communities)
+
+. quietly regress lprice lnox ldist rooms stratio
+
+. lincom rooms + ldist + stratio
+
+ ( 1)  ldist + rooms + stratio = 0
+
+------------------------------------------------------------------------------
+      lprice |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+         (1) |   .0677357   .0490714     1.38   0.168    -.0286753    .1641468
+------------------------------------------------------------------------------
+
+. test ldist = stratio
+
+ ( 1)  ldist - stratio = 0
+
+       F(  1,   501) =    3.63
+            Prob &gt; F =    0.0574
+
+. test lnox = 10*stratio
+
+ ( 1)  lnox - 10*stratio = 0
+
+       F(  1,   501) =   10.77
+            Prob &gt; F =    0.0011</code></pre>
+<p></p>
+
+<pre><code>
+
+. use hprice2a.(Housing price data for Boston-area communities)
+
+. constraint def 1 rooms + ldist + stratio = 0
+
+. cnsreg lprice lnox ldist rooms stratio, constraint(1)
+
+Constrained linear regression                   Number of obs     =        506
+                                                F(   3,    502)   =     233.42
+                                                Prob &gt; F          =     0.0000
+                                                Root MSE          =     0.2652
+
+ ( 1)  ldist + rooms + stratio = 0
+------------------------------------------------------------------------------
+      lprice |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        lnox |  -1.083392   .0691935   -15.66   0.000    -1.219337   -.9474478
+       ldist |  -.1880712   .0185284   -10.15   0.000    -.2244739   -.1516684
+       rooms |   .2430633     .01658    14.66   0.000     .2104886    .2756381
+     stratio |  -.0549922   .0056075    -9.81   0.000    -.0660092   -.0439752
+       _cons |   11.48651   .1270377    90.42   0.000     11.23691     11.7361
+------------------------------------------------------------------------------</code></pre>
+<p></p>
+</div>
+<div id="joint-hypothesis-tests" class="section level3">
+<h3><span class="header-section-number">4.7.3</span> Joint Hypothesis Tests</h3>
+
+<pre><code>
+
+. use hprice2a.(Housing price data for Boston-area communities)
+
+. quietly regress lprice lnox ldist rooms stratio
+
+. test lnox ldist
+
+ ( 1)  lnox = 0
+ ( 2)  ldist = 0
+
+       F(  2,   501) =   58.95
+            Prob &gt; F =    0.0000</code></pre>
+<p></p>
+
+<pre><code>
+
+. use hprice2a.(Housing price data for Boston-area communities)
+
+. quietly regress lprice lnox ldist rooms stratio
+
+. test (lnox = 10*stratio) (ldist = stratio)
+
+ ( 1)  lnox - 10*stratio = 0
+ ( 2)  ldist - stratio = 0
+
+       F(  2,   501) =    5.94
+            Prob &gt; F =    0.0028</code></pre>
+<p></p>
+</div>
+<div id="testing-nonlinear-restrictions-forming-nonlinear-combinations" class="section level3">
+<h3><span class="header-section-number">4.7.4</span> Testing Nonlinear Restrictions &amp; Forming Nonlinear Combinations</h3>
+
+<pre><code>
+
+. use hprice2a.(Housing price data for Boston-area communities)
+
+. quietly regress lprice lnox ldist rooms stratio
+
+. testnl _b[lnox] * _b[stratio] = 0.06
+
+  (1)  _b[lnox] * _b[stratio] = 0.06
+
+               chi2(1) =        1.44
+           Prob &gt; chi2 =        0.2300</code></pre>
+<p></p>
+
+<pre><code>
+
+. use hprice2a.(Housing price data for Boston-area communities)
+
+. quietly regress lprice lnox ldist rooms stratio
+
+. testnl (_b[lnox] * _b[stratio] = 0.06) (_b[rooms] * _b[ldist] = 3 * _b[lnox])
+&gt;  
+
+  (1)  _b[lnox] * _b[stratio] = 0.06
+  (2)  _b[rooms] * _b[ldist] = 3 * _b[lnox]
+
+               chi2(2) =      184.94
+           Prob &gt; chi2 =        0.0000</code></pre>
+<p></p>
+</div>
+<div id="testing-competing-non-nested-models" class="section level3">
+<h3><span class="header-section-number">4.7.5</span> Testing Competing (Non-Nested) Models</h3>
+
+<pre><code>
+
+. use hprice2a.(Housing price data for Boston-area communities)
+
+. nnest lprice lnox ldist rooms stratio (crime proptax ldist rooms stratio)
+command nnest is unrecognized
+r(199);
+
+end of do-file
+r(199);</code></pre>
+<p></p>
+</div>
+</div>
+<div id="computing-residuals-predicted-values" class="section level2">
+<h2><span class="header-section-number">4.8</span> Computing Residuals &amp; Predicted Values</h2>
+
+<pre><code>
+
+. use hprice2a.(Housing price data for Boston-area communities)
+
+. quietly regress lprice lnox ldist rooms stratio
+
+. predict double lpricehat, xb
+
+. label var lpricehat &quot;Predicted log price&quot;
+
+. twoway (scatter lpricehat lprice, msize(small) mcolor(black) msize(tiny)) || 
+&gt; (line lprice lprice if lprice &lt;., clwidth(thin)), ytitle(&quot;Predicted log media
+&gt; n housing price&quot;) xtitle(&quot;Actual log median housing price&quot;) aspectratio(1) le
+&gt; gend(off)</code></pre>
+<p></p>
+<div class="figure">
+<img src="images/Plot-4-1.png" alt="Actual versus predicted values from regression model" />
+<p class="caption">Actual versus predicted values from regression model</p>
+</div>
+<div id="computing-interval-predictions" class="section level3">
+<h3><span class="header-section-number">4.8.1</span> Computing Interval Predictions</h3>
+
+<pre><code>
+
+. use hprice2a.(Housing price data for Boston-area communities)
+
+. quietly regress lprice lnox if _n &lt;= 100
+
+. predict double xb if e(sample)
+(option xb assumed; fitted values)
+(406 missing values generated)
+
+. predict double stdpred if e(sample), stdp
+(406 missing values generated)
+
+. scalar tval = invttail(e(df_r), 0.975)
+
+. generate double uplim = xb + tval * stdpred
+(406 missing values generated)
+
+. generate double lowlim = xb - tval * stdpred
+(406 missing values generated)
+
+. 
+. summarize lnox if e(sample), meanonly
+
+. generate lnoxbar = r(mean)
+
+. 
+. label var xb &quot;Pred&quot;
+
+. label var uplim &quot;95% prediction interval&quot;
+
+. label var lowlim &quot;95% prediction interval&quot;
+
+. 
+. twoway (scatter lprice lnox if e(sample), sort ms(Oh) xline(`lnoxbar&#39;)) (conn
+&gt; ected xb lnox if e(sample), sort msize(small)) (rline uplim lowlim lnox if e(
+&gt; sample), sort), ytitle(Actual and predicted log price) legend(cols(3))
+
+. </code></pre>
+<p></p>
+<div class="figure">
+<img src="images/Plot-4-2.png" alt="Point and interval predictions from bivariate regression" />
+<p class="caption">Point and interval predictions from bivariate regression</p>
+</div>
+</div>
+</div>
+<div id="computing-marginal-effects" class="section level2">
+<h2><span class="header-section-number">4.9</span> Computing Marginal Effects</h2>
+
+<pre><code>
+
+. use hprice2a.(Housing price data for Boston-area communities)
+
+. regress price nox dist rooms stratio proptax
+
+      Source |       SS           df       MS      Number of obs   =       506
+-------------+----------------------------------   F(5, 500)       =    165.85
+       Model |  2.6717e+10         5  5.3434e+09   Prob &gt; F        =    0.0000
+    Residual |  1.6109e+10       500  32217368.7   R-squared       =    0.6239
+-------------+----------------------------------   Adj R-squared   =    0.6201
+       Total |  4.2826e+10       505    84803032   Root MSE        =      5676
+
+------------------------------------------------------------------------------
+       price |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+         nox |  -2570.162    407.371    -6.31   0.000    -3370.532   -1769.793
+        dist |  -955.7175   190.7124    -5.01   0.000    -1330.414    -581.021
+       rooms |   6828.264   399.7034    17.08   0.000     6042.959    7613.569
+     stratio |  -1127.534   140.7653    -8.01   0.000    -1404.099   -850.9699
+     proptax |  -52.24272   22.53714    -2.32   0.021    -96.52188   -7.963555
+       _cons |   20440.08   5290.616     3.86   0.000      10045.5    30834.66
+------------------------------------------------------------------------------
+
+. mfx, eyex
+
+Elasticities after regress
+      y  = Fitted values (predict)
+         =   22511.51
+------------------------------------------------------------------------------
+variable |      ey/ex    Std. Err.     z    P&gt;|z|  [    95% C.I.   ]      X
+---------+--------------------------------------------------------------------
+     nox |  -.6336244      .10068   -6.29   0.000  -.830954 -.436295   5.54978
+    dist |  -.1611472      .03221   -5.00   0.000  -.224273 -.098022   3.79575
+   rooms |   1.906099       .1136   16.78   0.000   1.68344  2.12876   6.28405
+ stratio |  -.9245706      .11589   -7.98   0.000  -1.15171 -.697429   18.4593
+ proptax |  -.0947401      .04088   -2.32   0.020  -.174871 -.014609   40.8237
+------------------------------------------------------------------------------</code></pre>
+<p></p>
+
+<p></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="organizing-handling-economic-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="specifying-the-functional-form.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["EconoSTATA.pdf", "EconoSTATA.epub"],
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1563902616527.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3354318656",
+    "id" : "E5DC810F",
+    "lastKnownWriteTime" : 1563903454,
+    "last_content_update" : 1563903452261,
+    "path" : "E:/MYaseen208/EconSTATA/04-LinearReg.Rmd",
+    "project_path" : "04-LinearReg.Rmd",
+    "properties" : {
+        "cursorPosition" : "225,113",
+        "scrollLine" : "219"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

@@ -1,0 +1,85 @@
+# Linear Model {#LM}
+
+## Introduction
+
+The model relating the normal dependent variable $Y$ with the explanatory variables $X_1, X_2, \cdots, X_q$ is
+
+\begin{align}
+Y & = \gamma_{1}X_{1}+\gamma_{2}X_{2}+\cdots+\gamma_{q}X_{q}+\epsilon \label{eq:LM1}\\
+Y & =\mathbf{x}^{\prime}\bm{\alpha}+\epsilon=\bm{\alpha}^{\prime}\mathbf{x}+\epsilon \label{eq:LM2}
+\end{align}
+
+
+```{r label = LM1, fig.cap = "Path Diagram of Linear Model", echo = FALSE}
+knitr::include_graphics("images/LM1.pdf")
+```
+
+
+\begin{example}
+A mortgage department of a large bank is studying its recent loans. Of particular interest is how such factors as the value of the home (in thousands of dollars), education level of the head of the household, age of the head of the household and current monthly mortgage payment (in dollars) relate to the family income. Are these variables effect predictors of the income of the household?
+\end{example}
+
+
+## Linear Modeling Approach
+Linear Model (LM) can only measure direct effects
+\graffito{Linear Model (LM) can only measure direct effects}
+
+\begin{example}
+A mortgage department of a large bank is studying its recent loans. Of particular interest is how such factors as the value of the home (in thousands of dollars), education level of the head of the household, age of the head of the household and current monthly mortgage payment (in dollars) relate to the family income. Are these variables effect predictors of the income of the household?
+\end{example}
+
+
+```{r label = Reg1, fig.cap = "Path Diagram of Regression", echo = FALSE}
+knitr::include_graphics("images/Reg1.pdf")
+```
+
+```{r label = Income.lm.fm1}
+```
+
+
+```{r label = Reg1Values, fig.cap = "Path Diagram of Regression with estimates of coefficient obtained from \\emph{lm}", echo = FALSE}
+knitr::include_graphics("images/Reg1Values.pdf")
+```
+
+
+## Strucural Equation Modeling Approach
+Strucural Equation Model (SEM) can measure direct as well as indirect effects
+
+\graffito{Strucural Equation Model (SEM) can measure direct as well as indirect effects}
+
+\begin{example}
+A mortgage department of a large bank is studying its recent loans. Of particular interest is how such factors as the value of the home (in thousands of dollars), education level of the head of the household, age of the head of the household and current monthly mortgage payment (in dollars) relate to the family income. Are these variables effect predictors of the income of the household?
+\end{example}
+
+
+```{r label = RegSEM1, fig.cap = "Path Diagram of Regression", echo = FALSE}
+knitr::include_graphics("images/RegSEM1.pdf")
+```
+
+
+```{r label = Income.sem.fm1}
+```
+
+
+
+```{r label = RegSEM1Values, fig.cap = "Path Diagram of Regression with estimates of coefficient obtained from \\emph{sem}", echo = FALSE}
+knitr::include_graphics("images/RegSEM1Values.pdf")
+```
+
+\begin{example}
+A mortgage department of a large bank is studying its recent loans. Of particular interest is how such factors as the value of the home (in thousands of dollars), education level of the head of the household, age of the head of the household and current monthly mortgage payment (in dollars) relate to the family income. Are these variables effect predictors of the income of the household?
+\end{example}
+
+\graffito{Complete path diagram with variances and covariances/correlations}
+
+```{r label = Reg2, fig.cap = "Path Diagram of Regression", echo = FALSE}
+knitr::include_graphics("images/Reg2.pdf")
+```
+
+```{r label = Income.sem.fm2}
+```
+
+
+```{r label = Reg2Values, fig.cap = "Path Diagram of Regression with estimates of coefficient", echo = FALSE}
+knitr::include_graphics("images/Reg2Values.pdf")
+```

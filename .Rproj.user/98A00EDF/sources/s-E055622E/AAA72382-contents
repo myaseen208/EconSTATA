@@ -1,0 +1,58 @@
+--- 
+title: "Econometrics using STATA"
+author: "Muhammad Yaseen"
+date: ""
+output:
+  bookdown::pdf_book:
+    template: tex/template_thesis_classic2.tex
+    keep_tex: yes
+    citation_package: natbib
+#    latex_engine: xelatex
+    toc_depth: 3
+    toc_unnumbered: no
+    toc_appendix: yes
+    highlight: pygments
+    pandoc_args: --top-level-division=chapter
+    quote_footer: ["\\begin{flushright}", "\\end{flushright}"]
+bibliography: [bib/SEM.bib]
+biblio-style: apalike
+link-citations: yes
+colorlinks: no  
+# toc: no
+lot: no
+lof: no
+site: bookdown::bookdown_site
+---
+
+
+```{r label = setup, include = FALSE, cache = FALSE}
+knitr::opts_chunk$set(
+                 fig.align  = 'center'
+               , out.width  = '80%'
+               , fig.asp    = 0.75
+               , fig.pos    = 'H'
+               , echo       = c(TRUE, FALSE)[2]
+               , results    = c("markup", "asis", "hold", "hide")[1]
+               , warning    = c(TRUE, FALSE)[2]
+               , message    = c(TRUE, FALSE)[2]
+               , comment    = NA
+               , size       = c("tiny", "scriptsize", "footnotesize", "small", "normalsize", "large", "Large", "LARGE", "huge", "Huge")[3]
+               )
+options(replace.assign = TRUE, width = 65)
+par(mar = c(4, 4, .1, .1))
+def.chunk.hook  <- knitr::knit_hooks$get("chunk")
+knitr::knit_hooks$set(chunk = function(x, options) {
+  x <- def.chunk.hook(x, options)
+  ifelse(options$size != "normalsize", paste0("\\", options$size,"\n\n", x, "\n\n \\normalsize"), x)
+})
+```
+
+
+
+```{r, echo = FALSE, message = FALSE}
+library(knitr)
+statapath <- "D:/Stata15/Stata-64"
+opts_chunk$set(engine = "stata", engine.path = statapath, comment = "")
+```
+
+

@@ -1,0 +1,198 @@
+---
+title: "Econometrics with STATA"
+author: "Muhammad Yaseen"
+date: 2019-07-29
+comments: false
+slug: 2019-07-29-EconSTATA
+categories:
+  - Data Science
+  - Statistics
+  - Econometrics
+  - STATA
+tags: []
+mathjax: true
+output:
+  blogdown::html_page:
+    toc: true
+---
+
+```{r, label = setup, include = FALSE, cache = FALSE, eval=FALSE}
+library(knitr)
+opts_chunk$set(
+              #  fig.path   = 'figure/'
+                cache.path = 'cache/'
+               , cache      = FALSE
+               , dev        = c("svg", "tikz", "pdf", "png")[1]
+               , fig.align  = 'center'
+              # , fig.show   = 'asis'
+              # , fig.width  = 6
+              # , fig.height = 6
+              # , out.width  = '0.9\\linewidth'
+               , par        = TRUE
+               , echo       = FALSE
+               , results    = 'markup'
+               , warning    = FALSE
+               , message    = FALSE
+               , comment    = NA
+               )
+options(
+          replace.assign = TRUE
+        , width          = 80
+        , knitr.kable.NA = ''
+        )
+
+knit_hooks$set(par = function(before, options, envir){
+if (before && options$fig.show!='none')
+ par(mar=c(4, 4, 0.1, 0.1), cex.lab = 0.95, cex.axis =0.9, mgp = c(2, 0.7, 0), tcl = -0.3)
+}, crop = hook_pdfcrop)
+
+# Suppressing Error Messages in knitr
+muffleError <- function(x,options) {}
+knit_hooks$set(error=muffleError)
+```
+
+
+```{r, echo = FALSE, message = FALSE}
+library(knitr)
+STATA_Path <- "D:/Stata15/Stata-64"
+opts_chunk$set(engine = "stata", engine.path = STATA_Path, comment = "")
+```
+
+
+
+
+# Regression with non-iid Errors
+
+## The Generalized Linear Regression Model
+### Types of Deviations from i.i.d. Errors
+### The Robust Estimator of VCE
+
+```{r}
+use fertil2.dta
+describe
+summarize
+```
+
+
+```{r}
+use fertil2.dta
+regress ceb age agefbrth usemeth 
+estimates store nonRobust
+summarize ceb age agefbrth usemeth children if e(sample)
+regress ceb age agefbrth usemeth, robust
+estimates store Robust
+estimates table nonRobust Robust, b(%9.4f) se(%5.3f) t(%5.2f) p(%4.3f) title(Estimates of CEB with OLS and Robust Standard Errors)
+```
+
+### The Cluster Estimator of VCE
+
+
+```{r}
+use fertil2.dta
+regress ceb age agefbrth usemeth, cluster(children)
+```
+
+
+### The Newey–West Estimator of VCE
+
+
+```{r}
+use ukrates.dta
+describe
+summarize
+quietly regress D.rs LD.r20
+estimates store nonHAC
+newey D.rs LD.r20, lag(5)
+estimates store NeweyWest
+estimates table nonHAC NeweyWest, b(%9.4f) se(%5.3f) t(%5.2f) p(%4.3f) title(Estimates of D.rs with OLS and Newey-West Standard Errors)
+```
+
+
+### The Generalized Least Squares Estimator
+## Heteroskedasticity in the Error Distribution
+### Heteroskedasticity Related to Scale
+#### Testing for Heteroskedasticity Related to Scale
+
+```{r}
+use hprice2a.dta
+regress lprice rooms crime ldist
+estat hettest, iid
+estat hettest rooms crime ldist, iid
+whitetst
+```
+
+#### Feasible Generalized Least Squares Estimation
+
+```{r}
+use hprice2a.dta
+generate rooms2 = rooms^2
+regress lprice rooms crime ldist [aw=1/rooms2]
+```
+
+### Heteroskedasticity Between Groups of Observations
+#### Testing for Heteroskedasticity Between Groups of Observations
+
+```{r}
+use NEdata.dta
+describe
+summarize
+regress dpipc year
+predict double eps, residual 
+robvar eps, by(state)
+```
+
+#### Feasible Generalized Least Squares Estimation
+
+
+```{r}
+use NEdata.dta
+regress dpipc year
+predict double eps, residual
+by state, sort: egen sd_eps = sd(eps)
+generate double gw_wt = 1/sd_eps^2
+tabstat sd_eps gw_wt, by(state)
+regress dpipc year [aw = gw_wt]
+```
+
+
+### Heteroskedasticity in Grouped Data
+
+
+#### Feasible Generalized Least Squares Estimation
+
+
+```{r}
+use pubschl.dta
+describe
+summarize
+regress read_scr expn_stu comp_stu meal_pct
+regress read_scr expn_stu comp_stu meal_pct [aw = enrl_tot]
+```
+
+## Serial Correlation in the Error Distribution
+### Testing for Serial Correlation
+
+
+```{r}
+use ukrates.dta
+describe
+summarize
+regress D.rs LD.r20
+predict double eps, residual 
+estat bgodfrey, lags(6)
+wntestq eps
+ac eps
+```
+
+
+![Autocorrelogram of regression residuals](E:/MYaseen208/EconSTATA/images/Plot-6-1.png){width=50px,height=50px}
+
+
+### FGLS Estimation with Serial Correlation
+
+
+```{r}
+use ukrates.dta
+regress D.rs LD.r20
+prais D.rs LD.r20, nolog
+```

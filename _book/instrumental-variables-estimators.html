@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>8 Instrumental Variables Estimators | Econometrics using STATA</title>
+  <meta name="description" content="8 Instrumental Variables Estimators | Econometrics using STATA" />
+  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="8 Instrumental Variables Estimators | Econometrics using STATA" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="8 Instrumental Variables Estimators | Econometrics using STATA" />
+  
+  
+  
+
+<meta name="author" content="Muhammad Yaseen" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="regression-with-indicator-variables.html">
+<link rel="next" href="panel-data-models.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style\gitbook.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#an-overview-of-statas-distictive-features"><i class="fa fa-check"></i><b>1.1</b> An Overview of STATA’s Distictive Features</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="working-with-economic-and-financial-data-in-stata.html"><a href="working-with-economic-and-financial-data-in-stata.html"><i class="fa fa-check"></i><b>2</b> Working with Economic and Financial Data in STATA</a><ul>
+<li class="chapter" data-level="2.1" data-path="working-with-economic-and-financial-data-in-stata.html"><a href="working-with-economic-and-financial-data-in-stata.html#the-basics"><i class="fa fa-check"></i><b>2.1</b> The Basics</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="working-with-economic-and-financial-data-in-stata.html"><a href="working-with-economic-and-financial-data-in-stata.html#the-use-command"><i class="fa fa-check"></i><b>2.1.1</b> The use Command</a></li>
+<li class="chapter" data-level="2.1.2" data-path="working-with-economic-and-financial-data-in-stata.html"><a href="working-with-economic-and-financial-data-in-stata.html#variable-types"><i class="fa fa-check"></i><b>2.1.2</b> Variable Types</a></li>
+<li class="chapter" data-level="2.1.3" data-path="working-with-economic-and-financial-data-in-stata.html"><a href="working-with-economic-and-financial-data-in-stata.html#generate-replace"><i class="fa fa-check"></i><b>2.1.3</b> Generate &amp; Replace</a></li>
+<li class="chapter" data-level="2.1.4" data-path="working-with-economic-and-financial-data-in-stata.html"><a href="working-with-economic-and-financial-data-in-stata.html#sort-gsort"><i class="fa fa-check"></i><b>2.1.4</b> sort &amp; gsort</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html"><i class="fa fa-check"></i><b>3</b> Organizing &amp; Handling Economic Data</a><ul>
+<li class="chapter" data-level="3.1" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#cross-sectional-data-identifier-variables"><i class="fa fa-check"></i><b>3.1</b> Cross-Sectional Data &amp; Identifier Variables</a></li>
+<li class="chapter" data-level="3.2" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#time-series-data"><i class="fa fa-check"></i><b>3.2</b> Time Series Data</a></li>
+<li class="chapter" data-level="3.3" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#pooled-cross-sectional-time-series-data"><i class="fa fa-check"></i><b>3.3</b> Pooled Cross-Sectional Time Series Data</a></li>
+<li class="chapter" data-level="3.4" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#panel-data"><i class="fa fa-check"></i><b>3.4</b> Panel Data</a></li>
+<li class="chapter" data-level="3.5" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#tools-for-manipulating-panel-data"><i class="fa fa-check"></i><b>3.5</b> Tools for Manipulating Panel Data</a></li>
+<li class="chapter" data-level="3.6" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#combining-cross-sectional-time-series-datasets"><i class="fa fa-check"></i><b>3.6</b> Combining Cross-Sectional &amp; Time Series Datasets</a></li>
+<li class="chapter" data-level="3.7" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#creating-long-format-datasets-with-append"><i class="fa fa-check"></i><b>3.7</b> Creating Long-Format Datasets with Append</a></li>
+<li class="chapter" data-level="3.8" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#the-reshape-command"><i class="fa fa-check"></i><b>3.8</b> The reshape Command</a></li>
+<li class="chapter" data-level="3.9" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#using-stata-for-reproducible-research"><i class="fa fa-check"></i><b>3.9</b> Using STATA for Reproducible Research</a><ul>
+<li class="chapter" data-level="3.9.1" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#using-do-files"><i class="fa fa-check"></i><b>3.9.1</b> Using do-files</a></li>
+<li class="chapter" data-level="3.9.2" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#data-validation-assert-duplicates"><i class="fa fa-check"></i><b>3.9.2</b> Data Validation: Assert &amp; Duplicates</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>4</b> Linear Regression</a><ul>
+<li class="chapter" data-level="4.1" data-path="linear-regression.html"><a href="linear-regression.html#linear-regression-1"><i class="fa fa-check"></i><b>4.1</b> Linear Regression</a></li>
+<li class="chapter" data-level="4.2" data-path="linear-regression.html"><a href="linear-regression.html#information-criteria"><i class="fa fa-check"></i><b>4.2</b> Information Criteria</a></li>
+<li class="chapter" data-level="4.3" data-path="linear-regression.html"><a href="linear-regression.html#the-coefficient-estimates-beta-coefficients"><i class="fa fa-check"></i><b>4.3</b> The Coefficient Estimates &amp; Beta Coefficients</a></li>
+<li class="chapter" data-level="4.4" data-path="linear-regression.html"><a href="linear-regression.html#recovering-estimation-results"><i class="fa fa-check"></i><b>4.4</b> Recovering Estimation Results</a></li>
+<li class="chapter" data-level="4.5" data-path="linear-regression.html"><a href="linear-regression.html#detecting-collinearlity-in-regression"><i class="fa fa-check"></i><b>4.5</b> Detecting Collinearlity in Regression</a></li>
+<li class="chapter" data-level="4.6" data-path="linear-regression.html"><a href="linear-regression.html#presenting-regression-estimates"><i class="fa fa-check"></i><b>4.6</b> Presenting Regression Estimates</a></li>
+<li class="chapter" data-level="4.7" data-path="linear-regression.html"><a href="linear-regression.html#hypothesis-tests-linear-restrictions-constrained-least-squares"><i class="fa fa-check"></i><b>4.7</b> Hypothesis Tests, Linear Restrictions, &amp; Constrained Least Squares</a><ul>
+<li class="chapter" data-level="4.7.1" data-path="linear-regression.html"><a href="linear-regression.html#wald-tests-with-test"><i class="fa fa-check"></i><b>4.7.1</b> Wald Tests with Test</a></li>
+<li class="chapter" data-level="4.7.2" data-path="linear-regression.html"><a href="linear-regression.html#wald-tests-involving-linear-combinations-of-parameters"><i class="fa fa-check"></i><b>4.7.2</b> Wald Tests involving Linear Combinations of Parameters</a></li>
+<li class="chapter" data-level="4.7.3" data-path="linear-regression.html"><a href="linear-regression.html#joint-hypothesis-tests"><i class="fa fa-check"></i><b>4.7.3</b> Joint Hypothesis Tests</a></li>
+<li class="chapter" data-level="4.7.4" data-path="linear-regression.html"><a href="linear-regression.html#testing-nonlinear-restrictions-forming-nonlinear-combinations"><i class="fa fa-check"></i><b>4.7.4</b> Testing Nonlinear Restrictions &amp; Forming Nonlinear Combinations</a></li>
+<li class="chapter" data-level="4.7.5" data-path="linear-regression.html"><a href="linear-regression.html#testing-competing-non-nested-models"><i class="fa fa-check"></i><b>4.7.5</b> Testing Competing (Non-Nested) Models</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="linear-regression.html"><a href="linear-regression.html#computing-residuals-predicted-values"><i class="fa fa-check"></i><b>4.8</b> Computing Residuals &amp; Predicted Values</a><ul>
+<li class="chapter" data-level="4.8.1" data-path="linear-regression.html"><a href="linear-regression.html#computing-interval-predictions"><i class="fa fa-check"></i><b>4.8.1</b> Computing Interval Predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="linear-regression.html"><a href="linear-regression.html#computing-marginal-effects"><i class="fa fa-check"></i><b>4.9</b> Computing Marginal Effects</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html"><i class="fa fa-check"></i><b>5</b> Specifying the Functional Form</a><ul>
+<li class="chapter" data-level="5.1" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#introduction-1"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#specification-error"><i class="fa fa-check"></i><b>5.2</b> Specification Error</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#omitting-relevant-variables-from-the-model"><i class="fa fa-check"></i><b>5.2.1</b> Omitting relevant Variables from the Model</a></li>
+<li class="chapter" data-level="5.2.2" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#graphically-analyzing-regression-data"><i class="fa fa-check"></i><b>5.2.2</b> Graphically Analyzing Regression data</a></li>
+<li class="chapter" data-level="5.2.3" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#added-variable-plots"><i class="fa fa-check"></i><b>5.2.3</b> Added-Variable Plots</a></li>
+<li class="chapter" data-level="5.2.4" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#including-irrelevant-variables-in-the-model"><i class="fa fa-check"></i><b>5.2.4</b> Including Irrelevant Variables in the Model</a></li>
+<li class="chapter" data-level="5.2.5" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#the-asymmetry-of-specification-error"><i class="fa fa-check"></i><b>5.2.5</b> The Asymmetry of Specification Error</a></li>
+<li class="chapter" data-level="5.2.6" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#misspecification-of-the-functional-form"><i class="fa fa-check"></i><b>5.2.6</b> Misspecification of the Functional Form</a></li>
+<li class="chapter" data-level="5.2.7" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#ramseys-reset"><i class="fa fa-check"></i><b>5.2.7</b> Ramsey’s RESET</a></li>
+<li class="chapter" data-level="5.2.8" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#specification-plots"><i class="fa fa-check"></i><b>5.2.8</b> Specification Plots</a></li>
+<li class="chapter" data-level="5.2.9" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#specification-interaction-terms"><i class="fa fa-check"></i><b>5.2.9</b> Specification &amp; Interaction Terms</a></li>
+<li class="chapter" data-level="5.2.10" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#outlier-statistics-measures-of-leverage"><i class="fa fa-check"></i><b>5.2.10</b> Outlier Statistics &amp; Measures of Leverage</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#endogeneity-measurement-error"><i class="fa fa-check"></i><b>5.3</b> Endogeneity &amp; Measurement Error</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html"><i class="fa fa-check"></i><b>6</b> Regression with non-iid Errors</a><ul>
+<li class="chapter" data-level="6.1" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#the-generalized-linear-regression-model"><i class="fa fa-check"></i><b>6.1</b> The Generalized Linear Regression Model</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#types-of-deviations-from-i.i.d.-errors"><i class="fa fa-check"></i><b>6.1.1</b> Types of Deviations from i.i.d. Errors</a></li>
+<li class="chapter" data-level="6.1.2" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#the-robust-estimator-of-vce"><i class="fa fa-check"></i><b>6.1.2</b> The Robust Estimator of VCE</a></li>
+<li class="chapter" data-level="6.1.3" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#the-cluster-estimator-of-vce"><i class="fa fa-check"></i><b>6.1.3</b> The Cluster Estimator of VCE</a></li>
+<li class="chapter" data-level="6.1.4" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#the-neweywest-estimator-of-vce"><i class="fa fa-check"></i><b>6.1.4</b> The Newey–West Estimator of VCE</a></li>
+<li class="chapter" data-level="6.1.5" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#the-generalized-least-squares-estimator"><i class="fa fa-check"></i><b>6.1.5</b> The Generalized Least Squares Estimator</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#heteroskedasticity-in-the-error-distribution"><i class="fa fa-check"></i><b>6.2</b> Heteroskedasticity in the Error Distribution</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#heteroskedasticity-related-to-scale"><i class="fa fa-check"></i><b>6.2.1</b> Heteroskedasticity Related to Scale</a></li>
+<li class="chapter" data-level="6.2.2" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#heteroskedasticity-between-groups-of-observations"><i class="fa fa-check"></i><b>6.2.2</b> Heteroskedasticity Between Groups of Observations</a></li>
+<li class="chapter" data-level="6.2.3" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#heteroskedasticity-in-grouped-data"><i class="fa fa-check"></i><b>6.2.3</b> Heteroskedasticity in Grouped Data</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#serial-correlation-in-the-error-distribution"><i class="fa fa-check"></i><b>6.3</b> Serial Correlation in the Error Distribution</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#testing-for-serial-correlation"><i class="fa fa-check"></i><b>6.3.1</b> Testing for Serial Correlation</a></li>
+<li class="chapter" data-level="6.3.2" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#fgls-estimation-with-serial-correlation"><i class="fa fa-check"></i><b>6.3.2</b> FGLS Estimation with Serial Correlation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html"><i class="fa fa-check"></i><b>7</b> Regression with Indicator Variables</a><ul>
+<li class="chapter" data-level="7.1" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#testing-for-significance-of-a-qualitative-factor"><i class="fa fa-check"></i><b>7.1</b> Testing for Significance of a Qualitative Factor</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#regression-with-one-qualitative-measure"><i class="fa fa-check"></i><b>7.1.1</b> Regression with One Qualitative Measure</a></li>
+<li class="chapter" data-level="7.1.2" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#regression-with-two-qualitative-measures"><i class="fa fa-check"></i><b>7.1.2</b> Regression with Two Qualitative Measures</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#regression-with-qualitative-quantitative-factors"><i class="fa fa-check"></i><b>7.2</b> Regression with Qualitative &amp; Quantitative Factors</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#testing-for-slope-differences"><i class="fa fa-check"></i><b>7.2.1</b> Testing for Slope Differences</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#seasonal-adjustment-with-indicator-variables"><i class="fa fa-check"></i><b>7.3</b> Seasonal Adjustment with Indicator Variables</a></li>
+<li class="chapter" data-level="7.4" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#testing-for-structural-stability-structural-change"><i class="fa fa-check"></i><b>7.4</b> Testing for Structural Stability &amp; Structural Change</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#constraints-of-continuity-differentiability"><i class="fa fa-check"></i><b>7.4.1</b> Constraints of Continuity &amp; Differentiability</a></li>
+<li class="chapter" data-level="7.4.2" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#structural-change-in-a-time-series-model"><i class="fa fa-check"></i><b>7.4.2</b> Structural Change in a Time Series Model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html"><i class="fa fa-check"></i><b>8</b> Instrumental Variables Estimators</a><ul>
+<li class="chapter" data-level="8.1" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#introduction-2"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.2" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#endogeneity-in-economic-relationships"><i class="fa fa-check"></i><b>8.2</b> Endogeneity in Economic Relationships</a></li>
+<li class="chapter" data-level="8.3" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#sls"><i class="fa fa-check"></i><b>8.3</b> 2SLS</a></li>
+<li class="chapter" data-level="8.4" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#the-ivreg-command"><i class="fa fa-check"></i><b>8.4</b> The ivreg Command</a></li>
+<li class="chapter" data-level="8.5" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#identification-tests-of-overidentifying-restrictions"><i class="fa fa-check"></i><b>8.5</b> Identification &amp; Tests of Overidentifying Restrictions</a></li>
+<li class="chapter" data-level="8.6" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#computing-iv-estimates"><i class="fa fa-check"></i><b>8.6</b> Computing IV Estimates</a></li>
+<li class="chapter" data-level="8.7" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#ivreg2-gmm-estimation"><i class="fa fa-check"></i><b>8.7</b> ivreg2 &amp; GMM Estimation</a><ul>
+<li class="chapter" data-level="8.7.1" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#the-gmm-estimator"><i class="fa fa-check"></i><b>8.7.1</b> The GMM Estimator</a></li>
+<li class="chapter" data-level="8.7.2" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#gmm-in-a-homoskedastic-context"><i class="fa fa-check"></i><b>8.7.2</b> GMM in a Homoskedastic Context</a></li>
+<li class="chapter" data-level="8.7.3" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#gmm-heteroskedasticity-consistent-standard-errors"><i class="fa fa-check"></i><b>8.7.3</b> GMM &amp; Heteroskedasticity-Consistent Standard Errors</a></li>
+<li class="chapter" data-level="8.7.4" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#gmm-clustering"><i class="fa fa-check"></i><b>8.7.4</b> GMM &amp; Clustering</a></li>
+<li class="chapter" data-level="8.7.5" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#gmm-hac-standard-errors"><i class="fa fa-check"></i><b>8.7.5</b> GMM &amp; HAC Standard Errors</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#testing-overidentifying-restrictions-in-gmm"><i class="fa fa-check"></i><b>8.8</b> Testing &amp; Overidentifying Restrictions in GMM</a><ul>
+<li class="chapter" data-level="8.8.1" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#testing-a-subset-of-the-overidentifying-restrictions-in-gmm"><i class="fa fa-check"></i><b>8.8.1</b> Testing a subset of the Overidentifying Restrictions in GMM</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#testing-for-heteroskedasticity-in-the-iv-context"><i class="fa fa-check"></i><b>8.9</b> Testing for Heteroskedasticity in the IV context</a></li>
+<li class="chapter" data-level="8.10" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#testing-the-relevance-of-instruments"><i class="fa fa-check"></i><b>8.10</b> Testing the Relevance of Instruments</a></li>
+<li class="chapter" data-level="8.11" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#durbinwuhausman-tests-for-endogeneity-in-iv-estimation"><i class="fa fa-check"></i><b>8.11</b> Durbin–Wu–Hausman Tests for Endogeneity in IV Estimation</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="panel-data-models.html"><a href="panel-data-models.html"><i class="fa fa-check"></i><b>9</b> Panel Data Models</a><ul>
+<li class="chapter" data-level="9.1" data-path="panel-data-models.html"><a href="panel-data-models.html#fixed-effects-random-effects-models"><i class="fa fa-check"></i><b>9.1</b> Fixed Effects &amp; Random Effects Models</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="panel-data-models.html"><a href="panel-data-models.html#one-way-fixed-effects-models"><i class="fa fa-check"></i><b>9.1.1</b> One-Way Fixed Effects Models</a></li>
+<li class="chapter" data-level="9.1.2" data-path="panel-data-models.html"><a href="panel-data-models.html#time-effects-two-way-fixed-effects-models"><i class="fa fa-check"></i><b>9.1.2</b> Time Effects &amp; Two-Way Fixed Effects Models</a></li>
+<li class="chapter" data-level="9.1.3" data-path="panel-data-models.html"><a href="panel-data-models.html#the-between-estimator"><i class="fa fa-check"></i><b>9.1.3</b> The Between Estimator</a></li>
+<li class="chapter" data-level="9.1.4" data-path="panel-data-models.html"><a href="panel-data-models.html#one-way-random-effects-models"><i class="fa fa-check"></i><b>9.1.4</b> One-Way Random Effects Models</a></li>
+<li class="chapter" data-level="9.1.5" data-path="panel-data-models.html"><a href="panel-data-models.html#testing-the-appropriateness-of-random-effects-model"><i class="fa fa-check"></i><b>9.1.5</b> Testing the appropriateness of Random Effects Model</a></li>
+<li class="chapter" data-level="9.1.6" data-path="panel-data-models.html"><a href="panel-data-models.html#prediction-from-one-way-fixed-effects-model-random-effects-model"><i class="fa fa-check"></i><b>9.1.6</b> Prediction from One-Way Fixed Effects Model &amp; Random Effects Model</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="panel-data-models.html"><a href="panel-data-models.html#iv-models-for-panel-data"><i class="fa fa-check"></i><b>9.2</b> IV Models for Panel Data</a></li>
+<li class="chapter" data-level="9.3" data-path="panel-data-models.html"><a href="panel-data-models.html#dynamic-panel-data-models"><i class="fa fa-check"></i><b>9.3</b> Dynamic Panel Data Models</a></li>
+<li class="chapter" data-level="9.4" data-path="panel-data-models.html"><a href="panel-data-models.html#seemingly-unrelated-regression-models"><i class="fa fa-check"></i><b>9.4</b> Seemingly Unrelated Regression Models</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="panel-data-models.html"><a href="panel-data-models.html#sur-with-identical-regressors"><i class="fa fa-check"></i><b>9.4.1</b> SUR with Identical Regressors</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="panel-data-models.html"><a href="panel-data-models.html#moving-window-regression-estimates"><i class="fa fa-check"></i><b>9.5</b> Moving-Window Regression Estimates</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html"><i class="fa fa-check"></i><b>10</b> Models of Discrete &amp; Limited Dependent Variables</a><ul>
+<li class="chapter" data-level="10.1" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#binomial-logit-probit-models"><i class="fa fa-check"></i><b>10.1</b> Binomial Logit &amp; Probit Models</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#the-latent-variable-approach"><i class="fa fa-check"></i><b>10.1.1</b> The Latent Variable Approach</a></li>
+<li class="chapter" data-level="10.1.2" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#marginal-effects-predictions"><i class="fa fa-check"></i><b>10.1.2</b> Marginal Effects &amp; Predictions</a></li>
+<li class="chapter" data-level="10.1.3" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#evaluating-specification-goodness-of-fit"><i class="fa fa-check"></i><b>10.1.3</b> Evaluating Specification &amp; Goodness of Fit</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#ordered-logit-probit-models"><i class="fa fa-check"></i><b>10.2</b> Ordered Logit &amp; Probit Models</a></li>
+<li class="chapter" data-level="10.3" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#truncated-regression-tobit-models"><i class="fa fa-check"></i><b>10.3</b> Truncated Regression &amp; Tobit Models</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#truncation"><i class="fa fa-check"></i><b>10.3.1</b> Truncation</a></li>
+<li class="chapter" data-level="10.3.2" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#censoring"><i class="fa fa-check"></i><b>10.3.2</b> Censoring</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#incidental-truncation-sample-selection-models"><i class="fa fa-check"></i><b>10.4</b> Incidental Truncation &amp; Sample Selection Models</a></li>
+<li class="chapter" data-level="10.5" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#bivariate-probit-probit-with-selection"><i class="fa fa-check"></i><b>10.5</b> Bivariate Probit &amp; Probit with Selection</a><ul>
+<li class="chapter" data-level="10.5.1" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#binomial-probit-with-selection"><i class="fa fa-check"></i><b>10.5.1</b> Binomial Probit with Selection</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org/baydap/bookdownplus/" target="blank">Supported by bookdownplus</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Econometrics using STATA</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="instrumental-variables-estimators" class="section level1">
+<h1><span class="header-section-number">8</span> Instrumental Variables Estimators</h1>
+<div id="introduction-2" class="section level2">
+<h2><span class="header-section-number">8.1</span> Introduction</h2>
+</div>
+<div id="endogeneity-in-economic-relationships" class="section level2">
+<h2><span class="header-section-number">8.2</span> Endogeneity in Economic Relationships</h2>
+</div>
+<div id="sls" class="section level2">
+<h2><span class="header-section-number">8.3</span> 2SLS</h2>
+</div>
+<div id="the-ivreg-command" class="section level2">
+<h2><span class="header-section-number">8.4</span> The ivreg Command</h2>
+</div>
+<div id="identification-tests-of-overidentifying-restrictions" class="section level2">
+<h2><span class="header-section-number">8.5</span> Identification &amp; Tests of Overidentifying Restrictions</h2>
+</div>
+<div id="computing-iv-estimates" class="section level2">
+<h2><span class="header-section-number">8.6</span> Computing IV Estimates</h2>
+
+<pre><code>
+
+. use griliches.(Wages of Very Young Men, Zvi Griliches, J.Pol.Ec. 1976)
+
+. describe
+
+Contains data from griliches.dta
+  obs:           758                          Wages of Very Young Men, Zvi
+                                                Griliches, J.Pol.Ec. 1976
+ vars:            26                          31 Oct 2004 14:12
+ size:        65,188                          
+-------------------------------------------------------------------------------
+              storage   display    value
+variable name   type    format     label      variable label
+-------------------------------------------------------------------------------
+rns             float   %9.0g                 residency in South
+rns80           float   %9.0g                 
+mrt             float   %9.0g                 marital status = 1 if married
+mrt80           float   %9.0g                 
+smsa            float   %9.0g                 reside metro area = 1 if urban
+smsa80          float   %9.0g                 
+med             float   %9.0g                 mother&#39;s education, years
+iq              float   %9.0g                 iq score
+kww             float   %9.0g                 score on knowledge in world of
+                                                work test
+year            float   %9.0g                 
+age             float   %9.0g                 
+age80           float   %9.0g                 
+s               float   %9.0g                 completed years of schooling
+s80             float   %9.0g                 
+expr            float   %9.0g                 experience, years
+expr80          float   %9.0g                 
+tenure          float   %9.0g                 tenure, years
+tenure80        float   %9.0g                 
+lw              float   %9.0g                 log wage
+lw80            float   %9.0g                 
+_Iyear_67       byte    %8.0g                 year==67
+_Iyear_68       byte    %8.0g                 year==68
+_Iyear_69       byte    %8.0g                 year==69
+_Iyear_70       byte    %8.0g                 year==70
+_Iyear_71       byte    %8.0g                 year==71
+_Iyear_73       byte    %8.0g                 year==73
+-------------------------------------------------------------------------------
+Sorted by: 
+
+. summarize
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+         rns |        758    .2691293    .4438001          0          1
+       rns80 |        758     .292876    .4553825          0          1
+         mrt |        758    .5145119    .5001194          0          1
+       mrt80 |        758    .8984169    .3022988          0          1
+        smsa |        758    .7044855     .456575          0          1
+-------------+---------------------------------------------------------
+      smsa80 |        758    .7124011     .452942          0          1
+         med |        758    10.91029     2.74112          0         18
+          iq |        758    103.8562    13.61867         54        145
+         kww |        758    36.57388    7.302247         12         56
+        year |        758    69.03166    2.631794         66         73
+-------------+---------------------------------------------------------
+         age |        758    21.83509    2.981756         16         30
+       age80 |        758    33.01187    3.085504         28         38
+           s |        758    13.40501    2.231828          9         18
+         s80 |        758    13.70712    2.214693          9         18
+        expr |        758    1.735429    2.105542          0     11.444
+-------------+---------------------------------------------------------
+      expr80 |        758    11.39426    4.210745       .692     22.045
+      tenure |        758    1.831135     1.67363          0         10
+    tenure80 |        758    7.362797     5.05024          0         22
+          lw |        758    5.686739    .4289494      4.605      7.051
+        lw80 |        758    6.826555    .4099268      4.749      8.032
+-------------+---------------------------------------------------------
+   _Iyear_67 |        758    .0831135    .2762359          0          1
+   _Iyear_68 |        758    .1042216    .3057496          0          1
+   _Iyear_69 |        758    .1121372    .3157435          0          1
+   _Iyear_70 |        758    .0844327    .2782193          0          1
+   _Iyear_71 |        758     .121372    .3267747          0          1
+-------------+---------------------------------------------------------
+   _Iyear_73 |        758    .2084433    .4064636          0          1</code></pre>
+<p></p>
+
+<pre><code>
+
+. use griliches.(Wages of Very Young Men, Zvi Griliches, J.Pol.Ec. 1976)
+
+. ivreg lw s expr tenure rns smsa _I* (iq=med kww age mrt), first
+
+First-stage regressions
+-----------------------
+
+      Source |       SS           df       MS      Number of obs   =       758
+-------------+----------------------------------   F(15, 742)      =     25.03
+       Model |  47176.4676        15  3145.09784   Prob &gt; F        =    0.0000
+    Residual |  93222.8583       742  125.637275   R-squared       =    0.3360
+-------------+----------------------------------   Adj R-squared   =    0.3226
+       Total |  140399.326       757  185.468066   Root MSE        =    11.209
+
+------------------------------------------------------------------------------
+          iq |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+           s |   2.497742   .2858159     8.74   0.000     1.936638    3.058846
+        expr |   -.033548   .2534458    -0.13   0.895    -.5311042    .4640082
+      tenure |   .6158215   .2731146     2.25   0.024     .0796522    1.151991
+         rns |  -2.610221   .9499731    -2.75   0.006    -4.475177   -.7452663
+        smsa |   .0260481   .9222585     0.03   0.977    -1.784499    1.836595
+   _Iyear_67 |   .9254935   1.655969     0.56   0.576    -2.325449    4.176436
+   _Iyear_68 |   .4706951   1.574561     0.30   0.765    -2.620429     3.56182
+   _Iyear_69 |   2.164635   1.521387     1.42   0.155    -.8221007     5.15137
+   _Iyear_70 |   5.734786   1.696033     3.38   0.001     2.405191    9.064381
+   _Iyear_71 |   5.180639   1.562156     3.32   0.001     2.113866    8.247411
+   _Iyear_73 |   4.526686    1.48294     3.05   0.002     1.615429    7.437943
+         med |   .2877745   .1622338     1.77   0.077    -.0307176    .6062665
+         kww |   .4581116   .0699323     6.55   0.000     .3208229    .5954003
+         age |  -.8809144   .2232535    -3.95   0.000    -1.319198   -.4426307
+         mrt |   -.584791    .946056    -0.62   0.537    -2.442056    1.272474
+       _cons |   67.20449   4.107281    16.36   0.000     59.14121    75.26776
+------------------------------------------------------------------------------
+
+
+Instrumental variables (2SLS) regression
+
+      Source |       SS           df       MS      Number of obs   =       758
+-------------+----------------------------------   F(12, 745)      =     45.91
+       Model |  59.2679161        12  4.93899301   Prob &gt; F        =    0.0000
+    Residual |  80.0182337       745  .107407025   R-squared       =    0.4255
+-------------+----------------------------------   Adj R-squared   =    0.4163
+       Total |   139.28615       757  .183997556   Root MSE        =    .32773
+
+------------------------------------------------------------------------------
+          lw |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+          iq |   .0001747   .0039374     0.04   0.965    -.0075551    .0079044
+           s |   .0691759    .013049     5.30   0.000     .0435587    .0947931
+        expr |    .029866    .006697     4.46   0.000     .0167189    .0430132
+      tenure |   .0432738   .0076934     5.62   0.000     .0281705     .058377
+         rns |  -.1035897   .0297371    -3.48   0.001    -.1619682   -.0452111
+        smsa |   .1351148   .0268889     5.02   0.000     .0823277    .1879019
+   _Iyear_67 |   -.052598   .0481067    -1.09   0.275    -.1470388    .0418428
+   _Iyear_68 |   .0794686   .0451078     1.76   0.079     -.009085    .1680222
+   _Iyear_69 |   .2108962   .0443153     4.76   0.000     .1238984    .2978939
+   _Iyear_70 |   .2386338   .0514161     4.64   0.000     .1376962    .3395714
+   _Iyear_71 |   .2284609   .0441236     5.18   0.000     .1418396    .3150823
+   _Iyear_73 |   .3258944   .0410718     7.93   0.000     .2452642    .4065247
+       _cons |    4.39955   .2708771    16.24   0.000     3.867777    4.931323
+------------------------------------------------------------------------------
+Instrumented:  iq
+Instruments:   s expr tenure rns smsa _Iyear_67 _Iyear_68 _Iyear_69
+               _Iyear_70 _Iyear_71 _Iyear_73 med kww age mrt
+------------------------------------------------------------------------------</code></pre>
+<p></p>
+</div>
+<div id="ivreg2-gmm-estimation" class="section level2">
+<h2><span class="header-section-number">8.7</span> ivreg2 &amp; GMM Estimation</h2>
+<div id="the-gmm-estimator" class="section level3">
+<h3><span class="header-section-number">8.7.1</span> The GMM Estimator</h3>
+</div>
+<div id="gmm-in-a-homoskedastic-context" class="section level3">
+<h3><span class="header-section-number">8.7.2</span> GMM in a Homoskedastic Context</h3>
+</div>
+<div id="gmm-heteroskedasticity-consistent-standard-errors" class="section level3">
+<h3><span class="header-section-number">8.7.3</span> GMM &amp; Heteroskedasticity-Consistent Standard Errors</h3>
+
+<pre><code>
+
+. use griliches.(Wages of Very Young Men, Zvi Griliches, J.Pol.Ec. 1976)
+
+. ivreg2 lw s expr tenure rns smsa _I* (iq=med kww age mrt), gmm
+command ivreg2 is unrecognized
+r(199);
+
+end of do-file
+r(199);</code></pre>
+<p></p>
+</div>
+<div id="gmm-clustering" class="section level3">
+<h3><span class="header-section-number">8.7.4</span> GMM &amp; Clustering</h3>
+</div>
+<div id="gmm-hac-standard-errors" class="section level3">
+<h3><span class="header-section-number">8.7.5</span> GMM &amp; HAC Standard Errors</h3>
+</div>
+</div>
+<div id="testing-overidentifying-restrictions-in-gmm" class="section level2">
+<h2><span class="header-section-number">8.8</span> Testing &amp; Overidentifying Restrictions in GMM</h2>
+<div id="testing-a-subset-of-the-overidentifying-restrictions-in-gmm" class="section level3">
+<h3><span class="header-section-number">8.8.1</span> Testing a subset of the Overidentifying Restrictions in GMM</h3>
+</div>
+</div>
+<div id="testing-for-heteroskedasticity-in-the-iv-context" class="section level2">
+<h2><span class="header-section-number">8.9</span> Testing for Heteroskedasticity in the IV context</h2>
+</div>
+<div id="testing-the-relevance-of-instruments" class="section level2">
+<h2><span class="header-section-number">8.10</span> Testing the Relevance of Instruments</h2>
+</div>
+<div id="durbinwuhausman-tests-for-endogeneity-in-iv-estimation" class="section level2">
+<h2><span class="header-section-number">8.11</span> Durbin–Wu–Hausman Tests for Endogeneity in IV Estimation</h2>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="regression-with-indicator-variables.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="panel-data-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["EconoSTATA.pdf", "EconoSTATA.epub"],
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

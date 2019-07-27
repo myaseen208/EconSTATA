@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6 Regression with non-iid Errors | Econometrics using STATA</title>
+  <meta name="description" content="6 Regression with non-iid Errors | Econometrics using STATA" />
+  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6 Regression with non-iid Errors | Econometrics using STATA" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6 Regression with non-iid Errors | Econometrics using STATA" />
+  
+  
+  
+
+<meta name="author" content="Muhammad Yaseen" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="specifying-the-functional-form.html">
+<link rel="next" href="regression-with-indicator-variables.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style\gitbook.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#an-overview-of-statas-distictive-features"><i class="fa fa-check"></i><b>1.1</b> An Overview of STATA’s Distictive Features</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="working-with-economic-and-financial-data-in-stata.html"><a href="working-with-economic-and-financial-data-in-stata.html"><i class="fa fa-check"></i><b>2</b> Working with Economic and Financial Data in STATA</a><ul>
+<li class="chapter" data-level="2.1" data-path="working-with-economic-and-financial-data-in-stata.html"><a href="working-with-economic-and-financial-data-in-stata.html#the-basics"><i class="fa fa-check"></i><b>2.1</b> The Basics</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="working-with-economic-and-financial-data-in-stata.html"><a href="working-with-economic-and-financial-data-in-stata.html#the-use-command"><i class="fa fa-check"></i><b>2.1.1</b> The use Command</a></li>
+<li class="chapter" data-level="2.1.2" data-path="working-with-economic-and-financial-data-in-stata.html"><a href="working-with-economic-and-financial-data-in-stata.html#variable-types"><i class="fa fa-check"></i><b>2.1.2</b> Variable Types</a></li>
+<li class="chapter" data-level="2.1.3" data-path="working-with-economic-and-financial-data-in-stata.html"><a href="working-with-economic-and-financial-data-in-stata.html#generate-replace"><i class="fa fa-check"></i><b>2.1.3</b> Generate &amp; Replace</a></li>
+<li class="chapter" data-level="2.1.4" data-path="working-with-economic-and-financial-data-in-stata.html"><a href="working-with-economic-and-financial-data-in-stata.html#sort-gsort"><i class="fa fa-check"></i><b>2.1.4</b> sort &amp; gsort</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html"><i class="fa fa-check"></i><b>3</b> Organizing &amp; Handling Economic Data</a><ul>
+<li class="chapter" data-level="3.1" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#cross-sectional-data-identifier-variables"><i class="fa fa-check"></i><b>3.1</b> Cross-Sectional Data &amp; Identifier Variables</a></li>
+<li class="chapter" data-level="3.2" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#time-series-data"><i class="fa fa-check"></i><b>3.2</b> Time Series Data</a></li>
+<li class="chapter" data-level="3.3" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#pooled-cross-sectional-time-series-data"><i class="fa fa-check"></i><b>3.3</b> Pooled Cross-Sectional Time Series Data</a></li>
+<li class="chapter" data-level="3.4" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#panel-data"><i class="fa fa-check"></i><b>3.4</b> Panel Data</a></li>
+<li class="chapter" data-level="3.5" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#tools-for-manipulating-panel-data"><i class="fa fa-check"></i><b>3.5</b> Tools for Manipulating Panel Data</a></li>
+<li class="chapter" data-level="3.6" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#combining-cross-sectional-time-series-datasets"><i class="fa fa-check"></i><b>3.6</b> Combining Cross-Sectional &amp; Time Series Datasets</a></li>
+<li class="chapter" data-level="3.7" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#creating-long-format-datasets-with-append"><i class="fa fa-check"></i><b>3.7</b> Creating Long-Format Datasets with Append</a></li>
+<li class="chapter" data-level="3.8" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#the-reshape-command"><i class="fa fa-check"></i><b>3.8</b> The reshape Command</a></li>
+<li class="chapter" data-level="3.9" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#using-stata-for-reproducible-research"><i class="fa fa-check"></i><b>3.9</b> Using STATA for Reproducible Research</a><ul>
+<li class="chapter" data-level="3.9.1" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#using-do-files"><i class="fa fa-check"></i><b>3.9.1</b> Using do-files</a></li>
+<li class="chapter" data-level="3.9.2" data-path="organizing-handling-economic-data.html"><a href="organizing-handling-economic-data.html#data-validation-assert-duplicates"><i class="fa fa-check"></i><b>3.9.2</b> Data Validation: Assert &amp; Duplicates</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>4</b> Linear Regression</a><ul>
+<li class="chapter" data-level="4.1" data-path="linear-regression.html"><a href="linear-regression.html#linear-regression-1"><i class="fa fa-check"></i><b>4.1</b> Linear Regression</a></li>
+<li class="chapter" data-level="4.2" data-path="linear-regression.html"><a href="linear-regression.html#information-criteria"><i class="fa fa-check"></i><b>4.2</b> Information Criteria</a></li>
+<li class="chapter" data-level="4.3" data-path="linear-regression.html"><a href="linear-regression.html#the-coefficient-estimates-beta-coefficients"><i class="fa fa-check"></i><b>4.3</b> The Coefficient Estimates &amp; Beta Coefficients</a></li>
+<li class="chapter" data-level="4.4" data-path="linear-regression.html"><a href="linear-regression.html#recovering-estimation-results"><i class="fa fa-check"></i><b>4.4</b> Recovering Estimation Results</a></li>
+<li class="chapter" data-level="4.5" data-path="linear-regression.html"><a href="linear-regression.html#detecting-collinearlity-in-regression"><i class="fa fa-check"></i><b>4.5</b> Detecting Collinearlity in Regression</a></li>
+<li class="chapter" data-level="4.6" data-path="linear-regression.html"><a href="linear-regression.html#presenting-regression-estimates"><i class="fa fa-check"></i><b>4.6</b> Presenting Regression Estimates</a></li>
+<li class="chapter" data-level="4.7" data-path="linear-regression.html"><a href="linear-regression.html#hypothesis-tests-linear-restrictions-constrained-least-squares"><i class="fa fa-check"></i><b>4.7</b> Hypothesis Tests, Linear Restrictions, &amp; Constrained Least Squares</a><ul>
+<li class="chapter" data-level="4.7.1" data-path="linear-regression.html"><a href="linear-regression.html#wald-tests-with-test"><i class="fa fa-check"></i><b>4.7.1</b> Wald Tests with Test</a></li>
+<li class="chapter" data-level="4.7.2" data-path="linear-regression.html"><a href="linear-regression.html#wald-tests-involving-linear-combinations-of-parameters"><i class="fa fa-check"></i><b>4.7.2</b> Wald Tests involving Linear Combinations of Parameters</a></li>
+<li class="chapter" data-level="4.7.3" data-path="linear-regression.html"><a href="linear-regression.html#joint-hypothesis-tests"><i class="fa fa-check"></i><b>4.7.3</b> Joint Hypothesis Tests</a></li>
+<li class="chapter" data-level="4.7.4" data-path="linear-regression.html"><a href="linear-regression.html#testing-nonlinear-restrictions-forming-nonlinear-combinations"><i class="fa fa-check"></i><b>4.7.4</b> Testing Nonlinear Restrictions &amp; Forming Nonlinear Combinations</a></li>
+<li class="chapter" data-level="4.7.5" data-path="linear-regression.html"><a href="linear-regression.html#testing-competing-non-nested-models"><i class="fa fa-check"></i><b>4.7.5</b> Testing Competing (Non-Nested) Models</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="linear-regression.html"><a href="linear-regression.html#computing-residuals-predicted-values"><i class="fa fa-check"></i><b>4.8</b> Computing Residuals &amp; Predicted Values</a><ul>
+<li class="chapter" data-level="4.8.1" data-path="linear-regression.html"><a href="linear-regression.html#computing-interval-predictions"><i class="fa fa-check"></i><b>4.8.1</b> Computing Interval Predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="linear-regression.html"><a href="linear-regression.html#computing-marginal-effects"><i class="fa fa-check"></i><b>4.9</b> Computing Marginal Effects</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html"><i class="fa fa-check"></i><b>5</b> Specifying the Functional Form</a><ul>
+<li class="chapter" data-level="5.1" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#introduction-1"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#specification-error"><i class="fa fa-check"></i><b>5.2</b> Specification Error</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#omitting-relevant-variables-from-the-model"><i class="fa fa-check"></i><b>5.2.1</b> Omitting relevant Variables from the Model</a></li>
+<li class="chapter" data-level="5.2.2" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#graphically-analyzing-regression-data"><i class="fa fa-check"></i><b>5.2.2</b> Graphically Analyzing Regression data</a></li>
+<li class="chapter" data-level="5.2.3" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#added-variable-plots"><i class="fa fa-check"></i><b>5.2.3</b> Added-Variable Plots</a></li>
+<li class="chapter" data-level="5.2.4" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#including-irrelevant-variables-in-the-model"><i class="fa fa-check"></i><b>5.2.4</b> Including Irrelevant Variables in the Model</a></li>
+<li class="chapter" data-level="5.2.5" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#the-asymmetry-of-specification-error"><i class="fa fa-check"></i><b>5.2.5</b> The Asymmetry of Specification Error</a></li>
+<li class="chapter" data-level="5.2.6" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#misspecification-of-the-functional-form"><i class="fa fa-check"></i><b>5.2.6</b> Misspecification of the Functional Form</a></li>
+<li class="chapter" data-level="5.2.7" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#ramseys-reset"><i class="fa fa-check"></i><b>5.2.7</b> Ramsey’s RESET</a></li>
+<li class="chapter" data-level="5.2.8" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#specification-plots"><i class="fa fa-check"></i><b>5.2.8</b> Specification Plots</a></li>
+<li class="chapter" data-level="5.2.9" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#specification-interaction-terms"><i class="fa fa-check"></i><b>5.2.9</b> Specification &amp; Interaction Terms</a></li>
+<li class="chapter" data-level="5.2.10" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#outlier-statistics-measures-of-leverage"><i class="fa fa-check"></i><b>5.2.10</b> Outlier Statistics &amp; Measures of Leverage</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="specifying-the-functional-form.html"><a href="specifying-the-functional-form.html#endogeneity-measurement-error"><i class="fa fa-check"></i><b>5.3</b> Endogeneity &amp; Measurement Error</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html"><i class="fa fa-check"></i><b>6</b> Regression with non-iid Errors</a><ul>
+<li class="chapter" data-level="6.1" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#the-generalized-linear-regression-model"><i class="fa fa-check"></i><b>6.1</b> The Generalized Linear Regression Model</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#types-of-deviations-from-i.i.d.-errors"><i class="fa fa-check"></i><b>6.1.1</b> Types of Deviations from i.i.d. Errors</a></li>
+<li class="chapter" data-level="6.1.2" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#the-robust-estimator-of-vce"><i class="fa fa-check"></i><b>6.1.2</b> The Robust Estimator of VCE</a></li>
+<li class="chapter" data-level="6.1.3" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#the-cluster-estimator-of-vce"><i class="fa fa-check"></i><b>6.1.3</b> The Cluster Estimator of VCE</a></li>
+<li class="chapter" data-level="6.1.4" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#the-neweywest-estimator-of-vce"><i class="fa fa-check"></i><b>6.1.4</b> The Newey–West Estimator of VCE</a></li>
+<li class="chapter" data-level="6.1.5" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#the-generalized-least-squares-estimator"><i class="fa fa-check"></i><b>6.1.5</b> The Generalized Least Squares Estimator</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#heteroskedasticity-in-the-error-distribution"><i class="fa fa-check"></i><b>6.2</b> Heteroskedasticity in the Error Distribution</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#heteroskedasticity-related-to-scale"><i class="fa fa-check"></i><b>6.2.1</b> Heteroskedasticity Related to Scale</a></li>
+<li class="chapter" data-level="6.2.2" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#heteroskedasticity-between-groups-of-observations"><i class="fa fa-check"></i><b>6.2.2</b> Heteroskedasticity Between Groups of Observations</a></li>
+<li class="chapter" data-level="6.2.3" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#heteroskedasticity-in-grouped-data"><i class="fa fa-check"></i><b>6.2.3</b> Heteroskedasticity in Grouped Data</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#serial-correlation-in-the-error-distribution"><i class="fa fa-check"></i><b>6.3</b> Serial Correlation in the Error Distribution</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#testing-for-serial-correlation"><i class="fa fa-check"></i><b>6.3.1</b> Testing for Serial Correlation</a></li>
+<li class="chapter" data-level="6.3.2" data-path="regression-with-non-iid-errors.html"><a href="regression-with-non-iid-errors.html#fgls-estimation-with-serial-correlation"><i class="fa fa-check"></i><b>6.3.2</b> FGLS Estimation with Serial Correlation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html"><i class="fa fa-check"></i><b>7</b> Regression with Indicator Variables</a><ul>
+<li class="chapter" data-level="7.1" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#testing-for-significance-of-a-qualitative-factor"><i class="fa fa-check"></i><b>7.1</b> Testing for Significance of a Qualitative Factor</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#regression-with-one-qualitative-measure"><i class="fa fa-check"></i><b>7.1.1</b> Regression with One Qualitative Measure</a></li>
+<li class="chapter" data-level="7.1.2" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#regression-with-two-qualitative-measures"><i class="fa fa-check"></i><b>7.1.2</b> Regression with Two Qualitative Measures</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#regression-with-qualitative-quantitative-factors"><i class="fa fa-check"></i><b>7.2</b> Regression with Qualitative &amp; Quantitative Factors</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#testing-for-slope-differences"><i class="fa fa-check"></i><b>7.2.1</b> Testing for Slope Differences</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#seasonal-adjustment-with-indicator-variables"><i class="fa fa-check"></i><b>7.3</b> Seasonal Adjustment with Indicator Variables</a></li>
+<li class="chapter" data-level="7.4" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#testing-for-structural-stability-structural-change"><i class="fa fa-check"></i><b>7.4</b> Testing for Structural Stability &amp; Structural Change</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#constraints-of-continuity-differentiability"><i class="fa fa-check"></i><b>7.4.1</b> Constraints of Continuity &amp; Differentiability</a></li>
+<li class="chapter" data-level="7.4.2" data-path="regression-with-indicator-variables.html"><a href="regression-with-indicator-variables.html#structural-change-in-a-time-series-model"><i class="fa fa-check"></i><b>7.4.2</b> Structural Change in a Time Series Model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html"><i class="fa fa-check"></i><b>8</b> Instrumental Variables Estimators</a><ul>
+<li class="chapter" data-level="8.1" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#introduction-2"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.2" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#endogeneity-in-economic-relationships"><i class="fa fa-check"></i><b>8.2</b> Endogeneity in Economic Relationships</a></li>
+<li class="chapter" data-level="8.3" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#sls"><i class="fa fa-check"></i><b>8.3</b> 2SLS</a></li>
+<li class="chapter" data-level="8.4" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#the-ivreg-command"><i class="fa fa-check"></i><b>8.4</b> The ivreg Command</a></li>
+<li class="chapter" data-level="8.5" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#identification-tests-of-overidentifying-restrictions"><i class="fa fa-check"></i><b>8.5</b> Identification &amp; Tests of Overidentifying Restrictions</a></li>
+<li class="chapter" data-level="8.6" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#computing-iv-estimates"><i class="fa fa-check"></i><b>8.6</b> Computing IV Estimates</a></li>
+<li class="chapter" data-level="8.7" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#ivreg2-gmm-estimation"><i class="fa fa-check"></i><b>8.7</b> ivreg2 &amp; GMM Estimation</a><ul>
+<li class="chapter" data-level="8.7.1" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#the-gmm-estimator"><i class="fa fa-check"></i><b>8.7.1</b> The GMM Estimator</a></li>
+<li class="chapter" data-level="8.7.2" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#gmm-in-a-homoskedastic-context"><i class="fa fa-check"></i><b>8.7.2</b> GMM in a Homoskedastic Context</a></li>
+<li class="chapter" data-level="8.7.3" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#gmm-heteroskedasticity-consistent-standard-errors"><i class="fa fa-check"></i><b>8.7.3</b> GMM &amp; Heteroskedasticity-Consistent Standard Errors</a></li>
+<li class="chapter" data-level="8.7.4" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#gmm-clustering"><i class="fa fa-check"></i><b>8.7.4</b> GMM &amp; Clustering</a></li>
+<li class="chapter" data-level="8.7.5" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#gmm-hac-standard-errors"><i class="fa fa-check"></i><b>8.7.5</b> GMM &amp; HAC Standard Errors</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#testing-overidentifying-restrictions-in-gmm"><i class="fa fa-check"></i><b>8.8</b> Testing &amp; Overidentifying Restrictions in GMM</a><ul>
+<li class="chapter" data-level="8.8.1" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#testing-a-subset-of-the-overidentifying-restrictions-in-gmm"><i class="fa fa-check"></i><b>8.8.1</b> Testing a subset of the Overidentifying Restrictions in GMM</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#testing-for-heteroskedasticity-in-the-iv-context"><i class="fa fa-check"></i><b>8.9</b> Testing for Heteroskedasticity in the IV context</a></li>
+<li class="chapter" data-level="8.10" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#testing-the-relevance-of-instruments"><i class="fa fa-check"></i><b>8.10</b> Testing the Relevance of Instruments</a></li>
+<li class="chapter" data-level="8.11" data-path="instrumental-variables-estimators.html"><a href="instrumental-variables-estimators.html#durbinwuhausman-tests-for-endogeneity-in-iv-estimation"><i class="fa fa-check"></i><b>8.11</b> Durbin–Wu–Hausman Tests for Endogeneity in IV Estimation</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="panel-data-models.html"><a href="panel-data-models.html"><i class="fa fa-check"></i><b>9</b> Panel Data Models</a><ul>
+<li class="chapter" data-level="9.1" data-path="panel-data-models.html"><a href="panel-data-models.html#fixed-effects-random-effects-models"><i class="fa fa-check"></i><b>9.1</b> Fixed Effects &amp; Random Effects Models</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="panel-data-models.html"><a href="panel-data-models.html#one-way-fixed-effects-models"><i class="fa fa-check"></i><b>9.1.1</b> One-Way Fixed Effects Models</a></li>
+<li class="chapter" data-level="9.1.2" data-path="panel-data-models.html"><a href="panel-data-models.html#time-effects-two-way-fixed-effects-models"><i class="fa fa-check"></i><b>9.1.2</b> Time Effects &amp; Two-Way Fixed Effects Models</a></li>
+<li class="chapter" data-level="9.1.3" data-path="panel-data-models.html"><a href="panel-data-models.html#the-between-estimator"><i class="fa fa-check"></i><b>9.1.3</b> The Between Estimator</a></li>
+<li class="chapter" data-level="9.1.4" data-path="panel-data-models.html"><a href="panel-data-models.html#one-way-random-effects-models"><i class="fa fa-check"></i><b>9.1.4</b> One-Way Random Effects Models</a></li>
+<li class="chapter" data-level="9.1.5" data-path="panel-data-models.html"><a href="panel-data-models.html#testing-the-appropriateness-of-random-effects-model"><i class="fa fa-check"></i><b>9.1.5</b> Testing the appropriateness of Random Effects Model</a></li>
+<li class="chapter" data-level="9.1.6" data-path="panel-data-models.html"><a href="panel-data-models.html#prediction-from-one-way-fixed-effects-model-random-effects-model"><i class="fa fa-check"></i><b>9.1.6</b> Prediction from One-Way Fixed Effects Model &amp; Random Effects Model</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="panel-data-models.html"><a href="panel-data-models.html#iv-models-for-panel-data"><i class="fa fa-check"></i><b>9.2</b> IV Models for Panel Data</a></li>
+<li class="chapter" data-level="9.3" data-path="panel-data-models.html"><a href="panel-data-models.html#dynamic-panel-data-models"><i class="fa fa-check"></i><b>9.3</b> Dynamic Panel Data Models</a></li>
+<li class="chapter" data-level="9.4" data-path="panel-data-models.html"><a href="panel-data-models.html#seemingly-unrelated-regression-models"><i class="fa fa-check"></i><b>9.4</b> Seemingly Unrelated Regression Models</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="panel-data-models.html"><a href="panel-data-models.html#sur-with-identical-regressors"><i class="fa fa-check"></i><b>9.4.1</b> SUR with Identical Regressors</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="panel-data-models.html"><a href="panel-data-models.html#moving-window-regression-estimates"><i class="fa fa-check"></i><b>9.5</b> Moving-Window Regression Estimates</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html"><i class="fa fa-check"></i><b>10</b> Models of Discrete &amp; Limited Dependent Variables</a><ul>
+<li class="chapter" data-level="10.1" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#binomial-logit-probit-models"><i class="fa fa-check"></i><b>10.1</b> Binomial Logit &amp; Probit Models</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#the-latent-variable-approach"><i class="fa fa-check"></i><b>10.1.1</b> The Latent Variable Approach</a></li>
+<li class="chapter" data-level="10.1.2" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#marginal-effects-predictions"><i class="fa fa-check"></i><b>10.1.2</b> Marginal Effects &amp; Predictions</a></li>
+<li class="chapter" data-level="10.1.3" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#evaluating-specification-goodness-of-fit"><i class="fa fa-check"></i><b>10.1.3</b> Evaluating Specification &amp; Goodness of Fit</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#ordered-logit-probit-models"><i class="fa fa-check"></i><b>10.2</b> Ordered Logit &amp; Probit Models</a></li>
+<li class="chapter" data-level="10.3" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#truncated-regression-tobit-models"><i class="fa fa-check"></i><b>10.3</b> Truncated Regression &amp; Tobit Models</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#truncation"><i class="fa fa-check"></i><b>10.3.1</b> Truncation</a></li>
+<li class="chapter" data-level="10.3.2" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#censoring"><i class="fa fa-check"></i><b>10.3.2</b> Censoring</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#incidental-truncation-sample-selection-models"><i class="fa fa-check"></i><b>10.4</b> Incidental Truncation &amp; Sample Selection Models</a></li>
+<li class="chapter" data-level="10.5" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#bivariate-probit-probit-with-selection"><i class="fa fa-check"></i><b>10.5</b> Bivariate Probit &amp; Probit with Selection</a><ul>
+<li class="chapter" data-level="10.5.1" data-path="models-of-discrete-limited-dependent-variables.html"><a href="models-of-discrete-limited-dependent-variables.html#binomial-probit-with-selection"><i class="fa fa-check"></i><b>10.5.1</b> Binomial Probit with Selection</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org/baydap/bookdownplus/" target="blank">Supported by bookdownplus</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Econometrics using STATA</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="regression-with-non-iid-errors" class="section level1">
+<h1><span class="header-section-number">6</span> Regression with non-iid Errors</h1>
+<div id="the-generalized-linear-regression-model" class="section level2">
+<h2><span class="header-section-number">6.1</span> The Generalized Linear Regression Model</h2>
+<div id="types-of-deviations-from-i.i.d.-errors" class="section level3">
+<h3><span class="header-section-number">6.1.1</span> Types of Deviations from i.i.d. Errors</h3>
+</div>
+<div id="the-robust-estimator-of-vce" class="section level3">
+<h3><span class="header-section-number">6.1.2</span> The Robust Estimator of VCE</h3>
+
+<pre><code>
+
+. use fertil2.. describe
+
+Contains data from fertil2.dta
+  obs:         4,361                          
+ vars:            30                          2 Dec 2004 00:16
+ size:       484,071                          
+-------------------------------------------------------------------------------
+              storage   display    value
+variable name   type    format     label      variable label
+-------------------------------------------------------------------------------
+mnthborn        float   %9.0g                 
+yearborn        float   %9.0g                 
+age             float   %9.0g                 
+electric        float   %9.0g                 
+radio           float   %9.0g                 
+tv              float   %9.0g                 
+bicycle         float   %9.0g                 
+educ            float   %9.0g                 
+ceb             float   %9.0g                 
+agefbrth        float   %9.0g                 
+children        float   %9.0g                 
+knowmeth        float   %9.0g                 
+usemeth         float   %9.0g                 
+monthfm         float   %9.0g                 
+yearfm          float   %9.0g                 
+agefm           float   %9.0g                 
+idlnchld        float   %9.0g                 
+heduc           float   %9.0g                 
+agesq           float   %9.0g                 
+urban           float   %9.0g                 
+urbeduc         float   %9.0g                 
+spirit          float   %9.0g                 
+protest         float   %9.0g                 
+catholic        float   %9.0g                 
+frsthalf        float   %9.0g                 
+educ0           float   %9.0g                 
+evermarr        float   %9.0g                 
+_est_OLS        byte    %8.0g                 esample() from estimates store
+_est_robust     byte    %8.0g                 esample() from estimates store
+_est_cluster    byte    %8.0g                 esample() from estimates store
+-------------------------------------------------------------------------------
+Sorted by: 
+
+. summarize
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+    mnthborn |      4,361    6.331346    3.323333          1         12
+    yearborn |      4,361    60.43362    8.682723         38         73
+         age |      4,361    27.40518    8.685233         15         49
+    electric |      4,358    .1402019    .3472363          0          1
+       radio |      4,359    .7017665     .457535          0          1
+-------------+---------------------------------------------------------
+          tv |      4,359    .0929112    .2903413          0          1
+     bicycle |      4,358    .2758146    .4469751          0          1
+        educ |      4,361    5.855996    3.927075          0         20
+         ceb |      4,361    2.441642    2.406861          0         13
+    agefbrth |      3,273     19.0113    3.092333         10         38
+-------------+---------------------------------------------------------
+    children |      4,361    2.267828    2.222032          0         13
+    knowmeth |      4,354    .9632522    .1881636          0          1
+     usemeth |      4,290    .5776224    .4939956          0          1
+     monthfm |      2,079    6.270322    3.619943          1         12
+      yearfm |      2,079    76.91246    7.760183         50         88
+-------------+---------------------------------------------------------
+       agefm |      2,079    20.68639    5.002383         10         46
+    idlnchld |      4,241    4.615892    2.219303          0         20
+       heduc |      1,956    5.144683    4.803028          0         20
+       agesq |      4,361      826.46    526.9232        225       2401
+       urban |      4,361    .5166246    .4997808          0          1
+-------------+---------------------------------------------------------
+     urbeduc |      4,361    3.469158    4.294228          0         20
+      spirit |      4,361    .4221509     .493959          0          1
+     protest |      4,361    .2277001    .4193961          0          1
+    catholic |      4,361    .1024994    .3033387          0          1
+    frsthalf |      4,361    .5404724    .4984164          0          1
+-------------+---------------------------------------------------------
+       educ0 |      4,361    .2077505    .4057437          0          1
+    evermarr |      4,361    .4767255    .4995153          0          1
+    _est_OLS |      4,361    .7367576    .4404433          0          1
+ _est_robust |      4,361    .7367576    .4404433          0          1
+_est_cluster |      4,361    .7367576    .4404433          0          1</code></pre>
+<p></p>
+
+<pre><code>
+
+. use fertil2.. regress ceb age agefbrth usemeth 
+
+      Source |       SS           df       MS      Number of obs   =     3,213
+-------------+----------------------------------   F(3, 3209)      =   1433.16
+       Model |  9202.53439         3  3067.51146   Prob &gt; F        =    0.0000
+    Residual |  6868.49331     3,209  2.14038433   R-squared       =    0.5726
+-------------+----------------------------------   Adj R-squared   =    0.5722
+       Total |  16071.0277     3,212  5.00343328   Root MSE        =     1.463
+
+------------------------------------------------------------------------------
+         ceb |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+         age |   .2237368    .003448    64.89   0.000     .2169763    .2304974
+    agefbrth |  -.2606634   .0087954   -29.64   0.000    -.2779085   -.2434184
+     usemeth |   .1873702   .0554298     3.38   0.001     .0786888    .2960516
+       _cons |   1.358134   .1737828     7.82   0.000     1.017397     1.69887
+------------------------------------------------------------------------------
+
+. estimates store nonRobust
+
+. summarize ceb age agefbrth usemeth children if e(sample)
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+         ceb |      3,213    3.230003    2.236836          1         13
+         age |      3,213    29.93931    7.920432         15         49
+    agefbrth |      3,213    19.00498    3.098121         10         38
+     usemeth |      3,213    .6791161    .4668889          0          1
+    children |      3,213    2.999378    2.055579          0         13
+
+. regress ceb age agefbrth usemeth, robust
+
+Linear regression                               Number of obs     =      3,213
+                                                F(3, 3209)        =     874.06
+                                                Prob &gt; F          =     0.0000
+                                                R-squared         =     0.5726
+                                                Root MSE          =      1.463
+
+------------------------------------------------------------------------------
+             |               Robust
+         ceb |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+         age |   .2237368   .0046619    47.99   0.000     .2145962    .2328775
+    agefbrth |  -.2606634   .0095616   -27.26   0.000    -.2794109   -.2419159
+     usemeth |   .1873702   .0606446     3.09   0.002     .0684642    .3062762
+       _cons |   1.358134   .1675624     8.11   0.000     1.029593    1.686674
+------------------------------------------------------------------------------
+
+. estimates store Robust
+
+. estimates table nonRobust Robust, b(%9.4f) se(%5.3f) t(%5.2f) p(%4.3f) title(
+&gt; Estimates of CEB with OLS and Robust Standard Errors)
+
+Estimates of CEB with OLS and Robust Standard Errors
+
+--------------------------------------
+    Variable | nonRobust    Robust    
+-------------+------------------------
+         age |    0.2237      0.2237  
+             |     0.003       0.005  
+             |     64.89       47.99  
+             |     0.000       0.000  
+    agefbrth |   -0.2607     -0.2607  
+             |     0.009       0.010  
+             |    -29.64      -27.26  
+             |     0.000       0.000  
+     usemeth |    0.1874      0.1874  
+             |     0.055       0.061  
+             |      3.38        3.09  
+             |     0.001       0.002  
+       _cons |    1.3581      1.3581  
+             |     0.174       0.168  
+             |      7.82        8.11  
+             |     0.000       0.000  
+--------------------------------------
+                      legend: b/se/t/p</code></pre>
+<p></p>
+</div>
+<div id="the-cluster-estimator-of-vce" class="section level3">
+<h3><span class="header-section-number">6.1.3</span> The Cluster Estimator of VCE</h3>
+
+<pre><code>
+
+. use fertil2.. regress ceb age agefbrth usemeth, cluster(children)
+
+Linear regression                               Number of obs     =      3,213
+                                                F(3, 13)          =      20.91
+                                                Prob &gt; F          =     0.0000
+                                                R-squared         =     0.5726
+                                                Root MSE          =      1.463
+
+                              (Std. Err. adjusted for 14 clusters in children)
+------------------------------------------------------------------------------
+             |               Robust
+         ceb |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+         age |   .2237368   .0315086     7.10   0.000     .1556665    .2918071
+    agefbrth |  -.2606634   .0354296    -7.36   0.000    -.3372045   -.1841224
+     usemeth |   .1873702   .0943553     1.99   0.069     -.016472    .3912125
+       _cons |   1.358134   .4248589     3.20   0.007     .4402818    2.275985
+------------------------------------------------------------------------------</code></pre>
+<p></p>
+</div>
+<div id="the-neweywest-estimator-of-vce" class="section level3">
+<h3><span class="header-section-number">6.1.4</span> The Newey–West Estimator of VCE</h3>
+
+<pre><code>
+
+. use ukrates.. describe
+
+Contains data from ukrates.dta
+  obs:           526                          
+ vars:             3                          2 Dec 2004 10:43
+ size:         6,312                          
+-------------------------------------------------------------------------------
+              storage   display    value
+variable name   type    format     label      variable label
+-------------------------------------------------------------------------------
+rs              float   %9.0g                 
+month           float   %tm                   
+r20             float   %9.0g                 
+-------------------------------------------------------------------------------
+Sorted by: month
+
+. summarize
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+          rs |        526    7.651513    3.553109   1.561667      16.18
+       month |        526       168.5    151.9874        -94        431
+         r20 |        526    8.863726    3.224372       3.35      17.18
+
+. quietly regress D.rs LD.r20
+
+. estimates store nonHAC
+
+. newey D.rs LD.r20, lag(5)
+
+Regression with Newey-West standard errors      Number of obs     =        524
+maximum lag: 5                                  F(  1,       522) =      36.00
+                                                Prob &gt; F          =     0.0000
+
+------------------------------------------------------------------------------
+             |             Newey-West
+        D.rs |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+         r20 |
+         LD. |   .4882883   .0813867     6.00   0.000     .3284026     .648174
+             |
+       _cons |   .0040183   .0254102     0.16   0.874    -.0459004    .0539371
+------------------------------------------------------------------------------
+
+. estimates store NeweyWest
+
+. estimates table nonHAC NeweyWest, b(%9.4f) se(%5.3f) t(%5.2f) p(%4.3f) title(
+&gt; Estimates of D.rs with OLS and Newey-West Standard Errors)
+
+Estimates of D.rs with OLS and Newey-West Standard Errors
+
+--------------------------------------
+    Variable |  nonHAC     NeweyWest  
+-------------+------------------------
+         r20 |
+         LD. |    0.4883      0.4883  
+             |     0.067       0.081  
+             |      7.27        6.00  
+             |     0.000       0.000  
+             |
+       _cons |    0.0040      0.0040  
+             |     0.022       0.025  
+             |      0.18        0.16  
+             |     0.858       0.874  
+--------------------------------------
+                      legend: b/se/t/p</code></pre>
+<p></p>
+</div>
+<div id="the-generalized-least-squares-estimator" class="section level3">
+<h3><span class="header-section-number">6.1.5</span> The Generalized Least Squares Estimator</h3>
+</div>
+</div>
+<div id="heteroskedasticity-in-the-error-distribution" class="section level2">
+<h2><span class="header-section-number">6.2</span> Heteroskedasticity in the Error Distribution</h2>
+<div id="heteroskedasticity-related-to-scale" class="section level3">
+<h3><span class="header-section-number">6.2.1</span> Heteroskedasticity Related to Scale</h3>
+<div id="testing-for-heteroskedasticity-related-to-scale" class="section level4">
+<h4><span class="header-section-number">6.2.1.1</span> Testing for Heteroskedasticity Related to Scale</h4>
+
+<pre><code>
+
+. use hprice2a.(Housing price data for Boston-area communities)
+
+. regress lprice rooms crime ldist
+
+      Source |       SS           df       MS      Number of obs   =       506
+-------------+----------------------------------   F(3, 502)       =    219.03
+       Model |  47.9496883         3  15.9832294   Prob &gt; F        =    0.0000
+    Residual |  36.6325827       502  .072973272   R-squared       =    0.5669
+-------------+----------------------------------   Adj R-squared   =    0.5643
+       Total |  84.5822709       505  .167489645   Root MSE        =    .27014
+
+------------------------------------------------------------------------------
+      lprice |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+       rooms |   .3072343   .0178231    17.24   0.000     .2722172    .3422514
+       crime |  -.0174486    .001591   -10.97   0.000    -.0205744   -.0143228
+       ldist |    .074858   .0255746     2.93   0.004     .0246115    .1251045
+       _cons |   7.984449   .1128067    70.78   0.000     7.762817     8.20608
+------------------------------------------------------------------------------
+
+. estat hettest, iid
+
+Breusch-Pagan / Cook-Weisberg test for heteroskedasticity 
+         Ho: Constant variance
+         Variables: fitted values of lprice
+
+         chi2(1)      =    44.67
+         Prob &gt; chi2  =   0.0000
+
+. estat hettest rooms crime ldist, iid
+
+Breusch-Pagan / Cook-Weisberg test for heteroskedasticity 
+         Ho: Constant variance
+         Variables: rooms crime ldist
+
+         chi2(3)      =    80.11
+         Prob &gt; chi2  =   0.0000
+
+. whitetst
+command whitetst is unrecognized
+r(199);
+
+end of do-file
+r(199);</code></pre>
+<p></p>
+</div>
+<div id="feasible-generalized-least-squares-estimation" class="section level4">
+<h4><span class="header-section-number">6.2.1.2</span> Feasible Generalized Least Squares Estimation</h4>
+
+<pre><code>
+
+. use hprice2a.(Housing price data for Boston-area communities)
+
+. generate rooms2 = rooms^2
+
+. regress lprice rooms crime ldist [aw=1/rooms2]
+(sum of wgt is 13.31716591697057)
+
+      Source |       SS           df       MS      Number of obs   =       506
+-------------+----------------------------------   F(3, 502)       =    159.98
+       Model |  39.6051883         3  13.2017294   Prob &gt; F        =    0.0000
+    Residual |   41.426616       502  .082523139   R-squared       =    0.4888
+-------------+----------------------------------   Adj R-squared   =    0.4857
+       Total |  81.0318042       505  .160459018   Root MSE        =    .28727
+
+------------------------------------------------------------------------------
+      lprice |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+       rooms |   .2345368   .0194432    12.06   0.000     .1963367     .272737
+       crime |  -.0175759   .0016248   -10.82   0.000    -.0207682   -.0143837
+       ldist |   .0650916    .027514     2.37   0.018     .0110349    .1191483
+       _cons |   8.450081   .1172977    72.04   0.000     8.219626    8.680536
+------------------------------------------------------------------------------</code></pre>
+<p></p>
+</div>
+</div>
+<div id="heteroskedasticity-between-groups-of-observations" class="section level3">
+<h3><span class="header-section-number">6.2.2</span> Heteroskedasticity Between Groups of Observations</h3>
+<div id="testing-for-heteroskedasticity-between-groups-of-observations" class="section level4">
+<h4><span class="header-section-number">6.2.2.1</span> Testing for Heteroskedasticity Between Groups of Observations</h4>
+
+<pre><code>
+
+. use NEdata.. describe
+
+Contains data from NEdata.dta
+  obs:           120                          
+ vars:             6                          24 Oct 2004 13:28
+ size:         2,640                          
+-------------------------------------------------------------------------------
+              storage   display    value
+variable name   type    format     label      variable label
+-------------------------------------------------------------------------------
+state           long    %8.0g      state      
+year            int     %8.0g                 
+pop             float   %9.0g                 
+dpi             float   %9.0g                 
+dpipc           float   %9.0g                 
+ldpipc          float   %9.0g                 
+-------------------------------------------------------------------------------
+Sorted by: 
+
+. summarize
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+       state |        120         3.5    1.714986          1          6
+        year |        120      1990.5    5.790459       1981       2000
+         pop |        120     2196276     1931629     515594    6362076
+         dpi |        120    4.33e+07    4.46e+07    4385134   1.93e+08
+       dpipc |        120    18.15802    5.662848   8.153382   33.38758
+-------------+---------------------------------------------------------
+      ldpipc |        120    2.848302    .3265395   2.098433   3.508184
+
+. regress dpipc year
+
+      Source |       SS           df       MS      Number of obs   =       120
+-------------+----------------------------------   F(1, 118)       =    440.17
+       Model |  3009.33617         1  3009.33617   Prob &gt; F        =    0.0000
+    Residual |  806.737449       118  6.83675804   R-squared       =    0.7886
+-------------+----------------------------------   Adj R-squared   =    0.7868
+       Total |  3816.07362       119  32.0678456   Root MSE        =    2.6147
+
+------------------------------------------------------------------------------
+       dpipc |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        year |   .8684582   .0413941    20.98   0.000     .7864865    .9504298
+       _cons |  -1710.508   82.39534   -20.76   0.000    -1873.673   -1547.343
+------------------------------------------------------------------------------
+
+. predict double eps, residual 
+
+. robvar eps, by(state)
+
+            |        Summary of Residuals
+      state |        Mean   Std. Dev.       Freq.
+------------+------------------------------------
+         CT |    4.167853   1.3596266          20
+         MA |    1.618796   .86550138          20
+         ME |  -2.9841056   .93797625          20
+         NH |   .51033312   .61139299          20
+         RI |   -.8927223   .63408722          20
+         VT |  -2.4201543   .71470977          20
+------------+------------------------------------
+      Total |  -6.063e-14   2.6037101         120
+
+W0  =  4.3882072   df(5, 114)     Pr &gt; F = 0.00108562
+
+W50 =  3.2989851   df(5, 114)     Pr &gt; F = 0.00806751
+
+W10 =  4.2536245   df(5, 114)     Pr &gt; F = 0.00139064</code></pre>
+<p></p>
+</div>
+<div id="feasible-generalized-least-squares-estimation-1" class="section level4">
+<h4><span class="header-section-number">6.2.2.2</span> Feasible Generalized Least Squares Estimation</h4>
+
+<pre><code>
+
+. use NEdata.. regress dpipc year
+
+      Source |       SS           df       MS      Number of obs   =       120
+-------------+----------------------------------   F(1, 118)       =    440.17
+       Model |  3009.33617         1  3009.33617   Prob &gt; F        =    0.0000
+    Residual |  806.737449       118  6.83675804   R-squared       =    0.7886
+-------------+----------------------------------   Adj R-squared   =    0.7868
+       Total |  3816.07362       119  32.0678456   Root MSE        =    2.6147
+
+------------------------------------------------------------------------------
+       dpipc |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        year |   .8684582   .0413941    20.98   0.000     .7864865    .9504298
+       _cons |  -1710.508   82.39534   -20.76   0.000    -1873.673   -1547.343
+------------------------------------------------------------------------------
+
+. predict double eps, residual
+
+. by state, sort: egen sd_eps = sd(eps)
+
+. generate double gw_wt = 1/sd_eps^2
+
+. tabstat sd_eps gw_wt, by(state)
+
+Summary statistics: mean
+  by categories of: state 
+
+ state |    sd_eps     gw_wt
+-------+--------------------
+    CT |  1.359627  .5409545
+    MA |  .8655014  1.334948
+    ME |  .9379762  1.136623
+    NH |   .611393  2.675218
+    RI |  .6340872   2.48715
+    VT |  .7147098  1.957675
+-------+--------------------
+ Total |  .8538824  1.688761
+----------------------------
+
+. regress dpipc year [aw = gw_wt]
+(sum of wgt is 202.6513649171444)
+
+      Source |       SS           df       MS      Number of obs   =       120
+-------------+----------------------------------   F(1, 118)       =    698.19
+       Model |  2845.55409         1  2845.55409   Prob &gt; F        =    0.0000
+    Residual |  480.921278       118  4.07560405   R-squared       =    0.8554
+-------------+----------------------------------   Adj R-squared   =    0.8542
+       Total |  3326.47537       119  27.9535745   Root MSE        =    2.0188
+
+------------------------------------------------------------------------------
+       dpipc |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        year |   .8444948   .0319602    26.42   0.000     .7812049    .9077847
+       _cons |   -1663.26   63.61705   -26.14   0.000    -1789.239   -1537.281
+------------------------------------------------------------------------------</code></pre>
+<p></p>
+</div>
+</div>
+<div id="heteroskedasticity-in-grouped-data" class="section level3">
+<h3><span class="header-section-number">6.2.3</span> Heteroskedasticity in Grouped Data</h3>
+<div id="feasible-generalized-least-squares-estimation-2" class="section level4">
+<h4><span class="header-section-number">6.2.3.1</span> Feasible Generalized Least Squares Estimation</h4>
+
+<pre><code>
+
+. use pubschl.. describe
+
+Contains data from pubschl.dta
+  obs:           420                          
+ vars:            18                          2 Dec 2004 12:36
+ size:        58,380                          
+-------------------------------------------------------------------------------
+              storage   display    value
+variable name   type    format     label      variable label
+-------------------------------------------------------------------------------
+observation_n~r float   %9.0g                 
+dist_cod        float   %9.0g                 
+county          str18   %18s                  
+district        str53   %53s                  
+gr_span         str8    %8s                   
+enrl_tot        float   %9.0g                 
+teachers        float   %9.0g                 
+calw_pct        float   %9.0g                 
+meal_pct        float   %9.0g                 
+computer        float   %9.0g                 
+testscr         float   %9.0g                 
+comp_stu        float   %9.0g                 
+expn_stu        float   %9.0g                 
+str             float   %9.0g                 
+avginc          float   %9.0g                 
+el_pct          float   %9.0g                 
+read_scr        float   %9.0g                 
+math_scr        float   %9.0g                 
+-------------------------------------------------------------------------------
+Sorted by: 
+
+. summarize
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+observatio~r |        420       210.5    121.3878          1        420
+    dist_cod |        420    67472.81    3466.995      61382      75440
+      county |          0
+    district |          0
+     gr_span |          0
+-------------+---------------------------------------------------------
+    enrl_tot |        420    2628.793    3913.105         81      27176
+    teachers |        420    129.0674    187.9127       4.85       1429
+    calw_pct |        420    13.24604    11.45482          0    78.9942
+    meal_pct |        420    44.70524    27.12338          0        100
+    computer |        420    303.3833    441.3413          0       3324
+-------------+---------------------------------------------------------
+     testscr |        420    654.1565    19.05335     605.55     706.75
+    comp_stu |        420    .1359266    .0649558          0   .4208333
+    expn_stu |        420    5312.408    633.9371    3926.07   7711.507
+         str |        420    19.64043    1.891812         14       25.8
+      avginc |        420    15.31659     7.22589      5.335     55.328
+-------------+---------------------------------------------------------
+      el_pct |        420    15.76816    18.28593          0   85.53972
+    read_scr |        420    654.9705    20.10798      604.5        704
+    math_scr |        420    653.3426     18.7542      605.4      709.5
+
+. regress read_scr expn_stu comp_stu meal_pct
+
+      Source |       SS           df       MS      Number of obs   =       420
+-------------+----------------------------------   F(3, 416)       =    565.36
+       Model |  136046.267         3  45348.7558   Prob &gt; F        =    0.0000
+    Residual |  33368.3632       416  80.2124115   R-squared       =    0.8030
+-------------+----------------------------------   Adj R-squared   =    0.8016
+       Total |  169414.631       419  404.330861   Root MSE        =    8.9561
+
+------------------------------------------------------------------------------
+    read_scr |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    expn_stu |   .0046699   .0007204     6.48   0.000     .0032538     .006086
+    comp_stu |   19.88584   7.168347     2.77   0.006     5.795143    33.97654
+    meal_pct |   -.635131   .0164777   -38.54   0.000     -.667521    -.602741
+       _cons |   655.8528   3.812206   172.04   0.000     648.3592    663.3464
+------------------------------------------------------------------------------
+
+. regress read_scr expn_stu comp_stu meal_pct [aw = enrl_tot]
+(sum of wgt is 1,104,093)
+
+      Source |       SS           df       MS      Number of obs   =       420
+-------------+----------------------------------   F(3, 416)       =    906.75
+       Model |  123692.671         3  41230.8903   Prob &gt; F        =    0.0000
+    Residual |  18915.9815       416  45.4711093   R-squared       =    0.8674
+-------------+----------------------------------   Adj R-squared   =    0.8664
+       Total |  142608.652       419  340.354779   Root MSE        =    6.7432
+
+------------------------------------------------------------------------------
+    read_scr |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    expn_stu |   .0055534   .0008322     6.67   0.000     .0039176    .0071892
+    comp_stu |   27.26378   8.197228     3.33   0.001     11.15063    43.37693
+    meal_pct |  -.6352229    .013149   -48.31   0.000    -.6610696   -.6093762
+       _cons |    648.988   4.163875   155.86   0.000     640.8031    657.1728
+------------------------------------------------------------------------------</code></pre>
+<p></p>
+</div>
+</div>
+</div>
+<div id="serial-correlation-in-the-error-distribution" class="section level2">
+<h2><span class="header-section-number">6.3</span> Serial Correlation in the Error Distribution</h2>
+<div id="testing-for-serial-correlation" class="section level3">
+<h3><span class="header-section-number">6.3.1</span> Testing for Serial Correlation</h3>
+
+<pre><code>
+
+. use ukrates.. describe
+
+Contains data from ukrates.dta
+  obs:           526                          
+ vars:             3                          2 Dec 2004 10:43
+ size:         6,312                          
+-------------------------------------------------------------------------------
+              storage   display    value
+variable name   type    format     label      variable label
+-------------------------------------------------------------------------------
+rs              float   %9.0g                 
+month           float   %tm                   
+r20             float   %9.0g                 
+-------------------------------------------------------------------------------
+Sorted by: month
+
+. summarize
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+          rs |        526    7.651513    3.553109   1.561667      16.18
+       month |        526       168.5    151.9874        -94        431
+         r20 |        526    8.863726    3.224372       3.35      17.18
+
+. regress D.rs LD.r20
+
+      Source |       SS           df       MS      Number of obs   =       524
+-------------+----------------------------------   F(1, 522)       =     52.88
+       Model |  13.8769739         1  13.8769739   Prob &gt; F        =    0.0000
+    Residual |  136.988471       522  .262430021   R-squared       =    0.0920
+-------------+----------------------------------   Adj R-squared   =    0.0902
+       Total |  150.865445       523  .288461654   Root MSE        =    .51228
+
+------------------------------------------------------------------------------
+        D.rs |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+         r20 |
+         LD. |   .4882883   .0671484     7.27   0.000      .356374    .6202027
+             |
+       _cons |   .0040183    .022384     0.18   0.858    -.0399555    .0479921
+------------------------------------------------------------------------------
+
+. predict double eps, residual 
+(2 missing values generated)
+
+. estat bgodfrey, lags(6)
+
+Breusch-Godfrey LM test for autocorrelation
+---------------------------------------------------------------------------
+    lags(p)  |          chi2               df                 Prob &gt; chi2
+-------------+-------------------------------------------------------------
+       6     |         17.237               6                   0.0084
+---------------------------------------------------------------------------
+                        H0: no serial correlation
+
+. wntestq eps
+
+Portmanteau test for white noise
+---------------------------------------
+ Portmanteau (Q) statistic =    82.3882
+ Prob &gt; chi2(40)           =     0.0001
+
+. ac eps</code></pre>
+<p></p>
+<div class="figure">
+<img src="images/Plot-6-1.png" alt="Autocorrelogram of regression residuals" />
+<p class="caption">Autocorrelogram of regression residuals</p>
+</div>
+</div>
+<div id="fgls-estimation-with-serial-correlation" class="section level3">
+<h3><span class="header-section-number">6.3.2</span> FGLS Estimation with Serial Correlation</h3>
+
+<pre><code>
+
+. use ukrates.. regress D.rs LD.r20
+
+      Source |       SS           df       MS      Number of obs   =       524
+-------------+----------------------------------   F(1, 522)       =     52.88
+       Model |  13.8769739         1  13.8769739   Prob &gt; F        =    0.0000
+    Residual |  136.988471       522  .262430021   R-squared       =    0.0920
+-------------+----------------------------------   Adj R-squared   =    0.0902
+       Total |  150.865445       523  .288461654   Root MSE        =    .51228
+
+------------------------------------------------------------------------------
+        D.rs |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+         r20 |
+         LD. |   .4882883   .0671484     7.27   0.000      .356374    .6202027
+             |
+       _cons |   .0040183    .022384     0.18   0.858    -.0399555    .0479921
+------------------------------------------------------------------------------
+
+. prais D.rs LD.r20, nolog
+
+
+Prais-Winsten AR(1) regression -- iterated estimates
+
+      Source |       SS           df       MS      Number of obs   =       524
+-------------+----------------------------------   F(1, 522)       =     25.73
+       Model |  6.56420242         1  6.56420242   Prob &gt; F        =    0.0000
+    Residual |  133.146932       522   .25507075   R-squared       =    0.0470
+-------------+----------------------------------   Adj R-squared   =    0.0452
+       Total |  139.711134       523    .2671341   Root MSE        =    .50505
+
+------------------------------------------------------------------------------
+        D.rs |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+         r20 |
+         LD. |   .3495857    .068912     5.07   0.000     .2142067    .4849647
+             |
+       _cons |   .0049985   .0272145     0.18   0.854    -.0484649    .0584619
+-------------+----------------------------------------------------------------
+         rho |   .1895324
+------------------------------------------------------------------------------
+Durbin-Watson statistic (original)    1.702273
+Durbin-Watson statistic (transformed) 2.007414</code></pre>
+<p></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="specifying-the-functional-form.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="regression-with-indicator-variables.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["EconoSTATA.pdf", "EconoSTATA.epub"],
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

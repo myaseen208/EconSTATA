@@ -1,0 +1,218 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+\chapter{General Structural Equation Models}
+
+\minitoc
+
+\section{Introduction}
+
+\graffito{General Structural Equation Model}
+
+The \emph{general structural equation model} consists of a \emph{measurement model} that specifies the relation of observed to latent variables and a \emph{latent variable model} that
+shows the influence of latent variables on each other.
+
+
+
+\section{Model}
+
+
+The first component of the structural equations is the latent variable model:
+
+\graffito{Latent Variable Model}
+
+
+\begin{equation}
+\bm{\eta}_{i}=\mathbf{B}\bm{\eta}_{i}+\bm{\Gamma}\bm{\xi}_{i}+\bm{\zeta}_{i}\label{eq:StructuralModel1}
+\end{equation}
+
+
+In \eqref{eq:StructuralModel1}, $\bm{\eta}_{i}$ (eta), the vector
+of latent endogenous random variables, is $m\times1$; $\bm{\xi}_{i}$
+(xi) the latent exogenous random variables, is $n\times1$; $\mathbf{B}$
+is the $m\times m$ coefficient matrix showing the influence of the
+latent endogenous variables on each other; $\bm{\Gamma}$ (Gamma)
+is the $m\times n$ coefficient matrix for the effects of $\bm{\xi}_{i}$
+on $\bm{\eta}_{i}$. The matrix $\left(\mathbf{I}-\mathbf{B}\right)$
+is non-singular. $\bm{\zeta}_{i}$ (zeta) is the disturbance vector
+that is assumed to have an expected value of zero $\left[\mathbb{E}\left(\bm{\zeta}_{i}\right)=\mathbf{0}\right]$
+and which is uncorrelated with $\bm{\xi}_{i}$.
+
+
+
+The second component of the general system is the measurement model:
+
+\graffito{Measurement Model}
+
+\begin{align}
+\mathbf{y}_{i} & =\bm{\Lambda}_{y}\bm{\eta}_{i}+\bm{\epsilon}_{i}\label{eq:MeasurementModel1}\\
+\mathbf{x}_{i} & =\bm{\Lambda}_{x}\bm{\xi}_{i}+\bm{\delta}_{i}\label{eq:MeasurementModel2}
+\end{align}
+
+The $\mathbf{y}_{i}$ $\left(p\times1\right)$ and the $\mathbf{x}_{i}$
+$\left(q\times1\right)$ vectors are observed variables, $\bm{\Lambda}_{y}$
+$\left(p\times m\right)$ (Lambda) and $\bm{\Lambda}_{x}$ $\left(q\times n\right)$
+are the coefficient matrices that show the relation of $\mathbf{y}_{i}$
+to $\bm{\eta}_{i}$ and $\mathbf{x}_{i}$ to $\bm{\xi}_{i}$ respectively,
+and $\bm{\epsilon}_{i}$ $\left(p\times1\right)$ (epsilon) and $\bm{\delta}_{i}$
+$\left(q\times1\right)$ (delta) are the errors of measurement for
+$\mathbf{y}_{i}$ and $\mathbf{x}_{i}$, respectively. The errors
+of measurement are assumed to be uncorrelated with $\bm{\eta}_{i}$,
+$\bm{\xi}_{i}$ and $\bm{\zeta}_{i}$ and with each other.
+
+Also $\mathbb{V}\left(\bm{\xi}_{i}\right)=\bm{\Phi}$ (Phi), $\mathbb{V}\left(\bm{\zeta}_{i}\right)=\bm{\Psi}$
+(Psi), $\mathbb{V}\left(\bm{\epsilon}_{i}\right)=\bm{\Theta}_{\epsilon}$
+(Theta), $\mathbb{V}\left(\bm{\delta}_{i}\right)=\bm{\Theta}_{\delta}$
+(Theta) and $\mathbb{V}\left(\begin{bmatrix}\mathbf{y}_{i}\\
+\mathbf{x}_{i}
+\end{bmatrix}\right)=\bm{\Sigma}$ (Sigma).
+
+
+
+\section{Steps in SEM Modeling}
+\graffito{Steps in SEM Modeling
+\begin{enumerate}
+\item Specification
+\item Identification
+\item Estimation
+\item Testing and Diagnostics
+\item Respecification
+\end{enumerate}
+}
+
+
+\subsection{Specification}
+
+\begin{enumerate}
+\item What latent variables?
+\item Relation between latent variables?
+\item What measures?
+\item Relation between measures and latent variables?
+\end{enumerate}
+
+
+
+**Latent Variables:** Variables of Interest But Not Directly Measureable
+
+
+**Common in Sciences:** Intelligence, Worker Productivity, Diseases,
+Happiness, Value of House, Carrying Capacity, “Free” Market, Disturbance
+Variables, etc
+
+
+\graffito{Latent Variables: Variables of Interest But Not Directly Measureable}
+
+\subsection{Implied Covariance Matrix}
+
+\begin{align*}
+\text{H}_{0}:\bm{\Sigma} & =\bm{\Sigma}\left(\bm{\theta}\right)\\
+\\
+\bm{\Sigma} & =\text{Population Covariance Matrix}\\
+\bm{\theta} & =\text{Vector of Parameters}\\
+\bm{\Sigma}\left(\bm{\theta}\right) & =\text{Model Implied Covariance Matrix}
+\end{align*}
+Each Model $\Rightarrow$$\bm{\Sigma}\left(\bm{\theta}\right)$
+
+
+\subsection{Identification}
+
+\subsubsection{Introduction}
+
+Unique values for parameters?
+
+If$\bm{\Sigma}\left(\bm{\theta}_{1}\right)=\bm{\Sigma}\left(\bm{\theta}_{2}\right)$
+then $\bm{\theta}_{1}=\bm{\theta}_{2}$
+
+\subsubsection{Establishing Identification}
+\begin{itemize}
+\item Algebraic Means: $\bm{\Sigma}=\bm{\Sigma}\left(\bm{\theta}\right)$
+solve for $\bm{\theta}$
+\item Identification Rules
+\item Empirical Tests
+\end{itemize}
+
+\subsection{Estimation}
+
+\subsubsection{Full Information}
+\begin{itemize}
+\item Maximum Likelihood (ML)
+\item Generalized Least Squares (GLS)
+\item Unweighted Least Squares (ULS)
+\item Weighted Least Squares (WLS)
+\end{itemize}
+
+\subsubsection{Limited Information}
+\begin{itemize}
+\item Two-Stage Least Squares (2SLS)
+\end{itemize}
+
+
+\subsection{Testing and Diagnostics}
+\begin{itemize}
+\item $\text{H}_{0}:\bm{\Sigma}=\bm{\Sigma}\left(\bm{\theta}\right)$\\
+$\chi^{2}$ Test\\
+$\chi_{m}^{2}=\left(N-1\right)\left(\text{Fit Function Minimum}\right)$\\
+$df=\frac{1}{2}\left(p+q\right)\left(p+q+1\right)-\text{No of parameters}$
+\item Overall Model Fit\\
+$\chi_{b}^{2}=\text{Chi-square test statistics for baseline model}$\\
+$\chi_{m}^{2}=\text{Chi-square test statistics for hypothesized model}$\\
+$df_{b}=\text{degrees of freedom for baseline model}$\\
+$df_{m}=\text{degrees of freedom for hypothesized model}$\\
+$\text{Incremental Fit Index (IFI)}=\frac{\chi_{b}^{2}-\chi_{m}^{2}}{\chi_{b}^{2}-df_{m}}$\\
+$\text{Tucker Lewis index (TLI)}=\frac{\nicefrac{\chi_{b}^{2}}{df_{b}}-\nicefrac{\chi_{m}^{2}}{df_{m}}}{\nicefrac{\chi_{b}^{2}}{df_{b}}-1}$\\
+$\text{Root Mean Square Error of Approximation ( RMSEA)}=\sqrt{\frac{\chi_{m}^{2}-df_{m}}{\left(N-1\right)df_{m}}}$
+\item Residuals $\left(\mathbf{S}-\bm{\Sigma}\left(\widehat{\bm{\theta}}\right)\right)$
+\item Component Fit
+\item Statistical Power
+\end{itemize}
+
+\subsection{Respecification}
+\begin{itemize}
+\item Substantive-Based Revisions
+\item Lagrangian Multiplier
+\item Wald
+\item Residuals $\left(\mathbf{S}-\bm{\Sigma}\left(\widehat{\bm{\theta}}\right)\right)$
+\end{itemize}
+
+
+
+\begin{table}[H]
+\caption{Notation for the General Structural Equation Model}
+\centering{}%
+\begin{tabular}{llllp{6.0cm}}
+\hline 
+\textbf{\emph{\footnotesize{}Symbol}} & \textbf{\emph{\footnotesize{}Name}} &  & \textbf{\emph{\footnotesize{}Dimension}} & \textbf{\emph{\footnotesize{}Meaning}}\tabularnewline
+\hline 
+{\footnotesize{}$N$} &  &  & {\footnotesize{}$1\times1$} & {\footnotesize{}Number of observations}\tabularnewline
+{\footnotesize{}$m$} &  &  & {\footnotesize{}$1\times1$} & {\footnotesize{}Number of latent endogenous variables}\tabularnewline
+{\footnotesize{}$n$} &  &  & {\footnotesize{}$1\times1$} & {\footnotesize{}Number of latent exogenous variables}\tabularnewline
+{\footnotesize{}$p$} &  &  & {\footnotesize{}$1\times1$} & {\footnotesize{}Number of indicators of latent endogenous variables}\tabularnewline
+{\footnotesize{}$q$} &  &  & {\footnotesize{}$1\times1$} & {\footnotesize{}Number of indicators of latent exogenous variable}\tabularnewline
+{\footnotesize{}$\bm{\eta}_{i}$} & {\footnotesize{}eta} &  & {\footnotesize{}$m\times1$} & {\footnotesize{}Latent endogenous variables (for observation $i$)}\tabularnewline
+{\footnotesize{}$\bm{\xi}_{i}$} & {\footnotesize{}xi} &  & {\footnotesize{}$n\times1$} & {\footnotesize{}Latent exogenous variables (for observation $i$)}\tabularnewline
+{\footnotesize{}$\bm{\zeta}_{i}$} & {\footnotesize{}zeta} &  & {\footnotesize{}$m\times1$} & {\footnotesize{}Structural disturbances (errors in equations)}\tabularnewline
+{\footnotesize{}$\mathbf{B}$} &  &  & {\footnotesize{}$m\times m$} & {\footnotesize{}Structural parameters relating latent endogenous to
+endogenous variables}\tabularnewline
+{\footnotesize{}$\bm{\Gamma}$} & {\footnotesize{}Gamma} &  & {\footnotesize{}$n\times n$} & {\footnotesize{}Structural parameters relating latent endogenous to
+exogenous variables}\tabularnewline
+{\footnotesize{}$\mathbf{y}_{i}$} &  &  & {\footnotesize{}$p\times1$} & {\footnotesize{}Indicators of latent endogenous variables}\tabularnewline
+{\footnotesize{}$\mathbf{x}_{i}$} &  &  & {\footnotesize{}$q\times1$} & {\footnotesize{}Indicators of latent exogenous variables}\tabularnewline
+{\footnotesize{}$\bm{\epsilon}_{i}$} & {\footnotesize{}epsilon} &  & {\footnotesize{}$p\times1$} & {\footnotesize{}Measurement errors in endogenous indicators}\tabularnewline
+{\footnotesize{}$\bm{\delta}_{i}$} & {\footnotesize{}delta} &  & {\footnotesize{}$q\times1$} & {\footnotesize{}Measurement errors in exogenous indicators}\tabularnewline
+{\footnotesize{}$\bm{\Lambda}_{y}$} & {\footnotesize{}Lambda} &  & {\footnotesize{}$p\times m$} & {\footnotesize{}Factor loadings relating endogenous indicators to
+latent endogenous variables}\tabularnewline
+{\footnotesize{}$\bm{\Lambda}_{x}$} & {\footnotesize{}Lambda} &  & {\footnotesize{}$q\times n$} & {\footnotesize{}Factor loadings relating exogenous indicators to latent
+exogenous variables}\tabularnewline
+{\footnotesize{}$\bm{\Phi}$ } & {\footnotesize{}Phi} &  & {\footnotesize{}$n\times n$} & {\footnotesize{}Covariances among latent exogenous variables}\tabularnewline
+{\footnotesize{}$\bm{\Psi}$} & {\footnotesize{}Psi} &  & {\footnotesize{}$m\times m$} & {\footnotesize{}Covariances among structural disturbances}\tabularnewline
+{\footnotesize{}$\bm{\Theta}_{\epsilon}$} & {\footnotesize{}Theta} &  & {\footnotesize{}$p\times p$} & {\footnotesize{}Covariances among measurement errors in endogenous
+indicators}\tabularnewline
+{\footnotesize{}$\bm{\Theta}_{\delta}$} & {\footnotesize{}Theta} &  & {\footnotesize{}$q\times q$} & {\footnotesize{}Covariances among measurement errors in exogenous
+indicators}\tabularnewline
+{\footnotesize{}$\bm{\Sigma}$} & {\footnotesize{}Sigma} &  & {\footnotesize{}$\left(p+q\right)\times\left(p+q\right)$} & {\footnotesize{}Covariances among observed (indicator) variables}\tabularnewline
+\hline 
+\end{tabular}
+\end{table}
+
